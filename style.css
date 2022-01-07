@@ -58,3 +58,15 @@ textarea.input:focus{
     border:1px solid #E6A873;
     box-shadow: 0 0 10px #E6A873;
 }
+
+footer {
+    background-color: #576EF2;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
