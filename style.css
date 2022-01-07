@@ -1,5 +1,23 @@
 body {
     background-color: #282C34;
+    font-family: 'Roboto', sans-serif;
+    color: whitesmoke;
+}
+
+h1 {
+    font-weight: 400;
+    font-size: 30px;
+    color: white;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 25px;
+    color: white;
+}
+
+p1 {
+    font-size: 20px;
 }
 
 div {
