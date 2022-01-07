@@ -87,6 +87,14 @@ function translate(text){
                 continue;
             }
         }
+        if (char == "\\"){
+            if (i + 1 >= text.length){
+                continue;
+            }
+
+            translation += text[i + 1];
+            i++;
+            continue;
         }
         translation += char;
     }
