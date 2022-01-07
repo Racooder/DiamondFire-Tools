@@ -27,15 +27,29 @@ const dict = {
     z: "ᴢ"
 }
 
+function handleInput(element){
+    adaptSize(element);
+    
+    var input = element.value;
+    var translationObject = document.getElementById("translation");
+
+    if(input.length == 0){
+        translationObject.className = "translationField";
+        translationObject.value = '';
+        return;
+    }
+
+    var translation = translate(input.toLowerCase());
+
+    translationObject.value = translation;
+    translationObject.className = "translation";
+
+    adaptSize(translationObject);
+}
+
 function adaptSize(element){
     element.style.height = "1px";
     element.style.height = (25+element.scrollHeight)+"px";
-}
-
-function getInput(){
-    var input = document.getElementById("input").value;
-    var translation = translate(input.toLowerCase());
-    document.getElementById("translation").innerText = translation;
 }
 
 function translate(text){

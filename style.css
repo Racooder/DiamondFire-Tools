@@ -1,5 +1,11 @@
-p.border {
-    border-style: solid;
+body {
+    background-color: #282C34;
+}
+
+div {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 div {
@@ -12,4 +18,25 @@ textarea {
     width: 100%;
     overflow: hidden;
     resize: none;
+    background-color: #21252B;
+    color: #D0D0D0;
+    border-color: #626C80;
+    font-size: 16px;
+}
+
+textarea.input{
+    border-color: #D99F6C;
+}
+
+textarea.translation{
+    border-color: #0F8C5E;
+}
+
+textarea:focus {
+    outline: none !important;
+}
+
+textarea.input:focus{
+    border:1px solid #E6A873;
+    box-shadow: 0 0 10px #E6A873;
 }

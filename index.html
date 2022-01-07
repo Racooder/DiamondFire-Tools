@@ -9,13 +9,10 @@
 
     <body>
         <div>
-            <textarea type="text" id="input" oninput="adaptSize(this)"></textarea>
+            <textarea class="input" type="text" id="input" oninput="handleInput(this)"></textarea>
         </div>
         <div>
-            <button type="button" onclick="getInput()">Translate</button>
-        </div>
-        <div>
-            <p class="border" id="translation"></p>
+            <textarea class="translationField" id="translation" readonly></textarea>
         </div>
     </body> 
 </html>
