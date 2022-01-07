@@ -29,13 +29,13 @@ const dict = {
 
 function handleInput(element){
     adaptSize(element);
-    
+
     var input = element.value;
     var translationObject = document.getElementById("translation");
 
     if(input.length == 0){
         translationObject.className = "translationField";
-        translationObject.value = '';
+        translationObject.value = "";
         return;
     }
 
@@ -53,11 +53,33 @@ function adaptSize(element){
 }
 
 function translate(text){
-    var translation = '';
-    for (const char of text) {
+    var translation = "";
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
         if (char in dict) {
             translation += dict[char];
             continue;
+        }
+        if (char == "#"){
+            var colorCode = "&x";
+            var isColorCode = true;
+            for (let j = 1; j < 7; j++) {
+                if (i + j >= text.length) {
+                    isColorCode = false;
+                    break;
+                }
+                const char = text[i + j];
+                if (char.match(/[0-9]|[a-f]/g) == null){
+                    isColorCode = false;
+                    break;
+                }
+                colorCode += `&${char}`
+            }
+            if (isColorCode) {
+                translation += colorCode;
+                i += 6;
+                continue;
+            }
         }
         translation += char;
     }
