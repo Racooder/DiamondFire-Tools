@@ -52,6 +52,8 @@ function adaptSize(element){
     element.style.height = (25+element.scrollHeight)+"px";
 }
 
+var backSlash = false;
+
 function translate(text){
     var translation = "";
     for (let i = 0; i < text.length; i++) {
@@ -62,24 +64,29 @@ function translate(text){
         }
         if (char == "#"){
             var colorCode = "&x";
-            var isColorCode = true;
+
             for (let j = 1; j < 7; j++) {
                 if (i + j >= text.length) {
-                    isColorCode = false;
                     break;
                 }
-                const char = text[i + j];
-                if (char.match(/[0-9]|[a-f]/g) == null){
-                    isColorCode = false;
+                const c = text[i + j];
+                if (c.match(/[0-9]|[a-f]/g) == null){
                     break;
                 }
-                colorCode += `&${char}`
+                colorCode += `&${c}`
             }
-            if (isColorCode) {
-                translation += colorCode;
+
+            if (colorCode.length >= 14) {
+                translation += colorCode.substring(0, 14);
                 i += 6;
                 continue;
             }
+            if (colorCode.length >= 8) {
+                translation += colorCode.substring(0, 8);
+                i += 3;
+                continue;
+            }
+        }
         }
         translation += char;
     }
