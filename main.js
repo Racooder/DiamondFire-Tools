@@ -39,7 +39,7 @@ function handleInput(element){
         return;
     }
 
-    var translation = translate(input.toLowerCase());
+    var translation = translate(input);
 
     translationObject.value = translation;
     translationObject.className = "translation";
@@ -59,7 +59,7 @@ function translate(text){
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
         if (char in dict) {
-            translation += dict[char];
+            translation += dict[char.toLowerCase()];
             continue;
         }
         if (char == "#"){
