@@ -1,0 +1,15 @@
+p.border {
+    border-style: solid;
+}
+
+div {
+    display: block;
+    word-wrap: break-word;
+}
+
+textarea {
+    box-sizing: content-box;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+}
