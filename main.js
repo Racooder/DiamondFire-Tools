@@ -58,8 +58,10 @@ function translate(text){
     var translation = "";
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
-        if (char in dict) {
-            translation += dict[char.toLowerCase()];
+        const lowerCaseChar = char.toLowerCase();
+        
+        if (lowerCaseChar in dict) {
+            translation += dict[lowerCaseChar];
             continue;
         }
         if (char == "#"){
