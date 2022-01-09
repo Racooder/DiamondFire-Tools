@@ -1,3 +1,3 @@
-# diamondfire-text
+# DiamondFire Tools
 
-https://racooder.github.io/diamondfire-text/
+https://racooder.github.io/DiamondFire-Tools/
