@@ -1,4 +1,5 @@
 body {
+    margin-top: 75px;
     background-color: #282C34;
     font-family: 'Roboto', sans-serif;
     color: whitesmoke;
@@ -16,22 +17,26 @@ h2 {
     color: white;
 }
 
+p {
+    word-wrap: break-word;
+}
+
 p1 {
     font-size: 20px;
 }
 
-div {
-    margin-top: 15px;
+section {
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 20px;
 }
 
-div {
-    display: block;
-    word-wrap: break-word;
+h2 {
+    margin-top: 15px;
 }
 
 textarea {
+    margin-top: 15px;
     box-sizing: content-box;
     width: 100%;
     overflow: hidden;
@@ -59,14 +64,129 @@ textarea.input:focus{
     box-shadow: 0 0 10px #E6A873;
 }
 
-footer {
+a {
+    text-decoration: none;
+}
+
+header {
     background-color: #576EF2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: fixed;
+}
+
+header a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+header a:hover {
+    background-color: #4E63D9;
+    color: white;
+}
+
+header a.active {
+    background-color: #4C5273;
+    color: white;
+}
+
+footer {
+    background-color: #35424A;
     left: 0;
     bottom: 0;
     width: 100%;
     position: fixed;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     padding-top: 10px;
+}
+
+div#footerLeft {
+    float: left;
+    margin-left: 250px;
+}
+
+div#footerMid {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+div#footerRight {
+    float: right;
+    margin-right: 500px;
+}
+
+footer a {
+    color: #9ABFD6;
+}
+
+.preview {
+    width: 600px; 
+    height: 400px;
+    -webkit-transform:scale(.25);
+    -ms-transform:scale(.5);
+    transform:scale(.5);
+    -webkit-transform-origin: 0 0; 
+    -ms-transform-origin: 0 0; 
+    transform-origin: 0 0; 
+    margin: 0 0 -300px 0;
+    pointer-events: none;
+    border-radius: 10px;
+    border-color: #576EF2;
+}
+
+div.divLink {
+    position: relative;
+}
+
+a.divLink {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    z-index: 5;
+    width: 300px; 
+    height: 200px;
+}
+
+[type="checkbox"] + label {
+    position: absolute;
+}
+
+[type="checkbox"] {
+    position: relative;
+    left: 15px;
+    top: -4px;
+    z-index: 0;
+    -webkit-appearance: none;
+}
+
+[type="checkbox"] + label::before {
+    width: 22px;
+    height: 18px;
+    background-image: url("data/unchecked.png");
+    display: block;
+    content: "";
+    float: left;
+    margin-right: 5px;
+    z-index: 5;
+    position: relative;
+}
+
+[type="checkbox"]:checked+label::before {
+    background-image: url("data/checked.png");
+}
+
+.checkbox {
+    display: inline-block;
+}
+
+.checkbox#charactersCheckDiv {
+    margin-right: 170px;
 }

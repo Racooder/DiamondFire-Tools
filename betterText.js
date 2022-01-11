@@ -52,7 +52,8 @@ function adaptSize(element){
     element.style.height = (25+element.scrollHeight)+"px";
 }
 
-var backSlash = false;
+var prettierCharacters = true;
+var htmlColorCodes = true;
 
 function translate(text){
     var translation = "";
@@ -60,11 +61,11 @@ function translate(text){
         const char = text[i];
         const lowerCaseChar = char.toLowerCase();
         
-        if (lowerCaseChar in dict) {
+        if (prettierCharacters && lowerCaseChar in dict) {
             translation += dict[lowerCaseChar];
             continue;
         }
-        if (char == "#"){
+        if (htmlColorCodes && char == "#"){
             var colorCode = "&x";
 
             for (let j = 1; j < 7; j++) {
@@ -101,4 +102,9 @@ function translate(text){
         translation += char;
     }
     return translation;
+}
+
+function updateSettings(){
+    prettierCharacters = document.getElementById("charactersCheck").checked;
+    htmlColorCodes = document.getElementById("htmlColorsCheck").checked;
 }

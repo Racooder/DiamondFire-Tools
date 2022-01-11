@@ -1,55 +1,50 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 
 <html>
     <head>
-        <title>Diamondfire Text</title>
-        
+        <title>DiamondFire Tools</title>
+
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="style.css">
-        <script src="main.js"></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
     </head>
-
+    
     <body>
+        <header>
+            <a href="index.html" class="active">Home</a>
+            <a href="better-text.html">Better Text</a>
+        </header>
+
         <section id="title">
-            <div>
-                <h1>Diamondfire Text</h1>
-                <p1>A tool for converting normal text into text that is optimized for diamondfire </p1>
-            </div>
+            <h1>DiamondFire Tools</h1>
+            <p1>Various tools that simplify everyday life on DiamondFire</p1>
         </section>
+
         <section id="main">
-            <div>
-                <textarea class="input" type="text" id="input" oninput="handleInput(this)"></textarea>
-            </div>
-            <div>
-                <textarea class="translationField" id="translation" readonly></textarea>
-            </div>
-        </section>
-        <section id="tutorial">
-            <div>
-                <h2>Prettier Characters</h2>
-                <p>Your text is converted into characters that are prettier than minecraft's standard font. Just enter your text in the yellow box and the prettier version is generated instantly!</p>
-            </div>
-            <div>
-                <h2>HTML Color Codes</h2>
-                <p>Enter a three or six characters long html color code lead by a hashtag, to translate it into a form that is understandable for diamondfire!</p>
-            </div>
-            <div>
-                <h2>Back to the roots</h2>
-                <p>If you want a character as it is, just place a backslash in front of it and it will not be converted!</p>
-            </div>
+            <a href="better-text.html">
+                <div class="divLink">
+                    <a class="divLink" href="better-text.html"></a>
+                    <iframe class="preview" src="previews/better-text.html">
+                        <p>Better Text</p>
+                    </iframe>
+                </div>
+            </a>
         </section>
 
         <footer>
-            <div>
-                <p2>Programmed and designed by <a>Racooder</a></p2>
+            <div id="footerLeft">
+                <p>Programmed and designed by <a href="https://github.com/Racooder">Racooder</a></p>
+                <p>DiamondFire is a minecraft server where players can build and programm their own games.</p>
+                <p>This is not an official tool of the server!</p>
             </div>
-            <div>
-                <p2>Diamondfire is a minecraft server where players can build and programm their own games. This is not an official tool of the server!</p2>
+            <div id="footerMid">
+                <a href="https://discord.gg/uzfVC9H3vM"><p>Discord</p></a>
+                <a href="https://github.com/Racooder/DiamondFire-Tools/issues"><p>Bug Reports & Suggestions</p></a>
+                <a href="https://github.com/Racooder/DiamondFire-Tools"><p>GitHub Repository</p></a>
             </div>
         </footer>
-    </body> 
+    </body>
 </html>
