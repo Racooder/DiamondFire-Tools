@@ -36,6 +36,7 @@ function handleInput(element){
     if(input.length == 0){
         translationObject.className = "translationField";
         translationObject.value = "";
+        adaptSize(translationObject);
         return;
     }
 
@@ -107,4 +108,5 @@ function translate(text){
 function updateSettings(){
     prettierCharacters = document.getElementById("charactersCheck").checked;
     htmlColorCodes = document.getElementById("htmlColorsCheck").checked;
+    handleInput(document.getElementById("input"));
 }
