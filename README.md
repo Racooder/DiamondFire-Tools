@@ -1,3 +1,3 @@
 # DiamondFire Tools
 
-https://racooder.github.io/DiamondFire-Tools/
+https://studio-racoonia.github.io/DiamondFire-Tools/
