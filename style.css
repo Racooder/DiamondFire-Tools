@@ -120,7 +120,7 @@ footer {
 
 div#footerLeft {
     float: left;
-    margin-left: 250px;
+    margin-left: 50px;
 }
 
 div#footerMid {
@@ -130,7 +130,7 @@ div#footerMid {
 
 div#footerRight {
     float: right;
-    margin-right: 500px;
+    margin-right: 400px;
 }
 
 footer a {
@@ -153,6 +153,20 @@ footer p2 {
 footer a:hover p2 {
     right: -2px;
     color: #7EBD87;
+}
+
+footer h1 {
+    font-size: 20px;
+}
+
+p#ipButton {
+    display: inline;
+    cursor: pointer;
+}
+
+p#ip {
+    margin-left: 10px;
+    display: inline;
 }
 
 .preview {
