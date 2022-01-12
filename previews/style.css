@@ -57,3 +57,48 @@ textarea.input:focus{
     border:1px solid #E6A873;
     box-shadow: 0 0 10px #E6A873;
 }
+
+hr {
+    margin-top: 20px;
+}
+
+[type="checkbox"] + label {
+    position: absolute;
+}
+
+[type="checkbox"] {
+    position: relative;
+    left: 15px;
+    top: -4px;
+    z-index: 0;
+    -webkit-appearance: none;
+}
+
+[type="checkbox"] + label::before {
+    width: 22px;
+    height: 18px;
+    background-image: url("../data/unchecked.png");
+    display: block;
+    content: "";
+    float: left;
+    margin-right: 5px;
+    z-index: 5;
+    position: relative;
+}
+
+[type="checkbox"]:checked+label::before {
+    background-image: url("../data/checked.png");
+}
+
+.checkbox {
+    display: inline-block;
+}
+
+.checkbox#charactersCheckDiv {
+    margin-right: 170px;
+}
+
+a {
+    text-decoration: none;
+    color: #9ABFD6;
+}

@@ -50,7 +50,7 @@ function handleInput(element){
 
 function adaptSize(element){
     element.style.height = "1px";
-    element.style.height = (25+element.scrollHeight)+"px";
+    element.style.height = (17+element.scrollHeight)+"px";
 }
 
 var prettierCharacters = true;

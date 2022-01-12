@@ -17,10 +17,14 @@
         <article id="title">
             <h1>Better Text</h1>
             <p1>A tool for converting normal text into text that is optimized for DiamondFire</p1>
+            <hr>
         </article>
         <article id="main">
             <textarea class="input" type="text" id="input" oninput="handleInput(this)" readonly>Text</textarea>
             <textarea class="translation" id="translation" readonly>ᴛᴇxᴛ</textarea>
+            <br><br>
+            <div class="checkbox" id="charactersCheckDiv"><input id="charactersCheck" type="checkbox" checked onchange="updateSettings()"/><label for="charactersCheck">Prettier Characters</label></div>
+            <div class="checkbox" id="htmlColorsCheckDiv"><input id="htmlColorsCheck" type="checkbox" checked onchange="updateSettings()"/><label for="htmlColorsCheck">HTML Color Codes</label></div>
         </article>
     </body>
 </html>
