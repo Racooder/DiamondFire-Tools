@@ -73,7 +73,7 @@ function translate(text){
                 if (i + j >= text.length) {
                     break;
                 }
-                const c = text[i + j];
+                const c = text[i + j].toLowerCase();
                 if (c.match(/[0-9]|[a-f]/g) == null){
                     break;
                 }
