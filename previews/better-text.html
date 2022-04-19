@@ -1,12 +1,12 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 
 <html>
     <head>
-        <title>DiamondFire Text</title>
+        <title>DiamondFire Tools</title>
 
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="style.css">
-        <script src="betterText.js"></script>
+        <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" href="../style/input.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +19,10 @@
             <p1>A tool for converting normal text into text that is optimized for DiamondFire</p1>
             <hr>
         </article>
-        <article id="main">
-            <textarea class="input" type="text" id="input" oninput="handleInput(this)" readonly>Text</textarea>
-            <textarea class="translation" id="translation" readonly>ᴛᴇxᴛ</textarea>
-            <br><br>
+
+        <article id="translator">
+            <textarea class="input" type="text" id="input" oninput="handleInput(this)">Test Text #6F3629</textarea>
+            <textarea class="translation" id="translation" readonly>ᴛᴇꜱᴛ ᴛᴇxᴛ &x&6&f&3&6&2&9</textarea>
             <div class="checkbox" id="charactersCheckDiv"><input id="charactersCheck" type="checkbox" checked onchange="updateSettings()"/><label for="charactersCheck">Prettier Characters</label></div>
             <div class="checkbox" id="htmlColorsCheckDiv"><input id="htmlColorsCheck" type="checkbox" checked onchange="updateSettings()"/><label for="htmlColorsCheck">HTML Color Codes</label></div>
         </article>

@@ -1,33 +1,4 @@
-body {
-    background-color: #282C34;
-    font-family: 'Roboto', sans-serif;
-    color: whitesmoke;
-}
-
-h1 {
-    font-weight: 400;
-    font-size: 30px;
-    color: white;
-}
-
-h2 {
-    font-weight: 300;
-    font-size: 25px;
-    color: white;
-}
-
-p1 {
-    font-size: 20px;
-}
-
-article {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-h2 {
-    margin-top: 15px;
-}
+/** Textareas */
 
 textarea {
     margin-top: 15px;
@@ -39,28 +10,31 @@ textarea {
     color: #D0D0D0;
     border-color: #626C80;
     font-size: 16px;
+    transition: border 0.3s;
 }
 
 textarea.input{
-    border-color: #D99F6C;
+    border: 1px solid #D99F6C;
 }
 
 textarea.translation{
-    border-color: #0F8C5E;
+    border: 1px solid #0F8C5E;
 }
 
 textarea:focus {
     outline: none !important;
 }
 
-textarea.input:focus{
-    border:1px solid #E6A873;
+textarea.input:focus {
+    border: 1px solid #E6A873;
     box-shadow: 0 0 10px #E6A873;
 }
 
-hr {
-    margin-top: 20px;
+textarea.input:hover {
+    border: 1px solid #8C6746;
 }
+
+/** Checkbox */
 
 [type="checkbox"] + label {
     position: absolute;
@@ -84,21 +58,24 @@ hr {
     margin-right: 5px;
     z-index: 5;
     position: relative;
+    transition: 0.2s;
 }
 
 [type="checkbox"]:checked+label::before {
     background-image: url("../data/checked.png");
+    transition: 0.2s;
 }
 
 .checkbox {
     display: inline-block;
+    margin-top: 20px;
+    margin-right: 180px;
 }
 
-.checkbox#charactersCheckDiv {
-    margin-right: 170px;
+.checkbox label {
+    transition: 0.3s;
 }
 
-a {
-    text-decoration: none;
-    color: #9ABFD6;
+.checkbox:hover label {
+    color: #A8A8A8;
 }
