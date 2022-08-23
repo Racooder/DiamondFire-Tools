@@ -3,59 +3,24 @@
 <html>
     <head>
         <title>DiamondFire Tools</title>
+        <link rel="icon" type="image/x-icon" href="/data/favicon.ico">
 
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/previews.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/index.css">
+
+        <script src="scripts/menu.js"></script>
+        <script src="scripts/main.js"></script>
     </head>
 
-    <body>
-        <header>
-            <nav class="flex">
-                <ul class="left">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="better-text.html">Better Text</a></li>
-                    <li><a href="simple-aritmetic.html">Simple Aritmetic</a></li>
-                    <li><a href="commands.html">Commands</a></li>
-                </ul>
-                <ul class="right">
-                    <li><a href="https://mcdiamondfire.com">DiamondFire Website</a></li>
-                    <li><a href="https://discord.gg/EkHPVBdCzd">Discord</a></li>
-                    <li><a href="https://github.com/Studio-Racoonia/DiamondFire-Tools/issues">Bug Reports & Suggestions</a></li>
-                    <li><a href="https://github.com/Studio-Racoonia/DiamondFire-Tools">GitHub Repository</a></li>
-                </ul>
-            </nav>
-        </header>
+    <body data-theme="" id="body" onload="onload()">
+        <h1>DiamondFire Tools</h1>
 
-        <article id="tools" class="flex">
-            <div class="preview">
-                <a href="better-text.html"><span></span></a>
-                <iframe src="previews/better-text.html">
-                    <p>Better Text</p>
-                </iframe>
-            </div>
-            <div class="preview">
-                <a href="simple-aritmetic.html"><span></span></a>
-                <iframe src="previews/simple-aritmetic.html">
-                    <p>Simple Aritmetic</p>
-                </iframe>
-            </div>
-            <div class="preview">
-                <a href="commands.html"><span></span></a>
-                <iframe src="previews/commands.html">
-                    <p>List of Commands</p>
-                </iframe>
-            </div>
-        </article>
-
-        <footer>
-            <p>Programmed and designed by <a href="https://github.com/Racooder">Racooder <img class="link"/></a></p>
-            <p>DiamondFire is a minecraft server where players can build and programm their own games.</p>
-            <p>This is a community-made project. This tool is not endorsed by DiamondFire or DiamondFire staff!</p>
-        </footer>
+        <div id="tools-menu"></div>
     </body>
 </html>

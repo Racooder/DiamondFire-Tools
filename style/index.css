@@ -1,0 +1,33 @@
+#tools-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.tool-holder {
+  width: 300px;
+  height: 200px;
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.2s;
+}
+.tool-holder h3 {
+  font-size: 20px;
+  font-weight: 500;
+  padding-top: 10px;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.tool-holder:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
