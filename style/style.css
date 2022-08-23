@@ -1,106 +1,62 @@
-/** Main */
-
 body {
-    background-color: #282C34;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
 }
 
-a {
-    text-decoration: none;
-    color: #9ABFD6;
+/** Themes */
+[data-theme=rainbow] {
+  background-color: #b3333f;
+  color: #000;
+  /** Menu */
+  /** Text Helper */
+}
+[data-theme=rainbow] .tool-holder {
+  border: 5px solid transparent;
+  -o-border-image: conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+     border-image: conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  border-image-slice: 1;
+}
+[data-theme=rainbow] #text-helper-input {
+  border-color: #D99F6C;
+}
+[data-theme=rainbow] #text-helper-input:hover {
+  border-color: #8C6746;
+}
+[data-theme=rainbow] #text-helper-input:focus {
+  border-color: #E6A873;
+  box-shadow: 0 0 10px #E6A873;
+}
+[data-theme=rainbow] #text-helper-output {
+  border-color: #626C80;
+}
+[data-theme=rainbow] #text-helper-output[data-output=true] {
+  border-color: #0F8C5E !important;
 }
 
-article {
-    margin: 20px;
-    flex-flow: row wrap;
+[data-theme=dark] {
+  background-color: #000;
+  color: #fff;
+  /** Menu */
+  /** Text Helper */
 }
-
-.flex {
-    display: flex;
+[data-theme=dark] .tool-holder {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  border-color: #fff;
 }
-
-/* Headers */
-
-h1 {
-    font-weight: 400;
-    font-size: 30px;
-    color: white;
+[data-theme=dark] #text-helper-input {
+  border-color: #D99F6C;
 }
-
-h2 {
-    font-weight: 300;
-    font-size: 25px;
-    color: white;
+[data-theme=dark] #text-helper-input:hover {
+  border-color: #8C6746;
 }
-
-/* Paragraphs */
-
-p1 {
-    font-size: 20px;
+[data-theme=dark] #text-helper-input:focus {
+  border-color: #E6A873;
+  box-shadow: 0 0 10px #E6A873;
 }
-
-/** Header */
-
-header {
-    background-color: #576EF2;
-    width: 100%;
+[data-theme=dark] #text-helper-output[data-output=false] {
+  border-color: #626C80;
 }
-
-header nav ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-header nav ul.right {
-    margin-left: auto;
-}
-
-header nav ul li {
-    display: block;
-    transition: 0.5s;
-}
-
-header nav ul li a {
-    color: white;
-    font-size: 18px;
-    display: block;
-    padding: 15px;
-}
-
-header nav ul li:hover {
-    background-color: #4E63D9;
-}
-
-header nav ul li.active {
-    background-color: #4C5273;
-}
-
-/** Footer */
-
-footer {
-    background-color: #35424A;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-footer a {
-    color: #9ABFD6;
-    transition: 1s;
-}
-
-footer a:hover {
-    color: #7EBD87;
-}
-
-img.link {
-    content:url("../data/link.png");
-    width: 15px;
-    height: 15px;
+[data-theme=dark] #text-helper-output[data-output=true] {
+  border-color: #0F8C5E;
 }

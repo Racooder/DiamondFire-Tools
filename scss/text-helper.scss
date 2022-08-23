@@ -1,0 +1,24 @@
+textarea {
+    margin-top: 15px;
+    box-sizing: content-box;
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+    background-color: #21252B;
+    color: #D0D0D0;
+    font-size: 16px;
+    transition: border 0.3s;
+    border-width: 1px;
+    border-style: solid;
+    min-height: 38px;
+    max-height: 100px;
+}
+
+textarea:focus {
+    outline: none !important;
+}
+
+.text-helper {
+    padding-left: 10px;
+    padding-right: 15px;
+}

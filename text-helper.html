@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Text Helper · DiamondFire Tools</title>
+        <link rel="icon" type="image/x-icon" href="/data/favicon.ico">
+
+        <meta charset="utf-8"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/text-helper.css">
+
+        <script src="scripts/main.js"></script>
+        <script src="scripts/text-helper.js"></script>
+    </head>
+
+    <body data-theme="" id="body" onload="onload();">
+        <h1>Text Helper</h1>
+
+        <div class="text-helper">
+            <div class="text-helper-input">
+                <textarea id="text-helper-input" spellcheck="false" oninput="handleInput(this);"></textarea>
+            </div>
+            <div class="text-helper-output">
+                <textarea id="text-helper-output" data-output="false" spellcheck="false" readonly></textarea>
+            </div>
+        </div>
+    </body>
+</html>

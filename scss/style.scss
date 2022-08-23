@@ -1,0 +1,78 @@
+body {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+}
+
+/** Themes */
+
+[data-theme=rainbow] {
+    background-color: #b3333f;
+    color: #000;
+
+    /** Menu */
+
+    .tool-holder {
+        border: 5px solid transparent;
+        border-image: conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+        border-image-slice: 1;
+    }
+
+    /** Text Helper */
+
+    #text-helper-input {
+        border-color: #D99F6C;
+    }
+
+    #text-helper-input:hover {
+        border-color: #8C6746;
+    }
+
+    #text-helper-input:focus {
+        border-color: #E6A873;
+        box-shadow: 0 0 10px #E6A873;
+    }
+
+    #text-helper-output {
+        border-color: #626C80;
+    }
+
+    #text-helper-output[data-output=true] {
+        border-color: #0F8C5E !important;
+    }
+}
+
+[data-theme=dark] {
+    background-color: #000;
+    color: #fff;
+
+    /** Menu */
+
+    .tool-holder {
+        border: 1px solid transparent;
+        border-radius: 5px;
+        border-color: #fff;
+    }
+
+    /** Text Helper */
+
+    #text-helper-input {
+        border-color: #D99F6C;
+    }
+
+    #text-helper-input:hover {
+        border-color: #8C6746;
+    }
+
+    #text-helper-input:focus {
+        border-color: #E6A873;
+        box-shadow: 0 0 10px #E6A873;
+    }
+
+    #text-helper-output[data-output=false] {
+        border-color: #626C80;
+    }
+
+    #text-helper-output[data-output=true] {
+        border-color: #0F8C5E;
+    }
+}
