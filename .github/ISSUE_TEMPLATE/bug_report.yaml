@@ -36,33 +36,33 @@ body:
       description: Please copy and paste any relevant log output.
     validations:
       required: false
-- type: dropdown
-  id: browsers
-  attributes:
-    label: What browsers are you seeing the problem on?
-    multiple: true
-    options:
-      - Firefox
-      - Chrome
-      - Safari
-      - Microsoft Edge
-      - Opera
-      - Brave
-      - Opera GX
-      - Other
-  validations:
-    required: true
-- type: dropdown
-  id: os
-  attributes:
-    label: On what operating system are you experiencing the issue?
-    multiple: true
-    options:
-      - Windows
-      - Linux
-      - Mac
-      - Android
-      - iOS
-      - Other
-  validations:
-    required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Opera
+        - Brave
+        - Opera GX
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: On what operating system are you experiencing the issue?
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - Mac
+        - Android
+        - iOS
+        - Other
+    validations:
+      required: true
