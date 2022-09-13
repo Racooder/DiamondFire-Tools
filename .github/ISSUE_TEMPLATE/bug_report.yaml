@@ -1,0 +1,76 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please enter an explicit description of your issue
+      placeholder: Short and explicit description of your issue
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Please enter the steps to reproduce the issue. If you have not been able to reproduce the problem, please mention this and describe the actions that preceded the error and that you can remember.
+      placeholder: "1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+"
+      value: "1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+"
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: "![DESCRIPTION](LINK.png)"
+      value: "![DESCRIPTION](LINK.png)"
+    validations:
+      required: false
+  - type: textarea
+    id: log
+    attributes:
+      label: Logs
+      description: Please copy and paste any relevant log output.
+    validations:
+      required: false
+- type: dropdown
+  id: browsers
+  attributes:
+    label: What browsers are you seeing the problem on?
+    multiple: true
+    options:
+      - Firefox
+      - Chrome
+      - Safari
+      - Microsoft Edge
+      - Opera
+      - Brave
+      - Opera GX
+      - Other
+  validations:
+    required: true
+- type: dropdown
+  id: os
+  attributes:
+    label: On what operating system are you experiencing the issue?
+    multiple: true
+    options:
+      - Windows
+      - Linux
+      - Mac
+      - Android
+      - iOS
+      - Other
+  validations:
+    required: true
