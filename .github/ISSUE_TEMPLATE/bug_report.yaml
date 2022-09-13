@@ -16,16 +16,8 @@ body:
     attributes:
       label: Steps to reproduce
       description: Please enter the steps to reproduce the issue. If you have not been able to reproduce the problem, please mention this and describe the actions that preceded the error and that you can remember.
-      placeholder: "1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-"
-      value: "1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-"
+      placeholder: "1. Go to '...'\n2. Click on '....'\n3. Scroll down to '....'\n4. See error\n"
+      value: "1. Go to '...'\n2. Click on '....'\n3. Scroll down to '....'\n4. See error\n"
     validations:
       required: true
   - type: textarea
