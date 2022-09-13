@@ -14,8 +14,14 @@
         <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/text-helper.css">
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
         <script src="scripts/main.js"></script>
+        <script src="scripts/menu.js"></script>
         <script src="scripts/text-helper.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"/>
     </head>
 
     <body data-theme="" id="body" onload="onload();">
@@ -29,5 +35,8 @@
                 <textarea id="text-helper-output" data-output="false" spellcheck="false" readonly>&r</textarea>
             </div>
         </div>
+        <select id="char-font-selector" data-placeholder="Select a Language..." class="chosen-select" multiple>
+            <option value=""></option>
+        </select>
     </body>
 </html>

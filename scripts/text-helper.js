@@ -12,7 +12,12 @@ function handleInput(inputField) {
 
     if (inputField.value.length > 0) {
         outputField.dataset.output = "true";
-        const textFormater = new TextFormater(inputField.value, { htmlColors: true, markdownStyle: true });
+        const selectedCharFontKeys = $("#char-font-selector").chosen().val();
+        var selectedCharFonts = [];
+        for (var key of selectedCharFontKeys) {
+            selectedCharFonts.push(charFonts.find(font => font._key === key));
+        }
+        const textFormater = new TextFormater(inputField.value, { htmlColors: true, markdownStyle: true, charFonts: selectedCharFonts });
         textFormater.generateTokens();
         outputField.value = textFormater.diamondString();
     }
@@ -20,7 +25,6 @@ function handleInput(inputField) {
         outputField.dataset.output = "false";
         outputField.value = "&r";
     }
-
 }
 
 function ltrim(str) {
@@ -64,10 +68,10 @@ class TextFormater {
             const currentChar = this.text[i];
             if (!/\s/.test(currentChar))
                 break;
-            this.#tokenText += `&r${currentChar}`;
+            this.#addTokenText(`&r${currentChar}`);
         }
         if (this.#tokenText.length > 0) {
-            this.#tokenText += "&r";
+            this.#addTokenText("&r");
             this.text = ltrim(this.text);
         }
 
@@ -90,7 +94,7 @@ class TextFormater {
             }
 
             if (currentChar === "\\") {
-                this.#tokenText += nextChar;
+                this.#addTokenText(nextChar);
                 continue;
             }
             if (this.settings.htmlColors && currentChar === "#") {
@@ -147,11 +151,11 @@ class TextFormater {
                 }
             }
 
-            this.#tokenText += currentChar;
+            this.#addTokenText(currentChar);
             i--;
         }
 
-        this.#tokenText += endingString;
+        this.#addTokenText(endingString);
         if (this.#tokenText.length > 0)
             this.tokens.push(new Token(this.#tokenText, this.#tokenSettings));
         return this.tokens;
@@ -174,6 +178,21 @@ class TextFormater {
             this.#tokenText = "";
         }
         this.#tokenSettings[key] = value;
+    }
+
+    #addTokenText(text) {
+        charLoop:
+            for (let i = 0; i < text.length; i++) {
+                const c = text[i];
+                for (let j = 0; j < this.settings.charFonts.length; j++) {
+                    const font = this.settings.charFonts[j];
+                    if (c in font) {
+                        this.#tokenText += font[c];
+                        continue charLoop;
+                    }
+                }
+                this.#tokenText += c;
+            }
     }
 
     diamondString() {
