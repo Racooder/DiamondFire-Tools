@@ -68,10 +68,10 @@ class TextFormater {
             const currentChar = this.text[i];
             if (!/\s/.test(currentChar))
                 break;
-            this.#addTokenText(`&r${currentChar}`);
+            this.#tokenText += `&r${currentChar}`;
         }
         if (this.#tokenText.length > 0) {
-            this.#addTokenText("&r");
+            this.#tokenText += "&r";
             this.text = ltrim(this.text);
         }
 
@@ -155,7 +155,7 @@ class TextFormater {
             i--;
         }
 
-        this.#addTokenText(endingString);
+        this.#tokenText += endingString;
         if (this.#tokenText.length > 0)
             this.tokens.push(new Token(this.#tokenText, this.#tokenSettings));
         return this.tokens;
