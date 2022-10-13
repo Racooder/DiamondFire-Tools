@@ -1,39 +1,106 @@
+const fontFiles = ["circled.json", "dingbat-circled-numbers.json", "double-circled-numbers.json", "fullwidth.json", "negative-circled-numbers.json", "small-capital.json", "subscript-numbers.json", "superscript-numbers.json"];
+var charFonts = [];
+
+$(document).ready(function () {
+    $('.chosen-select').chosen({ width: "200px" });
+    $(".chosen-select").chosen().change(function () {
+        handleInput(document.getElementById("text-helper-input"));
+    });
+
+    $("#custom-font-upload").change(function (e) { getCustomFont(e); });
+
+    $("#text-helper-input").on("input", function () {
+        handleInput(this);
+    });
+
+    for (var fontFile of fontFiles) {
+        $.getJSON(`../data/char-fonts/${fontFile}`, function (data) {
+            charFonts.push(data);
+            $('#char-font-selector').append($("<option></option>").attr("value", data._name).text(data._name));
+        });
+    }
+
+    $('#char-font-selector').on('chosen:updated', function (event) {
+        // your stuff here
+    });
+    setTimeout(function () {
+        $('#char-font-selector').trigger('chosen:updated');
+    }, 1000);
+});
+
+
+function getCustomFont(evt) {
+    const files = evt.target.files;
+    if (files.length > 0) {
+        const file = files[0];
+        $('#custom-font-button').val(file.name);
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            try {
+                const font = JSON.parse(e.target.result);
+                if (font._name) {
+                    if (charFonts.find(c => c._name === font._name)) {
+                        alert("Font with that name already exists!");
+                    }
+                    else {
+                        charFonts.push(font);
+                        $("#char-font-selector").append(`<option value="${font._name}">${font._name}</option>`);
+                        $("#char-font-selector").trigger("chosen:updated");
+                    }
+                }
+                else {
+                    alert("Invalid font file.");
+                }
+            }
+            catch (e) {
+                alert("Invalid font file!");
+            }
+        };
+        reader.readAsText(file);
+    }
+}
+
 /**
  * 
  * @param {HTMLElement} inputField 
  */
 function handleInput(inputField) {
-    var outputField = document.getElementById("text-helper-output");
-
-    inputField.style.height = "5px";
+    inputField.style.height = "auto";
     inputField.style.height = (inputField.scrollHeight) + "px";
-    outputField.style.height = "5px";
-    outputField.style.height = (outputField.scrollHeight) + "px";
+    $("#text-helper-output").css("height", "auto");
+    $("#text-helper-output").css("height", ($("#text-helper-output").prop('scrollHeight')) + "px");
+    const inputText = inputField.value.replace(/(\r\n|\n|\r)/gm, "");
+    inputField.value = inputText;
 
-    if (inputField.value.length > 0) {
-        outputField.dataset.output = "true";
-        const selectedCharFontKeys = $("#char-font-selector").chosen().val();
+    if (inputText.length > 0) {
+        $("#text-helper-output").attr("data-output", "true");
+        var selectedCharFontNames = [];
+        $('#char_font_selector_chosen').find('.search-choice').each(function () {
+            var selectedValue = $(this).find('span').text();
+            selectedCharFontNames.push(selectedValue);
+        });
         var selectedCharFonts = [];
-        for (var key of selectedCharFontKeys) {
-            selectedCharFonts.push(charFonts.find(font => font._key === key));
+        for (var name of selectedCharFontNames) {
+            selectedCharFonts.push(charFonts.find(font => font._name === name));
         }
-        const textFormater = new TextFormater(inputField.value, { htmlColors: true, markdownStyle: true, charFonts: selectedCharFonts });
+        const textFormater = new TextFormater(inputText, { htmlColors: true, markdownStyle: true, charFonts: selectedCharFonts });
         textFormater.generateTokens();
-        outputField.value = textFormater.diamondString();
+        $("#text-helper-output").val(textFormater.diamondString());
     }
     else {
-        outputField.dataset.output = "false";
-        outputField.value = "&r";
+        $("#text-helper-output").attr("data-output", "false");
+        $("#text-helper-output").val("&r");
+        $("#text-helper-output").css("height", "auto");
     }
 }
 
 function ltrim(str) {
-    if(!str) return str;
+    if (!str) return str;
     return str.replace(/^\s+/g, '');
 }
 
 function rtrim(str) {
-    if(!str) return str;
+    if (!str) return str;
     return str.replace(/\s+$/g, '');
 }
 
@@ -85,7 +152,7 @@ class TextFormater {
             endingString += "&r";
             this.text = rtrim(this.text);
         }
-        
+
         for (let i = 0; i < this.text.length; i += 2) {
             const currentChar = this.text[i];
             var nextChar = "";
@@ -124,16 +191,17 @@ class TextFormater {
                 this.#setTokenSetting("bold", !this.#tokenSettings.bold);
                 continue;
             }
-            if (this.settings.markdownStyle && currentChar === "_" && nextChar === "_") {
+            if (this.settings.markdownStyle && currentChar === "_" || (currentChar === "*" && nextChar !== "*")) {
                 this.#setTokenSetting("italic", !this.#tokenSettings.italic);
+                i--;
                 continue;
             }
             if (this.settings.markdownStyle && currentChar === "~" && nextChar === "~") {
-                this.#setTokenSetting("underline", !this.#tokenSettings.underline);
+                this.#setTokenSetting("strikethrough", !this.#tokenSettings.strikethrough);
                 continue;
             }
             if (this.settings.markdownStyle && currentChar === "ˋ" && nextChar === "ˋ") {
-                this.#setTokenSetting("strikethrough", !this.#tokenSettings.strikethrough);
+                this.#setTokenSetting("underline", !this.#tokenSettings.underline);
                 continue;
             }
             if (this.settings.markdownStyle && currentChar === "§" && nextChar === "§") {
@@ -182,17 +250,17 @@ class TextFormater {
 
     #addTokenText(text) {
         charLoop:
-            for (let i = 0; i < text.length; i++) {
-                const c = text[i];
-                for (let j = 0; j < this.settings.charFonts.length; j++) {
-                    const font = this.settings.charFonts[j];
-                    if (c in font) {
-                        this.#tokenText += font[c];
-                        continue charLoop;
-                    }
+        for (let i = 0; i < text.length; i++) {
+            const c = text[i];
+            for (let j = 0; j < this.settings.charFonts.length; j++) {
+                const font = this.settings.charFonts[j];
+                if (c in font) {
+                    this.#tokenText += font[c];
+                    continue charLoop;
                 }
-                this.#tokenText += c;
             }
+            this.#tokenText += c;
+        }
     }
 
     diamondString() {
