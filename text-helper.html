@@ -1,42 +1,161 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Text Helper · DiamondFire Tools</title>
-        <link rel="icon" type="image/x-icon" href="/data/favicon.ico">
 
-        <meta charset="utf-8"/>
+<head>
+    <title>Text Helper · DiamondFire Tools</title>
+    <link rel=“icon” href=”favicon.ico” type=“image/x-icon”>
+    <link rel=“shortcut icon” href=“favicon.ico” type=“image/x-icon”>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/text-helper.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/text-helper.css">
 
-        <script src="scripts/main.js"></script>
-        <script src="scripts/menu.js"></script>
-        <script src="scripts/text-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css"/>
-    </head>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/text-helper.js"></script>
 
-    <body data-theme="" id="body" onload="onload();">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" />
+</head>
+
+<body data-theme="" data-lang="">
+    <header>
+        <ul class="nav-bar"></ul>
+    </header>
+
+    <article id="main-content">
         <h1>Text Helper</h1>
 
         <div class="text-helper">
             <div class="text-helper-input">
-                <textarea id="text-helper-input" spellcheck="false" oninput="handleInput(this);"></textarea>
+                <textarea id="text-helper-input" data-translate="true" spellcheck="false"
+                    data-placeholder="type-here"></textarea>
             </div>
             <div class="text-helper-output">
                 <textarea id="text-helper-output" data-output="false" spellcheck="false" readonly>&r</textarea>
             </div>
         </div>
-        <select id="char-font-selector" data-placeholder="Select a Font..." class="chosen-select" multiple>
-            <option value=""></option>
-        </select>
-    </body>
+        <div class="char-font">
+            <input id="custom-font-upload" type="file" size="50" accept="application/json" style="display: none;">
+            <input id="custom-font-button" data-translate="true" type="button" data-value="upload-font"
+                onclick="document.getElementById('custom-font-upload').click();" />
+            <div class="font-selector">
+                <p data-translate="true" data-content="select-font"></p>
+                <select id="char-font-selector" class="chosen-select" data-placeholder=" " multiple>
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="manual">
+            <article id="manual">
+                <section id="explanation">
+                    <h1 data-translate="true" data-content="how-to-use"></h1>
+                    <p data-translate="true" data-content="text-helper-explanation"></p>
+                </section>
+                <section id="color-codes">
+                    <h2 data-translate="true" data-content="color-codes"></h2>
+                    <p data-translate="true" data-content="color-codes-explanation"></p>
+                    <p data-translate="true" data-content="color-codes-example"></p>
+                </section>
+                <section id="emphasis">
+                    <h2 data-translate="true" data-content="emphasis"></h2>
+                    <p data-translate="true" data-content="emphasis-explanation"></p>
+                    <p data-translate="true" data-content="emphasis-explanation-2"></p>
+                    <p data-translate="true" data-content="emphasis-example"></p>
+                    <p data-translate="true" data-content="emphasis-additional"></p>
+                </section>
+                <section id="fonts">
+                    <h2 data-translate="true" data-content="fonts"></h2>
+                    <p data-translate="true" data-content="fonts-explanation"></p>
+                    <p data-translate="true" data-content="fonts-details"></p>
+                </section>
+            </article>
+            <article id="details">
+                <section id="tags">
+                    <h2 data-translate="true" data-content="all-tags"></h2>
+                    <table id="tag-list">
+                        <tr>
+                            <td><code>\\</code></td>
+                            <td data-translate="true" data-content="tag-backslash"></td>
+                        </tr>
+                        <tr>
+                            <td><code>#rrggbb</code></td>
+                            <td data-translate="true" data-content="tag-html-color"></td>
+                        </tr>
+                        <tr>
+                            <td><code>&a - &f, &0 - &9</code></td>
+                            <td data-translate="true" data-content="tag-df-color"></td>
+                        </tr>
+                        <tr>
+                            <td><code>**bold**, _italic_, ~~strikethrough~~</code></td>
+                            <td data-translate="true" data-content="tag-emphasis"></td>
+                        </tr>
+                        <tr>
+                            <td><code>&r</code></td>
+                            <td data-translate="true" data-content="tag-reset"></td>
+                        </tr>
+                    </table>
+                </section>
+                <section id="font-details">
+                    <h2>All fonts</h2>
+                    <table id="font-list">
+                        <tr>
+                            <td>Circled</td>
+                            <td>ⒶⒷⒸ①②③</td>
+                            <td data-translate="true" data-content="support-capitals-numbers"></td>
+                        </tr>
+                        <tr>
+                            <td>Dingbat Circled Numbers</td>
+                            <td style="font-size: 1.3em;">➀➁➂</td>
+                            <td data-translate="true" data-content="support-numbers"></td>
+                        </tr>
+                        <tr>
+                            <td>Double Circled Numbers</td>
+                            <td>⓵⓶⓷</td>
+                            <td data-translate="true" data-content="support-numbers"></td>
+                        </tr>
+                        <tr>
+                            <td>Fullwidth</td>
+                            <td>ａｂｃＡＢＣ</td>
+                            <td data-translate="true" data-content="support-lowercase-capitals"></td>
+                        </tr>
+                        <tr>
+                            <td>Negative Circled Numbers</td>
+                            <td style="font-size: 1.1em;">➊➋➌</td>
+                            <td data-translate="true" data-content="support-capitals-numbers"></td>
+                        </tr>
+                        <tr>
+                            <td>Small Caps</td>
+                            <td style="font-size: 1.1em;">ᴀʙᴄ</td>
+                            <td data-translate="true" data-content="support-capitals"></td>
+                        </tr>
+                        <tr>
+                            <td>Subscript Numbers</td>
+                            <td>123₁₂₃</td>
+                            <td data-translate="true" data-content="support-numbers"></td>
+                        </tr>
+                        <tr>
+                            <td>Superscript Numbers</td>
+                            <td>123¹²³</td>
+                            <td data-translate="true" data-content="support-numbers"></td>
+                        </tr>
+                    </table>
+                </section>
+            </article>
+        </div>
+    </article>
+
+    <footer>
+        <hr>
+        <p data-translate="true" data-content="independence-declaration"></p>
+    </footer>
+</body>
+
 </html>
