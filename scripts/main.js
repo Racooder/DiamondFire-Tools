@@ -11,7 +11,8 @@ const rhElements = [
 ];
 
 function loadLanguage(lang) {
-    $.getJSON(`../data/localization/${lang}.json`, function (langDict) {
+    $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/localization/${lang}.json`, function (data) {
+        const langDict = JSON.parse(data);
         if (!langDict) {
             if (lang != "en") {
                 loadLanguage("en");
