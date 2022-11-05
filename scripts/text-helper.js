@@ -16,9 +16,10 @@ $(document).ready(function () {
     });
 
     for (var fontFile of fontFiles) {
-        $.getJSON(`../data/char-fonts/${fontFile}`, function (data) {
-            charFonts.push(data);
-            $('#char-font-selector').append($("<option></option>").attr("value", data._name).text(data._name));
+        $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/char-fonts/${fontFile}`, function (data) {
+            const font = JSON.parse(data);
+            charFonts.push(font);
+            $('#char-font-selector').append($("<option></option>").attr("value", font._name).text(font._name));
         });
     }
 
