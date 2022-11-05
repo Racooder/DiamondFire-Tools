@@ -1,2 +1,1 @@
-include:
-  - data/localization
+include: ["data/localization/*.json"]
