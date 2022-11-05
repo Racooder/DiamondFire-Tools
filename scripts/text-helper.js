@@ -4,7 +4,9 @@ var charFonts = [];
 $(document).ready(function () {
     $('.chosen-select').chosen({ width: "200px" });
     $(".chosen-select").chosen().change(function () {
-        handleInput(document.getElementById("text-helper-input"));
+        setTimeout(function () {
+            handleInput(document.getElementById("text-helper-input"))
+        }, 100);
     });
 
     $("#custom-font-upload").change(function (e) { getCustomFont(e); });
@@ -20,9 +22,7 @@ $(document).ready(function () {
         });
     }
 
-    $('#char-font-selector').on('chosen:updated', function (event) {
-        // your stuff here
-    });
+    $('#char-font-selector').on('chosen:updated', function (event) {});
     setTimeout(function () {
         $('#char-font-selector').trigger('chosen:updated');
     }, 1000);
