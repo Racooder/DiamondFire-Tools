@@ -1,3 +1,4 @@
+"use strict";
 const tools = [
     {
         name: "Text Helper",
@@ -15,6 +16,9 @@ $(document).ready(function () {
     loadMenu();
 });
 
+/**
+ * Loads the tool buttons.
+ */
 async function loadMenu() {
     var menuHolder = document.getElementById("tools-menu");
     if (menuHolder) {

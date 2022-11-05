@@ -1,5 +1,7 @@
-// Tokens
-
+"use strict";
+/**
+ * The TokenType enum.
+ */
 class TokenType {
     static Number = new TokenType('Number');
     static Plus = new TokenType('Plus');
@@ -19,6 +21,10 @@ class TokenType {
 }
 
 class Token {
+    /**
+     * @param {TokenType} type - The type of the token
+     * @param {number} value - The value of the token 
+     */
     constructor(type, value = null) {
         this.type = type;
         this.value = value;
@@ -32,12 +38,18 @@ class Token {
 // Lexer
 
 class Lexer {
+    /**
+     * @param {string} text - The calculation text
+     */
     constructor(text) {
         this.text = text;
         this.pos = 0;
         this.currentChar = this.text[this.pos];
     }
 
+    /**
+     * Advances the current character.
+     */
     advance() {
         this.pos++;
         if (this.pos > this.text.length - 1) {
@@ -47,6 +59,10 @@ class Lexer {
         }
     }
 
+    /**
+     * Generates all the tokens.
+     * @returns {Token[]} - The generated tokens
+     */
     generate_tokens() {
         let tokens = [];
 
@@ -89,6 +105,10 @@ class Lexer {
         return tokens;
     }
 
+    /**
+     * Generates a number token starting at the current char.
+     * @returns {Token} - The generated number token
+     */
     generate_number() {
         let decimal_point_count = 0;
         let numberStr = this.currentChar;
@@ -120,9 +140,10 @@ class Lexer {
     }
 }
 
-// Nodes
-
 class NumberNode {
+    /**
+     * @param {number} value - The value of the number node
+     */
     constructor(value) {
         this.value = value;
     }
@@ -133,6 +154,10 @@ class NumberNode {
 }
 
 class AddNode {
+    /**
+     * @param {number} summandA - The first summand
+     * @param {number} summandB - The second summand
+     */
     constructor(summandA, summandB) {
         this.summandA = summandA;
         this.summandB = summandB;
@@ -144,6 +169,10 @@ class AddNode {
 }
 
 class SubtractNode {
+    /**
+     * @param {number} minuend - The minuend
+     * @param {number} subtrahend - The subtrahend
+     */
     constructor(minuend, subtrahend) {
         this.minuend = minuend;
         this.subtrahend = subtrahend;
@@ -155,6 +184,10 @@ class SubtractNode {
 }
 
 class MultiplyNode {
+    /**
+     * @param {number} factorA - The first factor
+     * @param {number} factorB - The second factor
+     */
     constructor(factorA, factorB) {
         this.factorA = factorA;
         this.factorB = factorB;
@@ -166,6 +199,10 @@ class MultiplyNode {
 }
 
 class DivideNode {
+    /**
+     * @param {number} dividend - The dividend
+     * @param {number} divisor - The divisor
+     */
     constructor(dividend, divisor) {
         this.dividend = dividend;
         this.divisor = divisor;
@@ -177,6 +214,9 @@ class DivideNode {
 }
 
 class PlusNode {
+    /**
+     * @param {number} operand - The operand
+     */
     constructor(operand) {
         this.operand = operand;
     }
@@ -187,6 +227,9 @@ class PlusNode {
 }
 
 class MinusNode {
+    /**
+     * @param {number} operand - The operand
+     */
     constructor(operand) {
         this.operand = operand;
     }
@@ -199,12 +242,18 @@ class MinusNode {
 // Parser
 
 class Parser {
+    /**
+     * @param {Token[]} tokens - The tokens to parse
+     */
     constructor(tokens) {
         this.tokens = tokens;
         this.pos = 0;
         this.currentToken = this.tokens[this.pos];
     }
 
+    /**
+     * Advances the current token.
+     */
     advance() {
         this.pos++;
         if (this.pos > this.tokens.length - 1) {
@@ -214,10 +263,18 @@ class Parser {
         }
     }
 
+    /**
+     * Throws an InvalidSyntaxError
+     */
     invalid_syntax() {
         throw new Error(`Invalid syntax: ${this.currentToken}`);
     }
 
+    /**
+     * Parses the tokens into an AST.
+     * @returns {any} - The parsed expression
+     * @throws {Error} - If the syntax is invalid
+     */
     parse() {
         if (this.currentToken === null) {
             return null;
@@ -232,6 +289,10 @@ class Parser {
         return result;
     }
 
+    /**
+     * Parses an expression.
+     * @returns {any} - The parsed expression
+     */
     expr() {
         let result = this.term();
 
@@ -249,6 +310,10 @@ class Parser {
         return result;
     }
 
+    /**
+     * Parses a term.
+     * @returns {any} - The parsed term
+     */
     term() {
         let result = this.factor();
 
@@ -266,6 +331,11 @@ class Parser {
         return result;
     }
 
+    /**
+     * Parses a factor.
+     * @returns {any} - The parsed factor
+     * @throws {Error} - If the syntax is invalid
+     */
     factor() {
         let token = this.currentToken;
 
@@ -295,9 +365,10 @@ class Parser {
     }
 }
 
-// Values
-
 class Number {
+    /**
+     * @param {number} value - The value of the number
+     */
     constructor(value) {
         this.value = value;
     }
@@ -307,37 +378,64 @@ class Number {
     }
 }
 
-// Interpreter
-
 class Interpreter {
+    /**
+     * @param {any} node - The node to interpret
+     * @returns {any} - The result of the interpretation
+     */
     visit(node) {
         let methodName = `visit_${node.constructor.name}`;
         let method = this[methodName];
         return method.call(this, node);
     }
 
+    /**
+     * Interprets a NumberNode.
+     * @param {NumberNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_NumberNode(node) {
         return new Number(node.value);
     }
 
+    /**
+     * Interprets an AddNode.
+     * @param {AddNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_AddNode(node) {
         let summandA = this.visit(node.summandA);
         let summandB = this.visit(node.summandB);
         return new Number(summandA.value + summandB.value);
     }
 
+    /**
+     * Interprets a SubtractNode.
+     * @param {SubtractNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_SubtractNode(node) {
         let minuend = this.visit(node.minuend);
         let subtrahend = this.visit(node.subtrahend);
         return new Number(minuend.value - subtrahend.value);
     }
 
+    /**
+     * Interprets a MultiplyNode.
+     * @param {MultiplyNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_MultiplyNode(node) {
         let factorA = this.visit(node.factorA);
         let factorB = this.visit(node.factorB);
         return new Number(factorA.value * factorB.value);
     }
 
+    /**
+     * Interprets a DivideNode.
+     * @param {DivideNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_DivideNode(node) {
         let dividend = this.visit(node.dividend);
         let divisor = this.visit(node.divisor);
@@ -348,16 +446,30 @@ class Interpreter {
         }
     }
 
+    /**
+     * Interprets a PlusNode.
+     * @param {PlusNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_PlusNode(node) {
         return this.visit(node.operand);
     }
 
+    /**
+     * Interprets a MinusNode.
+     * @param {MinusNode} node - The node to interpret
+     * @returns {Number} - The result of the interpretation
+     */
     visit_MinusNode(node) {
         let operand = this.visit(node.operand);
         return new Number(-operand.value);
     }
 }
 
+/**
+ * @param {string} text - The expression to interpret
+ * @returns {any} - The result of the interpretation
+ */
 function interprete(text) {
     const lexer = new Lexer(text);
     const tokens = lexer.generate_tokens();

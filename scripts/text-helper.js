@@ -2,6 +2,7 @@ const fontFiles = ["circled.json", "dingbat-circled-numbers.json", "double-circl
 var charFonts = [];
 
 $(document).ready(function () {
+    // Handle font selection
     $('.chosen-select').chosen({ width: "200px" });
     $(".chosen-select").chosen().change(function () {
         setTimeout(function () {
@@ -9,12 +10,20 @@ $(document).ready(function () {
         }, 100);
     });
 
+    // Handle upload of custom fonts
     $("#custom-font-upload").change(function (e) { getCustomFont(e); });
 
+    $('#char-font-selector').on('chosen:updated', function (event) {});
+    setTimeout(function () {
+        $('#char-font-selector').trigger('chosen:updated');
+    }, 1000);
+
+    // Handle input
     $("#text-helper-input").on("input", function () {
         handleInput(this);
     });
 
+    // Load fonts
     for (var fontFile of fontFiles) {
         $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/char-fonts/${fontFile}`, function (data) {
             const font = JSON.parse(data);
@@ -22,14 +31,12 @@ $(document).ready(function () {
             $('#char-font-selector').append($("<option></option>").attr("value", font._name).text(font._name));
         });
     }
-
-    $('#char-font-selector').on('chosen:updated', function (event) {});
-    setTimeout(function () {
-        $('#char-font-selector').trigger('chosen:updated');
-    }, 1000);
 });
 
-
+/**
+ * Loads a custom font from a file
+ * @param {Event} evt - The event that triggered the function
+ */
 function getCustomFont(evt) {
     const files = evt.target.files;
     if (files.length > 0) {
@@ -62,20 +69,25 @@ function getCustomFont(evt) {
 }
 
 /**
- * 
+ * Handles the input of the text helper
  * @param {HTMLElement} inputField 
  */
 function handleInput(inputField) {
+    // Adapt the height of the input field
     inputField.style.height = "auto";
     inputField.style.height = (inputField.scrollHeight) + "px";
     $("#text-helper-output").css("height", "auto");
     $("#text-helper-output").css("height", ($("#text-helper-output").prop('scrollHeight')) + "px");
+
+    // Get the text
     const inputText = inputField.value.replace(/(\r\n|\n|\r)/gm, "");
     inputField.value = inputText;
 
     if (inputText.length > 0) {
         $("#text-helper-output").attr("data-output", "true");
         var selectedCharFontNames = [];
+
+        // Get the selected char fonts
         $('#char_font_selector_chosen').find('.search-choice').each(function () {
             var selectedValue = $(this).find('span').text();
             selectedCharFontNames.push(selectedValue);
@@ -84,49 +96,76 @@ function handleInput(inputField) {
         for (var name of selectedCharFontNames) {
             selectedCharFonts.push(charFonts.find(font => font._name === name));
         }
+
+        // Format the text
         const textFormater = new TextFormater(inputText, { htmlColors: true, markdownStyle: true, charFonts: selectedCharFonts });
         textFormater.generateTokens();
         $("#text-helper-output").val(textFormater.diamondString());
     }
     else {
+        // Handle empty input
         $("#text-helper-output").attr("data-output", "false");
         $("#text-helper-output").val("&r");
         $("#text-helper-output").css("height", "auto");
     }
 }
 
+/**
+ * Removes whitespaces from the start of a string
+ * @param {string} str - The string to trim
+ * @returns {string} The trimed string
+ */
 function ltrim(str) {
     if (!str) return str;
     return str.replace(/^\s+/g, '');
 }
 
+/**
+ * Removes whitespaces from the end of a string
+ * @param {string} str - The string to trim
+ * @returns {string} The trimed string
+ */
 function rtrim(str) {
     if (!str) return str;
     return str.replace(/\s+$/g, '');
 }
 
-function Token(text, settings) {
-    this.text = text;
-    this.settings = {
-        color: settings.color,
-        bold: settings.bold,
-        italic: settings.italic,
-        underlined: settings.underlined,
-        strikethrough: settings.strikethrough,
-        obfuscated: settings.obfuscated,
-    };
+class TextToken {
+    /**
+     * @param {string} text - The token text
+     * @param {any} settings - The settings for the token
+     */
+    constructor(text, settings) {
+        this.text = text;
+        this.settings = {
+            color: settings.color,
+            bold: settings.bold,
+            italic: settings.italic,
+            underlined: settings.underlined,
+            strikethrough: settings.strikethrough,
+            obfuscated: settings.obfuscated,
+        };
+    }
 }
 
 class TextFormater {
     #tokenText;
     #tokenSettings;
 
+    /**
+     * @param {string} text - The text to format
+     * @param {any} settings - The settings for the formater
+     */
     constructor(text, settings) {
         this.text = text;
         this.settings = settings;
         this.tokens = [];
     }
 
+    /**
+     * Generates the tokens for the text
+     * @returns {TextToken[]} The formatted text
+     */
     generateTokens() {
         var endingString = "";
         this.#tokenText = "";
@@ -226,7 +265,7 @@ class TextFormater {
 
         this.#tokenText += endingString;
         if (this.#tokenText.length > 0)
-            this.tokens.push(new Token(this.#tokenText, this.#tokenSettings));
+            this.tokens.push(new TextToken(this.#tokenText, this.#tokenSettings));
         return this.tokens;
     }
 
@@ -241,14 +280,22 @@ class TextFormater {
         }
     }
 
+    /**
+     * @param {string} key - The key of the setting
+     * @param {any} value - The value of the setting
+     */
     #setTokenSetting(key, value) {
         if (this.#tokenText.length > 0) {
-            this.tokens.push(new Token(this.#tokenText, this.#tokenSettings));
+            this.tokens.push(new TextToken(this.#tokenText, this.#tokenSettings));
             this.#tokenText = "";
         }
         this.#tokenSettings[key] = value;
     }
 
+    /**
+     * Adds text to the current token
+     * @param {string} text - The text to add to the token
+     */
     #addTokenText(text) {
         charLoop:
         for (let i = 0; i < text.length; i++) {
@@ -264,6 +311,9 @@ class TextFormater {
         }
     }
 
+    /**
+     * @returns {string} The formatted text
+     */
     diamondString() {
         var dString = "";
         var lastSettings = undefined;
