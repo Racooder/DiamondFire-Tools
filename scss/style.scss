@@ -46,10 +46,6 @@ footer {
     }
 }
 
-#header-center {
-    flex-grow: 1;
-}
-
 .tooltip {
     border: 1px solid #f21d56;
     position: absolute;
@@ -88,6 +84,12 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #BF1744;
+}
+
+/** Navbar */
+
+#header-center {
+    flex-grow: 1;
 }
 
 .nav-bar {
