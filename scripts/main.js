@@ -3,6 +3,7 @@
 const lhElements = [
     { href: "index.html", text: "Home", title: "" },
     { href: "text-helper.html", text: "Text Helper", title: "" },
+    { href: "commands.html", text: "Commands", title: "" },
 ];
 
 const rhElements = [
