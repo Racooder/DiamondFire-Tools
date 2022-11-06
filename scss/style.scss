@@ -90,6 +90,24 @@ footer {
     background: #BF1744;
 }
 
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+
+    a {
+        padding: 15px 10px 15px 10px;
+        text-decoration: none;
+    }
+}
+
+.nav-bar-item {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 /** Themes */
 
 [data-theme="rainbow"] {
