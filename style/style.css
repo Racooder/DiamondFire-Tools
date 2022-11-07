@@ -106,6 +106,20 @@ footer hr {
   padding-bottom: 15px;
 }
 
+/** Foldables */
+.dropdown-arrow {
+  width: 10px;
+  height: 10px;
+  src: url("../data/images/arrow-up.png");
+}
+
+.foldable.folded ul {
+  display: none;
+}
+.foldable.folded .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
 /** Themes */
 [data-theme=rainbow] {
   background-color: #b3333f;

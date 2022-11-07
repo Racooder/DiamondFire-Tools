@@ -110,9 +110,27 @@ footer {
     padding-bottom: 15px;
 }
 
+/** Foldables */
+
+.dropdown-arrow {
+    width: 10px;
+    height: 10px;
+    src: url("../data/images/arrow-up.png");
+}
+
+.foldable.folded {
+    ul {
+        display: none;
+    }
+
+    .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+}
+
 /** Themes */
 
-[data-theme="rainbow"] {
+[data-theme=rainbow] {
     background-color: #b3333f;
     color: #000;
 
@@ -305,7 +323,7 @@ footer {
     }
 }
 
-[data-theme="dark"] {
+[data-theme=dark] {
     background-color: #121019;
     color: #fff;
 
@@ -461,7 +479,7 @@ footer {
     }
 }
 
-[data-theme="light"] {
+[data-theme=light] {
     background-color: #fff;
     color: #000;
 
