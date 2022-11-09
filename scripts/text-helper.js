@@ -300,12 +300,35 @@ class TextFormater {
         charLoop:
         for (let i = 0; i < text.length; i++) {
             const c = text[i];
-            for (let j = 0; j < this.settings.charFonts.length; j++) {
-                const font = this.settings.charFonts[j];
-                if (c in font) {
-                    this.#tokenText += font[c];
-                    continue charLoop;
+            for (const font of this.settings.charFonts) {
+                keyLoop:
+                for (let key of Object.keys(font)) {
+                    if (key.length === 1) {
+                        if (key == c) {
+                            this.#tokenText += font[key];
+                            continue charLoop;
+                        }
+                    } else {
+                        if (key.startsWith(c)) {
+                            let testKey = c;
+                            for (let j = i; j < text.length; j++) {
+                                testKey += text[j];
+                                if (key == testKey) {
+                                    this.#tokenText += font[key];
+                                    i = j;
+                                    continue charLoop;
+                                }
+                                if (!key.startsWith(testKey)) {
+                                    continue keyLoop;
+                                }
+                            }
+                        }
+                    }
                 }
+                // if (c in font) {
+                //     this.#tokenText += font[c];
+                //     continue charLoop;
+                // }
             }
             this.#tokenText += c;
         }
