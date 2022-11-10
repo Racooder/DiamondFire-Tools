@@ -1,5 +1,8 @@
 {
-    "_name": "Small Capital",
+  "header": {
+    "name": "Small Capital"
+  },
+  "data": {
     "A": "ᴀ",
     "B": "ʙ",
     "C": "ᴄ",
@@ -27,3 +30,4 @@
     "Y": "ʏ",
     "Z": "ᴢ"
   }
+}

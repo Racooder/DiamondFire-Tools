@@ -1,5 +1,10 @@
 {
-    "_name": "Font Name",
-    "a": "A",
-    "1": "2"
+    "header": {
+        "name": "Font Name"
+    },
+    "data": {
+        "a": "A",
+        "1": "2",
+        "test": "TEST"
+    }
 }

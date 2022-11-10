@@ -28,7 +28,7 @@ $(document).ready(function () {
         $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/char-fonts/${fontFile}`, function (data) {
             const font = JSON.parse(data);
             charFonts.push(font);
-            $('#char-font-selector').append($("<option></option>").attr("value", font._name).text(font._name));
+            $('#char-font-selector').append($("<option></option>").attr("value", font.header.name).text(font.header.name));
         });
     }
 });
@@ -46,13 +46,13 @@ function getCustomFont(evt) {
         reader.onload = function (e) {
             try {
                 const font = JSON.parse(e.target.result);
-                if (font._name) {
-                    if (charFonts.find(c => c._name === font._name)) {
+                if (font.header.name) {
+                    if (charFonts.find(c => c.header.name === font.header.name)) {
                         alert("Font with that name already exists!");
                     }
                     else {
                         charFonts.push(font);
-                        $("#char-font-selector").append(`<option value="${font._name}">${font._name}</option>`);
+                        $("#char-font-selector").append(`<option value="${font.header.name}">${font.header.name}</option>`);
                         $("#char-font-selector").trigger("chosen:updated");
                     }
                 }
@@ -94,7 +94,7 @@ function handleInput(inputField) {
         });
         var selectedCharFonts = [];
         for (var name of selectedCharFontNames) {
-            selectedCharFonts.push(charFonts.find(font => font._name === name));
+            selectedCharFonts.push(charFonts.find(font => font.header.name === name));
         }
 
         // Format the text
@@ -297,41 +297,41 @@ class TextFormater {
      * @param {string} text - The text to add to the token
      */
     #addTokenText(text) {
+        this.#tokenText += text;
+    }
+
+    #fontify(text) {
+        let fontifiedText = "";
         charLoop:
         for (let i = 0; i < text.length; i++) {
-            const c = text[i];
+            let c = text[i];
             for (const font of this.settings.charFonts) {
-                keyLoop:
-                for (let key of Object.keys(font)) {
-                    if (key.length === 1) {
-                        if (key == c) {
-                            this.#tokenText += font[key];
-                            continue charLoop;
-                        }
-                    } else {
-                        if (key.startsWith(c)) {
-                            let testKey = c;
-                            for (let j = i; j < text.length; j++) {
-                                testKey += text[j];
-                                if (key == testKey) {
-                                    this.#tokenText += font[key];
-                                    i = j;
-                                    continue charLoop;
-                                }
-                                if (!key.startsWith(testKey)) {
-                                    continue keyLoop;
-                                }
+                for (const fontKey in font.data) {
+                    if (c === fontKey) {
+                        fontifiedText += font.data[fontKey];
+                        continue charLoop;
+                    }
+                    if (fontKey.startsWith(c)) {
+                        for (let j = i + 1; j < text.length; j++) {
+                            const nextChar = text[j];
+                            if (fontKey === c + nextChar) {
+                                fontifiedText += font.data[fontKey];
+                                i = j;
+                                continue charLoop;
                             }
+                            if (fontKey.startsWith(c + nextChar)) {
+                                c += nextChar;
+                                continue;
+                            }
+                            break;
                         }
                     }
                 }
-                // if (c in font) {
-                //     this.#tokenText += font[c];
-                //     continue charLoop;
-                // }
             }
-            this.#tokenText += c;
+            fontifiedText += text[i];
         }
+
+        return fontifiedText;
     }
 
     /**
@@ -371,7 +371,7 @@ class TextFormater {
                 dString += "&k";
             }
 
-            dString += token.text;
+            dString += this.#fontify(token.text);
 
             lastSettings = token.settings;
         }
