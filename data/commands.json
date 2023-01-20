@@ -1,408 +1,370 @@
 [
     {
-        "commands": ["help"],
-        "args": [],
-        "optionals": [],
-        "description": "",
-        "tags": ["general"]
+        "title": "general",
+        "commands": [
+            {
+                "commands": ["help"],
+                "args": [],
+                "optionals": [],
+                "description": ""
+            },
+            {
+                "commands": ["join"],
+                "args": ["plot ID"],
+                "optionals": [],
+                "description": "Takes you to the plot with a specified ID."
+            },
+            {
+                "commands": ["play"],
+                "args": [],
+                "optionals": [],
+                "description": "Takes you into playing mode for the plot you are currently on."
+            },
+            {
+                "commands": ["build"],
+                "args": [],
+                "optionals": [],
+                "description": "Takes you into building mode for the plot you are currently on."
+            },
+            {
+                "commands": ["dev"],
+                "args": [],
+                "optionals": [],
+                "description": "Takes you into coding mode for the plot you are currently on."
+            },
+            {
+                "commands": ["spawn", "leave"],
+                "args": [],
+                "optionals": [],
+                "description": "Takes you to the spawn of your current node."
+            },
+            {
+                "commands": ["rules"],
+                "args": [],
+                "optionals": [],
+                "description": ""
+            },
+            {
+                "commands": ["support request"],
+                "args": [],
+                "optionals": [],
+                "description": ""
+            },
+            {
+                "commands": ["support question"],
+                "args": ["question"],
+                "optionals": [],
+                "description": ""
+            },
+            {
+                "commands": ["patch", "patchnotes"],
+                "args": [],
+                "optionals": ["patch number"],
+                "description": "Shows the change log of the given patch, or the latest patch if none is given."
+            },
+            {
+                "commands": ["patch list", "patchnotes list"],
+                "args": [],
+                "optionals": [],
+                "description": "Lists all path numbers."
+            },
+            {
+                "commands": ["vote"],
+                "args": [],
+                "optionals": [],
+                "description": "Votes for the plot you are currently on."
+            }
+        ]
     },
     {
-        "commands": ["join"],
-        "args": ["plot ID"],
-        "optionals": [],
-        "description": "Takes you to the plot with a specified ID.",
-        "tags": ["general"]
+        "title": "chat",
+        "commands": [
+            {
+                "commands": ["chat", "c"],
+                "args": ["global|local|none|g|l|n"],
+                "optionals": [],
+                "description": "Makes it so that you can turn off chat (n), only see the chat of people in the plot you are on (l), or see everyone's chat (g)."
+            },
+            {
+                "commands": ["msg", "tell"],
+                "args": ["player", "message"],
+                "optionals": [],
+                "description": "Sends a private message to the specified player."
+            },
+            {
+                "commands": ["reply", "r"],
+                "args": ["message"],
+                "optionals": [],
+                "description": "Sends a private message to the last player who messaged you."
+            },
+            {
+                "commands": ["ignore"],
+                "args": ["player"],
+                "optionals": [],
+                "description": "Makes it so that you cannot see messages from the given player."
+            },
+            {
+                "commands": ["unignore"],
+                "args": ["player"],
+                "optionals": [],
+                "description": "Unignores the given player."
+            },
+            {
+                "commands": ["ignorelist"],
+                "args": [],
+                "optionals": [],
+                "description": "Shows a list of every player you have ignored."
+            },
+            {
+                "commands": ["report"],
+                "args": ["player", "reason"],
+                "optionals": [],
+                "description": "Sends a report to online moderators."
+            }
+        ]
     },
     {
-        "commands": ["play"],
-        "args": [],
-        "optionals": [],
-        "description": "Takes you into playing mode for the plot you are currently on.",
-        "tags": ["general"]
+        "title": "player",
+        "commands": [
+            {
+                "commands": ["whois"],
+                "args": ["player"],
+                "optionals": [],
+                "description": "Outputs information about the given player."
+            },
+            {
+                "commands": ["locate"],
+                "args": ["player"],
+                "optionals": [],
+                "description": "Finds what plot the given player is on."
+            }
+        ]
     },
     {
-        "commands": ["build"],
-        "args": [],
-        "optionals": [],
-        "description": "Takes you into building mode for the plot you are currently on.",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["dev"],
-        "args": [],
-        "optionals": [],
-        "description": "Takes you into coding mode for the plot you are currently on.",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["spawn", "leave"],
-        "args": [],
-        "optionals": [],
-        "description": "Takes you to the spawn of your current node.",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["rules"],
-        "args": [],
-        "optionals": [],
-        "description": "",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["support request"],
-        "args": [],
-        "optionals": [],
-        "description": "",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["support question"],
-        "args": ["question"],
-        "optionals": [],
-        "description": "",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["chat", "c"],
-        "args": ["global|local|none|g|l|n"],
-        "optionals": [],
-        "description": "Makes it so that you can turn off chat (n), only see the chat of people in the plot you are on (l), or see everyone's chat (g).",
-        "tags": ["general", "chat"]
-    },
-    {
-        "commands": ["patch", "patchnotes"],
-        "args": [],
-        "optionals": ["patch number"],
-        "description": "Shows the change log of the given patch, or the latest patch if none is given.",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["patch list", "patchnotes list"],
-        "args": [],
-        "optionals": [],
-        "description": "Lists all path numbers.",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["vote"],
-        "args": [],
-        "optionals": [],
-        "description": "Votes for the plot you are currently on.",
-        "tags": ["general"]
-    },
-    {
-        "commands": ["msg", "tell"],
-        "args": ["player", "message"],
-        "optionals": [],
-        "description": "Sends a private message to the specified player.",
-        "tags": ["player", "chat"]
-    },
-    {
-        "commands": ["reply", "r"],
-        "args": ["message"],
-        "optionals": [],
-        "description": "Sends a private message to the last player who messaged you.",
-        "tags": ["player", "chat"]
-    },
-    {
-        "commands": ["ignore"],
-        "args": ["player"],
-        "optionals": [],
-        "description": "Makes it so that you cannot see messages from the given player.",
-        "tags": ["player", "chat"]
-    },
-    {
-        "commands": ["unignore"],
-        "args": ["player"],
-        "optionals": [],
-        "description": "Unignores the given player.",
-        "tags": ["player", "chat"]
-    },
-    {
-        "commands": ["ignorelist"],
-        "args": [],
-        "optionals": [],
-        "description": "Shows a list of every player you have ignored.",
-        "tags": ["player", "chat"]
-    },
-    {
-        "commands": ["report"],
-        "args": ["player", "reason"],
-        "optionals": [],
-        "description": "Sends a report to online moderators.",
-        "tags": ["player", "chat"]
-    },
-    {
-        "commands": ["whois"],
-        "args": ["player"],
-        "optionals": [],
-        "description": "Outputs information about the given player.",
-        "tags": ["player"]
-    },
-    {
-        "commands": ["locate"],
-        "args": ["player"],
-        "optionals": [],
-        "description": "Finds what plot the given player is on.",
-        "tags": ["player"]
-    },
-    {
-        "commands": ["item get", "i get"],
-        "args": ["material"],
-        "optionals": ["amount"],
-        "description": "Adds an item to your inventory.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item name", "i n"],
-        "args": [],
-        "optionals": ["name"],
-        "description": "Renames the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item name edit", "i en", "en"],
-        "args": [],
-        "optionals": [],
-        "description": "Prepares an /item name command with the held item's name.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item material", "i mat"],
-        "args": ["material"],
-        "optionals": [],
-        "description": "Changes the material of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item count", "i count"],
-        "args": ["count"],
-        "optionals": [],
-        "description": "",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item enchant", "i ench"],
-        "args": ["enchantment name", "level"],
-        "optionals": [],
-        "description": "Enchants the held item (level 0 removes the enchant).",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item durability", "i durability"],
-        "args": ["remaining|damage|percentage", "durability"],
-        "optionals": [],
-        "description": "Sets the remaining durability of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item lore add", "i l add", "ila"],
-        "args": ["lore"],
-        "optionals": [],
-        "description": "Adds a lore line to the held item.",
-        "tags": ["item", "lore"]
-    },
-    {
-        "commands": ["item lore set", "i l set", "ils"],
-        "args": ["line"],
-        "optionals": ["lore"],
-        "description": "Sets a lore line of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item lore remove"],
-        "args": ["line"],
-        "optionals": [],
-        "description": "Removes a lore line of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item lore clear"],
-        "args": [],
-        "optionals": [],
-        "description": "Removes all lore lines of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item lore list"],
-        "args": [],
-        "optionals": [],
-        "description": "Lists all lore lines of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item head", "i head"],
-        "args": ["owner/texture"],
-        "optionals": [],
-        "description": "Gets a new head or changes the held head.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item color", "i color"],
-        "args": ["hex|rgb|hsb|hsl", "value(s)"],
-        "optionals": [],
-        "description": "Changes the held item's color.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item color remove", "i color remove"],
-        "args": [],
-        "optionals": [],
-        "description": "Removes the held item's custom color.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item tag set", "i tag set"],
-        "args": ["name", "value"],
-        "optionals": [],
-        "description": "Sets a tag of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item tag remove", "i tag remove"],
-        "args": ["name"],
-        "optionals": [],
-        "description": "Removes a tag of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item tag list", "i tag list"],
-        "args": [],
-        "optionals": [],
-        "description": "Lists all tags of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item tag clear", "i tag clear"],
-        "args": [],
-        "optionals": [],
-        "description": "Removes all tags of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item attribute add", "i attribute add"],
-        "args": ["name", "amount"],
-        "optionals": ["operation", "slot"],
-        "description": "Adds an attribute to the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item attribute remove", "i attribute remove"],
-        "args": ["name"],
-        "optionals": [],
-        "description": "Removes an attribute from the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item attribute clear", "i attribute clear"],
-        "args": [],
-        "optionals": [],
-        "description": "Removes all attributes from the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item unbreakable", "i unbreakable"],
-        "args": [],
-        "optionals": ["true|false"],
-        "description": "Sets whether the held item is unbreakable.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item hideflags", "i hideflags"],
-        "args": ["true|false"],
-        "optionals": [],
-        "description": "Sets whether the held item's properties should be hidden.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item glow", "i glow"],
-        "args": [],
-        "optionals": ["true|false"],
-        "description": "Sets wether the held item should glow.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item nbt", "i nbt"],
-        "args": [],
-        "optionals": [],
-        "description": "Outputs the held item's NBT data.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item book unsign", "i book unsign"],
-        "args": [],
-        "optionals": [],
-        "description": "Removes the signature from the held book.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item book author", "i book author"],
-        "args": ["author"],
-        "optionals": [],
-        "description": "Sets the author of the held book.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item book title", "i book title"],
-        "args": ["name"],
-        "optionals": [],
-        "description": "Sets the title of the held book.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item book generation", "i book generation"],
-        "args": ["generation"],
-        "optionals": [],
-        "description": "Sets the generation of the held book.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item firework", "i firework"],
-        "args": ["set|add", "type", "colors"],
-        "optionals": ["fade colors", "-f", "-t"],
-        "description": "Sets or adds a firework effect to the held firework.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item firework clear", "i firework clear"],
-        "args": [],
-        "optionals": [],
-        "description": "Removes all firework effects from the held firework.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item firework power", "i firework power"],
-        "args": ["power"],
-        "optionals": [],
-        "description": "Sets the power of the held firework.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item whitelist", "i whitelist"],
-        "args": ["breaking|placing", "block(s)"],
-        "optionals": [],
-        "description": "Sets the blocks the held item can break or be placed on.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item modeldata", "i modeldata"],
-        "args": ["number"],
-        "optionals": [],
-        "description": "Sets the custom model data property of the held item.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item equip", "i equip"],
-        "args": [],
-        "optionals": ["slot"],
-        "description": "Equips the held item on your head or another slot.",
-        "tags": ["item"]
-    },
-    {
-        "commands": ["item send", "i send"],
-        "args": ["player"],
-        "optionals": [],
-        "description": "Sends the held item to another player on this plot.",
-        "tags": ["item"]
+        "title": "item",
+        "commands": [
+            {
+                "commands": ["item get", "i get"],
+                "args": ["material"],
+                "optionals": ["amount"],
+                "description": "Adds an item to your inventory."
+            },
+            {
+                "commands": ["item name", "i n"],
+                "args": [],
+                "optionals": ["name"],
+                "description": "Renames the held item."
+            },
+            {
+                "commands": ["item name edit", "i en", "en"],
+                "args": [],
+                "optionals": [],
+                "description": "Prepares an /item name command with the held item's name."
+            },
+            {
+                "commands": ["item material", "i mat"],
+                "args": ["material"],
+                "optionals": [],
+                "description": "Changes the material of the held item."
+            },
+            {
+                "commands": ["item count", "i count"],
+                "args": ["count"],
+                "optionals": [],
+                "description": ""
+            },
+            {
+                "commands": ["item enchant", "i ench"],
+                "args": ["enchantment name", "level"],
+                "optionals": [],
+                "description": "Enchants the held item (level 0 removes the enchant)."
+            },
+            {
+                "commands": ["item durability", "i durability"],
+                "args": ["remaining|damage|percentage", "durability"],
+                "optionals": [],
+                "description": "Sets the remaining durability of the held item."
+            },
+            {
+                "commands": ["item lore add", "i l add", "ila"],
+                "args": ["lore"],
+                "optionals": [],
+                "description": "Adds a lore line to the held item."
+            },
+            {
+                "commands": ["item lore set", "i l set", "ils"],
+                "args": ["line"],
+                "optionals": ["lore"],
+                "description": "Sets a lore line of the held item."
+            },
+            {
+                "commands": ["item lore remove"],
+                "args": ["line"],
+                "optionals": [],
+                "description": "Removes a lore line of the held item."
+            },
+            {
+                "commands": ["item lore clear"],
+                "args": [],
+                "optionals": [],
+                "description": "Removes all lore lines of the held item."
+            },
+            {
+                "commands": ["item lore list"],
+                "args": [],
+                "optionals": [],
+                "description": "Lists all lore lines of the held item."
+            },
+            {
+                "commands": ["item head", "i head"],
+                "args": ["owner/texture"],
+                "optionals": [],
+                "description": "Gets a new head or changes the held head."
+            },
+            {
+                "commands": ["item color", "i color"],
+                "args": ["hex|rgb|hsb|hsl", "value(s)"],
+                "optionals": [],
+                "description": "Changes the held item's color."
+            },
+            {
+                "commands": ["item color remove", "i color remove"],
+                "args": [],
+                "optionals": [],
+                "description": "Removes the held item's custom color."
+            },
+            {
+                "commands": ["item tag set", "i tag set"],
+                "args": ["name", "value"],
+                "optionals": [],
+                "description": "Sets a tag of the held item."
+            },
+            {
+                "commands": ["item tag remove", "i tag remove"],
+                "args": ["name"],
+                "optionals": [],
+                "description": "Removes a tag of the held item."
+            },
+            {
+                "commands": ["item tag list", "i tag list"],
+                "args": [],
+                "optionals": [],
+                "description": "Lists all tags of the held item."
+            },
+            {
+                "commands": ["item tag clear", "i tag clear"],
+                "args": [],
+                "optionals": [],
+                "description": "Removes all tags of the held item."
+            },
+            {
+                "commands": ["item attribute add", "i attribute add"],
+                "args": ["name", "amount"],
+                "optionals": ["operation", "slot"],
+                "description": "Adds an attribute to the held item."
+            },
+            {
+                "commands": ["item attribute remove", "i attribute remove"],
+                "args": ["name"],
+                "optionals": [],
+                "description": "Removes an attribute from the held item."
+            },
+            {
+                "commands": ["item attribute clear", "i attribute clear"],
+                "args": [],
+                "optionals": [],
+                "description": "Removes all attributes from the held item."
+            },
+            {
+                "commands": ["item unbreakable", "i unbreakable"],
+                "args": [],
+                "optionals": ["true|false"],
+                "description": "Sets whether the held item is unbreakable."
+            },
+            {
+                "commands": ["item hideflags", "i hideflags"],
+                "args": ["true|false"],
+                "optionals": [],
+                "description": "Sets whether the held item's properties should be hidden."
+            },
+            {
+                "commands": ["item glow", "i glow"],
+                "args": [],
+                "optionals": ["true|false"],
+                "description": "Sets wether the held item should glow."
+            },
+            {
+                "commands": ["item nbt", "i nbt"],
+                "args": [],
+                "optionals": [],
+                "description": "Outputs the held item's NBT data."
+            },
+            {
+                "commands": ["item book unsign", "i book unsign"],
+                "args": [],
+                "optionals": [],
+                "description": "Removes the signature from the held book."
+            },
+            {
+                "commands": ["item book author", "i book author"],
+                "args": ["author"],
+                "optionals": [],
+                "description": "Sets the author of the held book."
+            },
+            {
+                "commands": ["item book title", "i book title"],
+                "args": ["name"],
+                "optionals": [],
+                "description": "Sets the title of the held book."
+            },
+            {
+                "commands": ["item book generation", "i book generation"],
+                "args": ["generation"],
+                "optionals": [],
+                "description": "Sets the generation of the held book."
+            },
+            {
+                "commands": ["item firework", "i firework"],
+                "args": ["set|add", "type", "colors"],
+                "optionals": ["fade colors", "-f", "-t"],
+                "description": "Sets or adds a firework effect to the held firework."
+            },
+            {
+                "commands": ["item firework clear", "i firework clear"],
+                "args": [],
+                "optionals": [],
+                "description": "Removes all firework effects from the held firework."
+            },
+            {
+                "commands": ["item firework power", "i firework power"],
+                "args": ["power"],
+                "optionals": [],
+                "description": "Sets the power of the held firework."
+            },
+            {
+                "commands": ["item whitelist", "i whitelist"],
+                "args": ["breaking|placing", "block(s)"],
+                "optionals": [],
+                "description": "Sets the blocks the held item can break or be placed on."
+            },
+            {
+                "commands": ["item modeldata", "i modeldata"],
+                "args": ["number"],
+                "optionals": [],
+                "description": "Sets the custom model data property of the held item."
+            },
+            {
+                "commands": ["item equip", "i equip"],
+                "args": [],
+                "optionals": ["slot"],
+                "description": "Equips the held item on your head or another slot."
+            },
+            {
+                "commands": ["item send", "i send"],
+                "args": ["player"],
+                "optionals": [],
+                "description": "Sends the held item to another player on this plot."
+            }
+        ]
     }
 ]
