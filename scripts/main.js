@@ -13,11 +13,17 @@ const rhElements = [
     , { onclick: "changeTheme()", href: "", text: "<span id='dark-mode-icon'>🌙</span><span id='light-mode-icon'>🔆</span></span>", title: "Change Theme" }
 ];
 
+var langDict;
+var fallbackLangDict;
+
 $(document).ready(function () {
     document.body.dataset.theme = localStorage.theme || "dark";
-    document.body.dataset.lang = "en";
 
-    loadLanguage(document.body.dataset.lang);
+    let lang = localStorage.lang || browserLocales(true)[0];
+
+    loadLangDicts(lang).then(function () {
+        translateAll();
+    });
 
     // * Nav Bar Setup
     var path = window.location.pathname;
@@ -34,32 +40,59 @@ $(document).ready(function () {
     }
 });
 
+async function loadLangDicts(lang) {
+    await $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/localization/en.json`, function (data) {
+        fallbackLangDict = JSON.parse(data);
+        if (!fallbackLangDict) {
+            throw "Unable to load english language file";
+        }
+    })
+    if (lang == "en") {
+        langDict = fallbackLangDict;
+    } else {
+        await $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/localization/${lang}.json`, function (data) {
+            langDict = JSON.parse(data);
+            if (!langDict) {
+                if (lang != "en") {
+                    langDict = fallbackLangDict;
+                } else {
+                    throw "Unable to load english language file";
+                }
+            }
+        });
+    }
+}
+
 /**
  * Loads the page in the specified language.
  * @param {string} lang - The language key
  */
-function loadLanguage(lang) {
-    $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/localization/${lang}.json`, function (data) {
-        const langDict = JSON.parse(data);
-        if (!langDict) {
-            if (lang != "en") {
-                loadLanguage("en");
-                return;
-            }
-            throw "Unable to load english language file";
-        }
-        $('*[data-translate="true"]').each(function () {
-            $(this).html(langDict[$(this).attr("data-content")]);
-            $(this).val(langDict[$(this).attr("data-value")]);
-            $(this).attr("placeholder", langDict[$(this).attr("data-placeholder")]);
-        });
+async function translateAll() {
+    $('*[data-translate="true"]').each(function () {
+        $(this).html(translate($(this).attr("data-content")));
+        $(this).val(translate($(this).attr("data-value")));
+        $(this).attr("placeholder", translate($(this).attr("data-placeholder")));
     });
+}
+
+function translate(key) {
+    let translation = langDict[key];
+    if (!translation) {
+        translation = fallbackLangDict[key];
+    }
+    return translation;
+}
+
+function browserLocales(languageCodeOnly = false) {
+    return navigator.languages.map((locale) =>
+        languageCodeOnly ? locale.split("-")[0] : locale,
+    );
 }
 
 /**
  * Changes the theme of the page.
  */
-function changeTheme() {
+async function changeTheme() {
     document.body.dataset.theme = document.body.dataset.theme == "dark" ? "light" : "dark";
     localStorage.theme = document.body.dataset.theme;
 }

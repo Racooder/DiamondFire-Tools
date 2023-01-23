@@ -63,6 +63,12 @@
                 "description": "Shows the change log of the given patch, or the latest patch if none is given."
             },
             {
+                "commands": ["chat", "c"],
+                "args": ["global | local | none | g | l | n"],
+                "optionals": [],
+                "description": "Makes it so that you can turn off chat (n), only see the chat of people in the plot you are on (l), or see everyone's chat (g)."
+            },
+            {
                 "commands": ["patch list", "patchnotes list"],
                 "args": [],
                 "optionals": [],
@@ -77,14 +83,8 @@
         ]
     },
     {
-        "title": "chat",
+        "title": "player",
         "commands": [
-            {
-                "commands": ["chat", "c"],
-                "args": ["global | local | none | g | l | n"],
-                "optionals": [],
-                "description": "Makes it so that you can turn off chat (n), only see the chat of people in the plot you are on (l), or see everyone's chat (g)."
-            },
             {
                 "commands": ["msg", "tell"],
                 "args": ["player", "message"],
@@ -120,12 +120,7 @@
                 "args": ["player", "reason"],
                 "optionals": [],
                 "description": "Sends a report to online moderators."
-            }
-        ]
-    },
-    {
-        "title": "player",
-        "commands": [
+            },
             {
                 "commands": ["whois"],
                 "args": ["player"],
@@ -217,7 +212,7 @@
             },
             {
                 "commands": ["item head", "i head"],
-                "args": ["owner/texture"],
+                "args": ["owner / texture"],
                 "optionals": [],
                 "description": "Gets a new head or changes the held head."
             },
@@ -364,6 +359,110 @@
                 "args": ["player"],
                 "optionals": [],
                 "description": "Sends the held item to another player on this plot."
+            }
+        ]
+    },
+    {
+        "title": "Plot",
+        "commands": [
+            {
+                "commands": ["craft"],
+                "args": [],
+                "optionals": [],
+                "description": "Open's a crafting table menu."
+            },
+            {
+                "commands": ["barrier"],
+                "args": [],
+                "optionals": [],
+                "description": "Gives you a barrier block."
+            },
+            {
+                "commands": ["flightspeed", "fs"],
+                "args": ["number"],
+                "optionals": [],
+                "description": "Sets your flight speed.",
+                "rank": "Noble"
+            },
+            {
+                "commands": ["walkspeed", "ws"],
+                "args": ["number"],
+                "optionals": [],
+                "description": "Sets your walk speed.",
+                "rank": "Noble"
+            },
+            {
+                "commands": ["reset", "rs"],
+                "args": [],
+                "optionals": [],
+                "description": "Resets your inventory to the default dev inventory."
+            },
+            {
+                "commands": ["resetcompact", "rc"],
+                "args": [],
+                "optionals": [],
+                "description": "Gives a compact version of the dev inventory."
+            },
+            {
+                "commands": ["number", "num"],
+                "args": [],
+                "optionals": ["dynamic text", "stack size"],
+                "description": "Gives you number items named after the given text, or a blank number item."
+            },
+            {
+                "commands": ["text", "txt"],
+                "args": [],
+                "optionals": ["dynamic text", "stack size"],
+                "description": "Gives you text items named after the given text, or a blank text item."
+            },
+            {
+                "commands": ["variable", "var"],
+                "args": [],
+                "optionals": ["dynamic text", "stack size", "-s | -l"],
+                "description": "Gives you variable items named after the given text, or a blank variable item. Adding the -s flag will make the variables saved, while adding the -l flag will make the given variables local."
+            },
+            {
+                "commands": ["location", "loc"],
+                "args": ["get | align | center | move | set"],
+                "optionals": [],
+                "description": "Manipulates the currently held location or gives you a new location if the get sub-command is used. See the command usage for more information."
+            },
+            {
+                "commands": ["vector", "vec"],
+                "args": ["get | set | multiply | normalize"],
+                "optionals": [],
+                "description": "Manipulates the currently held vector or gives you a new vector if the get sub-command is used. See the command usage for more information."
+            },
+            {
+                "commands": ["particle", "par"],
+                "args": ["get | count | speed | delta | color | size | material"],
+                "optionals": [],
+                "description": "Manipulates the currently held vector or gives you a new vector if the get sub-command is used. See the command usage for more information."
+            },
+            {
+                "commands": ["lagslayer"],
+                "args": [],
+                "optionals": [],
+                "description": "Monitors the CPU usage on the plot you are on."
+            },
+            {
+                "commands": ["importmap"],
+                "args": ["image url"],
+                "optionals": [],
+                "description": "Downloads the given image and puts it on the targeted item frame.",
+                "rank": "Noble"
+            },
+            {
+                "commands": ["chars"],
+                "args": [],
+                "optionals": ["page / search keyword"],
+                "description": "Displays a list of copyable unicode characters."
+            },
+            {
+                "commands": ["templatehistory"],
+                "args": [],
+                "optionals": [],
+                "description": "Opens a menu containing the past 5 saved templates. This list is cleared when you join on a different plot or leave the server."
             }
         ]
     }
