@@ -81,7 +81,7 @@
         "commands": [
             {
                 "commands": ["chat", "c"],
-                "args": ["global|local|none|g|l|n"],
+                "args": ["global | local | none | g | l | n"],
                 "optionals": [],
                 "description": "Makes it so that you can turn off chat (n), only see the chat of people in the plot you are on (l), or see everyone's chat (g)."
             },
@@ -181,7 +181,7 @@
             },
             {
                 "commands": ["item durability", "i durability"],
-                "args": ["remaining|damage|percentage", "durability"],
+                "args": ["remaining | damage | percentage", "durability"],
                 "optionals": [],
                 "description": "Sets the remaining durability of the held item."
             },
@@ -223,7 +223,7 @@
             },
             {
                 "commands": ["item color", "i color"],
-                "args": ["hex|rgb|hsb|hsl", "value(s)"],
+                "args": ["hex | rgb | hsb | hsl", "value(s)"],
                 "optionals": [],
                 "description": "Changes the held item's color."
             },
@@ -278,19 +278,19 @@
             {
                 "commands": ["item unbreakable", "i unbreakable"],
                 "args": [],
-                "optionals": ["true|false"],
+                "optionals": ["true | false"],
                 "description": "Sets whether the held item is unbreakable."
             },
             {
                 "commands": ["item hideflags", "i hideflags"],
-                "args": ["true|false"],
+                "args": ["true | false"],
                 "optionals": [],
                 "description": "Sets whether the held item's properties should be hidden."
             },
             {
                 "commands": ["item glow", "i glow"],
                 "args": [],
-                "optionals": ["true|false"],
+                "optionals": ["true | false"],
                 "description": "Sets wether the held item should glow."
             },
             {
@@ -325,7 +325,7 @@
             },
             {
                 "commands": ["item firework", "i firework"],
-                "args": ["set|add", "type", "colors"],
+                "args": ["set | add", "type", "colors"],
                 "optionals": ["fade colors", "-f", "-t"],
                 "description": "Sets or adds a firework effect to the held firework."
             },
@@ -343,7 +343,7 @@
             },
             {
                 "commands": ["item whitelist", "i whitelist"],
-                "args": ["breaking|placing", "block(s)"],
+                "args": ["breaking | placing", "block(s)"],
                 "optionals": [],
                 "description": "Sets the blocks the held item can break or be placed on."
             },
