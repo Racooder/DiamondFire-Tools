@@ -108,9 +108,10 @@ footer hr {
 
 /** Foldables */
 .dropdown-arrow {
+  margin-left: 10px;
   width: 10px;
   height: 10px;
-  src: url("../data/images/arrow-up.png");
+  content: url("https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/2.1-Commands/data/images/arrow-up.png");
 }
 
 .foldable.folded ul {
