@@ -17,11 +17,11 @@ function loadCommands(filter) {
                 foundFilter = true;
                 groupIsFilter = true;
             }
-            let groupObject = `<div class="foldable unfolded"><span>${cmdGroup.title.charAt(0).toUpperCase() + cmdGroup.title.slice(1)} <img class="dropdown-arrow"></span>`;
+            let groupObject = `<div class="foldable unfolded"><span data-translate="true" data-content="${cmdGroup.title}"></span>`;
             for (const cmd of cmdGroup.commands) {
                 if (!groupIsFilter) {
                     let found = false;
-                    if (cmd.description.toLowerCase().includes(filter)) {
+                    if (cmd.description.toLowerCase().includes(filter) || translate(cmd.description).toLowerCase().includes(filter)) {
                         found = true;
                         foundFilter = true;
                     }
@@ -48,7 +48,7 @@ function loadCommands(filter) {
                     groupObject += "</li>";
                 }
                 groupObject += `</ul>`;
-                groupObject += `<span>${cmd.description}</span>`;
+                groupObject += `<span data-translate="true" data-content="${cmd.description}"></span>`;
                 groupObject += `</li>`;
                 groupObject += "</ul>";
             }
@@ -62,6 +62,7 @@ function loadCommands(filter) {
         $(".foldable").click(function () {
             switchFold(this);
         });
+        translateAll();
     });
 }
 
