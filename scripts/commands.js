@@ -21,7 +21,7 @@ function loadCommands(filter) {
             for (const cmd of cmdGroup.commands) {
                 if (!groupIsFilter) {
                     let found = false;
-                    if (cmd.description.toLowerCase().includes(filter) || translate(cmd.description).toLowerCase().includes(filter)) {
+                    if (translate(cmd.description).toLowerCase().includes(filter)) {
                         found = true;
                         foundFilter = true;
                     }
