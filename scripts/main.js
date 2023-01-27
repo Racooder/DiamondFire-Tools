@@ -41,7 +41,7 @@ $(document).ready(function () {
 });
 
 async function loadLangDicts(lang) {
-    await $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/localization/en.json`, function (data) {
+    await $.get(`https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/2.1-Commands/data/localization/en.json`, function (data) {
         fallbackLangDict = JSON.parse(data);
         if (!fallbackLangDict) {
             throw "Unable to load english language file";
@@ -50,7 +50,7 @@ async function loadLangDicts(lang) {
     if (lang == "en") {
         langDict = fallbackLangDict;
     } else {
-        await $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/localization/${lang}.json`, function (data) {
+        await $.get(`https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/2.1-Commands/data/localization/${lang}.json`, function (data) {
             langDict = JSON.parse(data);
             if (!langDict) {
                 if (lang != "en") {
@@ -79,6 +79,9 @@ function translate(key) {
     let translation = langDict[key];
     if (!translation) {
         translation = fallbackLangDict[key];
+        if (!translation) {
+            translation = key;
+        }
     }
     return translation;
 }
