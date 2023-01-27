@@ -17,7 +17,7 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 #command-search-button {
@@ -38,13 +38,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
-#command-list div {
-  background-color: #444;
+
+.command-group {
   border-radius: 15px;
-  border: 1px;
-  border-color: black;
-  width: 500px;
+  width: 800px;
   padding: 10px 0px;
   display: flex;
   flex-direction: column;
@@ -57,11 +56,11 @@ ul.command-list {
   margin-bottom: 0px;
   padding-left: 0px;
   width: 90%;
+  line-height: 25px;
 }
 ul.command-list li.command-list {
   border-radius: 15px;
-  background-color: #222;
-  padding: 5px 10px;
+  padding: 15px 15px;
 }
 ul.command-list li.command-list h3 {
   margin: 0px;

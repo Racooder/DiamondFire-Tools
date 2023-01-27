@@ -17,7 +17,7 @@ function loadCommands(filter) {
                 foundFilter = true;
                 groupIsFilter = true;
             }
-            let groupObject = `<div class="foldable unfolded"><span data-translate="true" data-content="${cmdGroup.title}"></span>`;
+            let groupObject = `<div class="command-group foldable unfolded"><span class="unselectable" data-translate="true" data-content="${cmdGroup.title}"></span>`;
             for (const cmd of cmdGroup.commands) {
                 if (!groupIsFilter) {
                     let found = false;
@@ -40,10 +40,10 @@ function loadCommands(filter) {
                 for (const instruction of cmd.commands) {
                     groupObject += `<li>/${instruction}`;
                     for (const arg of cmd.args) {
-                        groupObject += ` &lt;${arg}&gt;`;
+                        groupObject += ` <code>${arg}</code>`;
                     }
                     for (const opt of cmd.optionals) {
-                        groupObject += ` [${opt}]`;
+                        groupObject += ` <code>${opt}?</code>`;
                     }
                     groupObject += "</li>";
                 }
@@ -62,6 +62,9 @@ function loadCommands(filter) {
         $(".foldable").click(function () {
             switchFold(this);
         });
+        $(".command-list").click(function (event) {
+            event.stopPropagation();
+        });
         translateAll();
     });
 }
@@ -78,6 +81,7 @@ function switchFold(element) {
     } else {
         $(element).removeClass("unfolded");
         $(element).addClass("folded");
+        element.scrollIntoView();
     }
 }
 

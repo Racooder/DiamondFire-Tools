@@ -15,7 +15,7 @@
     justify-content: center;
     margin: auto;
     width: fit-content;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 #command-search-button {
@@ -37,18 +37,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 
-    div {
-        background-color: #444;
-        border-radius: 15px;
-        border: 1px;
-        border-color: black;
-        width: 500px;
-        padding: 10px 0px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+}
+
+.command-group {
+    border-radius: 15px;
+    width: 800px;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 ul.command-list {
@@ -57,11 +56,11 @@ ul.command-list {
     margin-bottom: 0px;
     padding-left: 0px;
     width: 90%;
+    line-height: 25px;
 
     li.command-list {
         border-radius: 15px;
-        background-color: #222;
-        padding: 5px 10px;
+        padding: 15px 15px;
 
         h3 {
             margin: 0px;
