@@ -1,5 +1,4 @@
 {
-    "independence-declaration": "This is a community-made project. This tool is not endorsed by DiamondFire or DiamondFire staff!",
     "type-here": "Hier schreiben...",
     "upload-font": "Eigene Schriftart hochladen...",
     "select-font": "Wähle eine Schriftart aus:",
@@ -15,21 +14,5 @@
     "emphasis-example": "Beispiel: <code>**Dieser Text ist fett, _kursiv_, ~~und durchgestrichen~~**</code> wird konvertiert zu <code>&lDieser Text ist fett, &l&okursiv&r&l, &l&mund durchgestrichen</code>",
     "emphasis-additional": "Text Helper unterstützt zusätzlich <code>``unterstrichen``</code> und <code>§§entstellt§§</code>.",
     "fonts": "Schriftarten",
-    "fonts-explanation": "Mit Text Helper können Sie auch Schriftarten verwenden. Schriftarten ersetzen bestimmte Zeichen durch andere Zeichen. Die Schriftart <code>Small Capital</code> ersetzt zum Beispiel <code>A</code> durch <code>ᴀ</code> und <code>DIAMONDFIRE</code> durch <code>ᴅɪᴀᴍᴏɴᴅꜰɪʀᴇ</code>. Sie können auch mehrere Schriftarten gleichzeitig verwenden.",
-    "fonts-details": "Full details about fonts can be found <a href='text-helper.html#font-details'>here</a>.",
-    "all-tags": "All tags",
-    "tag-backslash": "Escapes the next character. For example, <code>\\&r</code> will be converted to <code>&r</code>.",
-    "tag-html-color": "Converts the color to the DiamondFire format. For example, <code>#ff0000red text</code> will be converted to <code>&x&f&f&0&0&0&0red text</code>.",
-    "tag-df-color": "DiamondFire color codes. For example, <code>&cred text</code> will be displayed red in Minecraft.",
-    "tag-emphasis": "Emphasis tags. For example, <code>**bold text**</code> will be converted to <code>&lbold text</code>.",
-    "tag-reset": "Resets the styling.",
-    "support-capitals-numbers": "Supports capital letters and numbers",
-    "support-lowercase-capitals": "Supports lowercase and capital letters",
-    "support-numbers": "Supports numbers",
-    "support-capitals": "Supports capital letters",
-    "custom-fonts": "Custom Fonts",
-    "custom-fonts-explanation": "Text Helper offers the posibility to create and upload custom fonts. A font is a json file with a simple format.",
-    "custom-fonts-format": "The value of the key <code>\"_name\"</code> represents the font name. It has to be a unique name for functioning correctly.",
-    "custom-fonts-format-2": "Every following key-value pair is now a char translation, Text Helper will replace every character that matches a key in your font dictionary with the corresponding value. Mark that keys can only be one character wheras the value can be a longer text.",
-    "download-font-template": "Download a font template here!"
+    "fonts-explanation": "Mit Text Helper können Sie auch Schriftarten verwenden. Schriftarten ersetzen bestimmte Zeichen durch andere Zeichen. Die Schriftart <code>Small Capital</code> ersetzt zum Beispiel <code>A</code> durch <code>ᴀ</code> und <code>DIAMONDFIRE</code> durch <code>ᴅɪᴀᴍᴏɴᴅꜰɪʀᴇ</code>. Sie können auch mehrere Schriftarten gleichzeitig verwenden."
 }

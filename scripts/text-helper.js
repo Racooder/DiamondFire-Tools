@@ -3,8 +3,8 @@ var charFonts = [];
 
 $(document).ready(function () {
     // Handle font selection
-    $('.chosen-select').chosen({ width: "200px" });
-    $(".chosen-select").chosen().change(function () {
+    $('#char-font-selector').chosen({ width: "200px" });
+    $("#char-font-selector").chosen().change(function () {
         setTimeout(function () {
             handleInput(document.getElementById("text-helper-input"))
         }, 100);
