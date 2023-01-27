@@ -1,16 +1,16 @@
 "use strict";
 // * Nav Bar Elements
 const lhElements = [
-    { href: "index.html", text: "Home", title: "" },
-    { href: "text-helper.html", text: "Text Helper", title: "" },
-    { href: "commands.html", text: "Commands", title: "" },
+    { href: "index.html", text: "Home", title: "Home" },
+    { href: "text-helper.html", text: "Text Helper", title: "Text Helper" },
+    { href: "commands.html", text: "Commands", title: "Commands" },
 ];
 
 const rhElements = [
-    { onclick: "", href: "https://github.com/Studio-Racoonia/DiamondFire-Tools", text: "&lt;/&gt;", title: "Code" },
-    { onclick: "", href: "https://github.com/Studio-Racoonia/DiamondFire-Tools/issues?q=is%3Aopen+is%3Aissue+label%3Abug", text: "<span style=\"position: relative; bottom: 2px; color: transparent; text-shadow: 0 0 0 white;\">🪲</span>", title: "Report a bug" }
-    // Theme button:
-    , { onclick: "changeTheme()", href: "", text: "<span id='dark-mode-icon'>🌙</span><span id='light-mode-icon'>🔆</span></span>", title: "Change Theme" }
+    { onclick: "", href: "https://github.com/Studio-Racoonia/DiamondFire-Tools", text: "<i class='fi fi-tr-display-code'></i>", title: "Code" },
+    { onclick: "", href: "https://github.com/Studio-Racoonia/DiamondFire-Tools/issues?q=is%3Aopen+is%3Aissue+label%3Abug", text: "<i class='fi fi-rr-bug'></i>", title: "Report a bug" },
+    { onclick: "changeTheme()", href: "", text: "<i class='dark-mode fi fi-rr-moon-stars'></i><i class='light-mode fi fi-rr-brightness'></i>", title: "Change Theme" },
+    { onclick: "", href: "https://www.flaticon.com/uicons", text: "Uicons by Flaticon", title: "Icons Credit" },
 ];
 
 var langDict;
