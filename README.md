@@ -47,7 +47,7 @@ This project is a collection of tools for the DiamondFire Minecraft server. It i
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] 2.1 Command List
+- [x] 2.1 Command List
 - [ ] 2.2 Improved Text Helper
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
