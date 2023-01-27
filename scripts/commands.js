@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 function loadCommands(filter) {
-    $.get(`https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/2.1-Commands/data/commands.json`, function (data) {
+    $.get(`https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/main/data/commands.json`, function (data) {
         const commandList = JSON.parse(data);
         for (const cmdGroup of commandList) {
             let foundFilter = false;
