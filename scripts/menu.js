@@ -12,8 +12,12 @@ const tools = [
     // }
 ];
 
+var mc_click;
+
 $(document).ready(function () {
     loadMenu();
+
+    mc_click = new Audio("/data/sounds/minecraft_click.mp3");
 });
 
 /**
@@ -38,4 +42,9 @@ async function loadMenu() {
             menuHolder.appendChild(toolLink);
         }
     }
+}
+
+function mcHref (URL) {
+    mc_click.play();
+    setTimeout( function() { window.location = URL }, 500 );
 }
