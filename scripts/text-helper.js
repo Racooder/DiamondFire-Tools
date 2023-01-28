@@ -3,8 +3,8 @@ var charFonts = [];
 
 $(document).ready(function () {
     // Handle font selection
-    $('.chosen-select').chosen({ width: "200px" });
-    $(".chosen-select").chosen().change(function () {
+    $('#char-font-selector').chosen({ width: "200px" });
+    $("#char-font-selector").chosen().change(function () {
         setTimeout(function () {
             handleInput(document.getElementById("text-helper-input"))
         }, 100);
@@ -25,8 +25,7 @@ $(document).ready(function () {
 
     // Load fonts
     for (var fontFile of fontFiles) {
-        $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/char-fonts/${fontFile}`, function (data) {
-            const font = JSON.parse(data);
+        $.get(`/data/char-fonts/${fontFile}`, function (font) {
             charFonts.push(font);
             $('#char-font-selector').append($("<option></option>").attr("value", font.header.name).text(font.header.name));
         });

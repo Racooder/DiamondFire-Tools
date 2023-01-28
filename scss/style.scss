@@ -1,3 +1,6 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-thin-rounded/css/uicons-thin-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
 html {
     margin: 0;
     padding: 0;
@@ -46,10 +49,6 @@ footer {
     }
 }
 
-#header-center {
-    flex-grow: 1;
-}
-
 .tooltip {
     border: 1px solid #f21d56;
     position: absolute;
@@ -57,18 +56,13 @@ footer {
     background-color: #121019;
 }
 
-#light-mode-icon {
-    position: relative;
-    bottom: 2px;
-    color: transparent;
-    text-shadow: 0 0 0 white;
-}
-
-#dark-mode-icon {
-    position: relative;
-    bottom: 2px;
-    color: transparent;
-    text-shadow: 0 0 0 white;
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /** Scrollbar */
@@ -90,9 +84,53 @@ footer {
     background: #BF1744;
 }
 
+/** Navbar */
+
+#header-center {
+    flex-grow: 1;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+
+    a {
+        padding: 15px 10px 15px 10px;
+        text-decoration: none;
+    }
+}
+
+.nav-bar-item {
+    padding-top: 15px;
+    padding-bottom: 13px;
+    min-width: 50px;
+}
+
+/** Foldables */
+
+.dropdown-arrow {
+    margin-left: 10px;
+    width: 10px;
+    height: 10px;
+    content: url("https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/main/data/images/arrow-up.png");
+}
+
+.foldable.folded {
+    ul {
+        display: none;
+    }
+
+    .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+}
+
 /** Themes */
 
-[data-theme="rainbow"] {
+[data-theme=rainbow] {
     background-color: #b3333f;
     color: #000;
 
@@ -117,6 +155,15 @@ footer {
 
     footer {
         color: #111;
+    }
+
+    #command-search-button {
+        background-color: #3c663e;
+    }
+
+    input {
+        background-color: #fff;
+        color: #000;
     }
 
     /** Nav Bar */
@@ -274,9 +321,25 @@ footer {
     #text-helper-output[data-output="true"] {
         border-color: #0f8c5e !important;
     }
+
+    /** Commands */
+
+    .command-group {
+        border: 5px solid transparent;
+        border-image: conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+        border-image-slice: 1;
+    }
+
+    li.command-list {
+        background-color: #992B36;
+    }
+
+    .dropdown-arrow {
+        filter: invert(100%);
+    }
 }
 
-[data-theme="dark"] {
+[data-theme=dark] {
     background-color: #121019;
     color: #fff;
 
@@ -296,12 +359,21 @@ footer {
     }
 
     code {
-        background-color: #1e2533;
+        background-color: #1C1726;
+    }
+
+    #command-search-button {
+        background-color: #3c663e;
+    }
+
+    input {
+        background-color: #fff;
+        color: #000;
     }
 
     /** Theme Icons */
 
-    #light-mode-icon {
+    .light-mode {
         display: none;
     }
 
@@ -421,9 +493,19 @@ footer {
     #text-helper-output[data-output="true"] {
         border-color: #0f8c5e;
     }
+
+    /** Commands */
+
+    .command-group {
+        background-color: #1C1726;
+    }
+
+    li.command-list {
+        background-color: #2E273F;
+    }
 }
 
-[data-theme="light"] {
+[data-theme=light] {
     background-color: #fff;
     color: #000;
 
@@ -446,9 +528,18 @@ footer {
         background-color: #aec1e9;
     }
 
+    #command-search-button {
+        background-color: #3c663e;
+    }
+
+    input {
+        background-color: #21252b;
+        color: #fff
+    }
+
     /** Theme Icons */
 
-    #dark-mode-icon {
+    .dark-mode {
         display: none;
     }
 
@@ -516,5 +607,21 @@ footer {
 
     #text-helper-output[data-output="true"] {
         border-color: #00bb76;
+    }
+
+    /** Commands */
+
+    .command-group {
+        border-color: #f21d56;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    li.command-list {
+        background-color: #CBC7D4;
+    }
+
+    .dropdown-arrow {
+        filter: invert(100%);
     }
 }
