@@ -13,7 +13,7 @@
 <p align="center">
     A collection of tools for the DiamondFire Minecraft server.
     <br/>
-    <a href="https://racooder.github.io/DiamondFire-Tools"><strong>Explore the tool »</strong></a>
+    <a href="http://dftools.rf.gd"><strong>Explore the tool »</strong></a>
     <br/>
     <br/>
     <a href="https://github.com/Racooder/DiamondFire-Tools/milestones">Milestones</a>
