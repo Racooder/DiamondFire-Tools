@@ -15,9 +15,12 @@ const rhElements = [
 
 var langDict;
 var fallbackLangDict;
+var host;
 
 $(document).ready(function () {
     document.body.dataset.theme = localStorage.theme || "dark";
+
+    host = window.location.host;
 
     let lang = localStorage.lang || browserLocales(true)[0];
 
@@ -41,8 +44,8 @@ $(document).ready(function () {
 });
 
 async function loadLangDicts(lang) {
-    await $.get(`https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/main/data/localization/en.json`, function (data) {
-        fallbackLangDict = JSON.parse(data);
+    await $.get(`/data/localization/en.json`, function (data) {
+        fallbackLangDict = data;
         if (!fallbackLangDict) {
             throw "Unable to load english language file";
         }
@@ -50,8 +53,8 @@ async function loadLangDicts(lang) {
     if (lang == "en") {
         langDict = fallbackLangDict;
     } else {
-        await $.get(`https://raw.githubusercontent.com/Racooder/DiamondFire-Tools/main/data/localization/${lang}.json`, function (data) {
-            langDict = JSON.parse(data);
+        await $.get(`/data/localization/${lang}.json`, function (data) {
+            langDict = data;
             if (!langDict) {
                 if (lang != "en") {
                     langDict = fallbackLangDict;

@@ -25,8 +25,7 @@ $(document).ready(function () {
 
     // Load fonts
     for (var fontFile of fontFiles) {
-        $.get(`https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/data/char-fonts/${fontFile}`, function (data) {
-            const font = JSON.parse(data);
+        $.get(`/data/char-fonts/${fontFile}`, function (font) {
             charFonts.push(font);
             $('#char-font-selector').append($("<option></option>").attr("value", font._name).text(font._name));
         });
