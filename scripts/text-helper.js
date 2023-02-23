@@ -152,8 +152,9 @@ class TextToken {
 }
 
 class TextFormater {
-    #tokenText;
+    endingString;
     #tokenSettings;
+    #endWhiteSpaces;
 
     /**
      * @param {string} text - The text to format
@@ -170,29 +171,28 @@ class TextFormater {
      * @returns {TextToken[]} The formatted text
      */
     generateTokens() {
-        var endingString = "";
-        this.#tokenText = "";
+        // var endingString = "";
+        this.endingString = "";
         this.#resetTokenSettings();
 
         for (let i = 0; i < this.text.length; i += 1) {
             const currentChar = this.text[i];
             if (!/\s/.test(currentChar))
                 break;
-            this.#tokenText += `&r${currentChar}`;
+            this.endingString += `&r${currentChar}`;
         }
-        if (this.#tokenText.length > 0) {
-            this.#tokenText += "&r";
+        if (this.endingString.length > 0) {
+            this.endingString += "&r";
             this.text = ltrim(this.text);
         }
 
+        this.#endWhiteSpaces = 0;
         for (let i = this.text.length - 1; i >= 0; i -= 1) {
-            const currentChar = this.text[i];
-            if (!/\s/.test(currentChar))
+            if (!/\s/.test(this.text[i]))
                 break;
-            endingString += `&r${currentChar}`;
+            this.#endWhiteSpaces++;
         }
-        if (endingString.length > 0) {
-            endingString += "&r";
+        if (this.#endWhiteSpaces > 0) {
             this.text = rtrim(this.text);
         }
 
@@ -266,9 +266,8 @@ class TextFormater {
             i--;
         }
 
-        this.#tokenText += endingString;
-        if (this.#tokenText.length > 0)
-            this.tokens.push(new TextToken(this.#tokenText, this.#tokenSettings));
+        if (this.endingString.length > 0)
+            this.tokens.push(new TextToken(this.endingString, this.#tokenSettings));
         return this.tokens;
     }
 
@@ -288,9 +287,9 @@ class TextFormater {
      * @param {any} value - The value of the setting
      */
     #setTokenSetting(key, value) {
-        if (this.#tokenText.length > 0) {
-            this.tokens.push(new TextToken(this.#tokenText, this.#tokenSettings));
-            this.#tokenText = "";
+        if (this.endingString.length > 0) {
+            this.tokens.push(new TextToken(this.endingString, this.#tokenSettings));
+            this.endingString = "";
         }
         this.#tokenSettings[key] = value;
     }
@@ -300,7 +299,7 @@ class TextFormater {
      * @param {string} text - The text to add to the token
      */
     #addTokenText(text) {
-        this.#tokenText += text;
+        this.endingString += text;
     }
 
     #fontify(text) {
@@ -345,45 +344,64 @@ class TextFormater {
         var lastSettings = undefined;
 
         for (const token of this.tokens) {
-            if (lastSettings !== undefined) {
-                for (const key of Object.keys(token.settings)) {
-                    if ((token.settings[key] === false && lastSettings[key] === true) || (token.settings.color === "" && lastSettings.color !== "")) {
-                        dString += "&r";
-                        break;
-                    }
-                }
-            }
-
-            if (lastSettings === undefined || lastSettings.color !== token.settings.color) {
-                dString += token.settings.color;
-            }
-
-            if (token.settings.bold) {
-                dString += "&l";
-            }
-            if (token.settings.italic) {
-                dString += "&o";
-            }
-            if (token.settings.underline) {
-                dString += "&n";
-            }
-            if (token.settings.strikethrough) {
-                dString += "&m";
-            }
-            if (token.settings.obfuscated) {
-                dString += "&k";
-            }
+            dString += this.formatCode(token, lastSettings);
 
             dString += this.#fontify(token.text);
 
             lastSettings = token.settings;
         }
 
+        let endingString = "";
+        let lastToken = this.tokens[this.tokens.length - 1];
+        let formatCode = this.formatCode(lastToken);
+        for (let i = 0; i < this.#endWhiteSpaces; i += 1) {
+            endingString += `${formatCode} `;
+        }
+        if (endingString.length > 0) {
+            endingString += formatCode;
+        }
+        dString += endingString;
+
         if (dString === "") {
             dString = "&r";
         }
 
         return dString;
+    }
+
+    formatCode(token, lastSettings) {
+        let fCode = "";
+
+        if (lastSettings !== undefined) {
+            for (const key of Object.keys(token.settings)) {
+                if ((token.settings[key] === false && lastSettings[key] === true) || (token.settings.color === "" && lastSettings.color !== "")) {
+                    fCode += "&r";
+                    break;
+                }
+            }
+        }
+
+        if (lastSettings === undefined || lastSettings.color !== token.settings.color) {
+            fCode += token.settings.color;
+        }
+
+        if (token.settings.bold) {
+            fCode += "&l";
+        }
+        if (token.settings.italic) {
+            fCode += "&o";
+        }
+        if (token.settings.underline) {
+            fCode += "&n";
+        }
+        if (token.settings.strikethrough) {
+            fCode += "&m";
+        }
+        if (token.settings.obfuscated) {
+            fCode += "&k";
+        }
+
+        return fCode;
     }
 }
 
