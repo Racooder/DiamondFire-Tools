@@ -1,6 +1,6 @@
 [
     {
-        "title": "cmd_group_general",
+        "title": "cmd-group-general",
         "commands": [
             {
                 "commands": ["help"],
@@ -12,31 +12,31 @@
                 "commands": ["join"],
                 "args": ["plot ID"],
                 "optionals": [],
-                "description": "cmd_join_desc"
+                "description": "cmd-join-desc"
             },
             {
                 "commands": ["play"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_play_desc"
+                "description": "cmd-play-desc"
             },
             {
                 "commands": ["build"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_build_desc"
+                "description": "cmd-build-desc"
             },
             {
                 "commands": ["dev"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_dev_desc"
+                "description": "cmd-dev-desc"
             },
             {
                 "commands": ["spawn", "leave"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_spawn_desc"
+                "description": "cmd-spawn-desc"
             },
             {
                 "commands": ["rules"],
@@ -60,107 +60,107 @@
                 "commands": ["patchnotes", "patch"],
                 "args": [],
                 "optionals": ["patch number"],
-                "description": "cmd_patch_desc"
+                "description": "cmd-patch-desc"
             },
             {
                 "commands": ["chat", "c"],
                 "args": ["global | local | none | g | l | n"],
                 "optionals": [],
-                "description": "cmd_chat_desc"
+                "description": "cmd-chat-desc"
             },
             {
                 "commands": ["patchnotes list", "patch list"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_patchlist_desc"
+                "description": "cmd-patchlist-desc"
             },
             {
                 "commands": ["vote"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_vote_desc"
+                "description": "cmd-vote-desc"
             }
         ]
     },
     {
-        "title": "cmd_group_player",
+        "title": "cmd-group-player",
         "commands": [
             {
                 "commands": ["msg", "tell"],
                 "args": ["player", "message"],
                 "optionals": [],
-                "description": "cmd_msg_desc"
+                "description": "cmd-msg-desc"
             },
             {
                 "commands": ["reply", "r"],
                 "args": ["message"],
                 "optionals": [],
-                "description": "cmd_reply_desc"
+                "description": "cmd-reply-desc"
             },
             {
                 "commands": ["ignore"],
                 "args": ["player"],
                 "optionals": [],
-                "description": "cmd_ignore_desc"
+                "description": "cmd-ignore-desc"
             },
             {
                 "commands": ["unignore"],
                 "args": ["player"],
                 "optionals": [],
-                "description": "cmd_unignore_desc"
+                "description": "cmd-unignore-desc"
             },
             {
                 "commands": ["ignorelist"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_ignorelist_desc"
+                "description": "cmd-ignorelist-desc"
             },
             {
                 "commands": ["report"],
                 "args": ["player", "reason"],
                 "optionals": [],
-                "description": "cmd_report_desc"
+                "description": "cmd-report-desc"
             },
             {
                 "commands": ["whois"],
                 "args": ["player"],
                 "optionals": [],
-                "description": "cmd_whois_desc"
+                "description": "cmd-whois-desc"
             },
             {
                 "commands": ["locate"],
                 "args": ["player"],
                 "optionals": [],
-                "description": "cmd_locate_desc"
+                "description": "cmd-locate-desc"
             }
         ]
     },
     {
-        "title": "cmd_group_item",
+        "title": "cmd-group-item",
         "commands": [
             {
                 "commands": ["item get", "i get"],
                 "args": ["material"],
                 "optionals": ["amount"],
-                "description": "cmd_item_get_desc"
+                "description": "cmd-item-get-desc"
             },
             {
                 "commands": ["item name", "i n"],
                 "args": [],
                 "optionals": ["name"],
-                "description": "cmd_item_name_desc"
+                "description": "cmd-item-name-desc"
             },
             {
                 "commands": ["item name edit", "i en", "en"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_name_edit_desc"
+                "description": "cmd-item-name-edit-desc"
             },
             {
                 "commands": ["item material", "i mat"],
                 "args": ["material"],
                 "optionals": [],
-                "description": "cmd_item_material_desc"
+                "description": "cmd-item-material-desc"
             },
             {
                 "commands": ["item count", "i count"],
@@ -172,297 +172,297 @@
                 "commands": ["item enchant", "i ench"],
                 "args": ["enchantment name", "level"],
                 "optionals": [],
-                "description": "cmd_item_enchant_desc"
+                "description": "cmd-item-enchant-desc"
             },
             {
                 "commands": ["item durability", "i durability"],
                 "args": ["remaining | damage | percentage", "durability"],
                 "optionals": [],
-                "description": "cmd_item_durability_desc"
+                "description": "cmd-item-durability-desc"
             },
             {
                 "commands": ["item lore add", "i l add", "ila"],
                 "args": ["lore"],
                 "optionals": [],
-                "description": "cmd_item_lore_add_desc"
+                "description": "cmd-item-lore-add-desc"
             },
             {
                 "commands": ["item lore set", "i l set", "ils"],
                 "args": ["line"],
                 "optionals": ["lore"],
-                "description": "cmd_item_lore_set_desc"
+                "description": "cmd-item-lore-set-desc"
             },
             {
                 "commands": ["item lore remove"],
                 "args": ["line"],
                 "optionals": [],
-                "description": "cmd_item_lore_remove_desc"
+                "description": "cmd-item-lore-remove-desc"
             },
             {
                 "commands": ["item lore clear"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_lore_clear_desc"
+                "description": "cmd-item-lore-clear-desc"
             },
             {
                 "commands": ["item lore list"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_lore_list_desc"
+                "description": "cmd-item-lore-list-desc"
             },
             {
                 "commands": ["item head", "i head"],
                 "args": ["owner / texture"],
                 "optionals": [],
-                "description": "cmd_item_head_desc"
+                "description": "cmd-item-head-desc"
             },
             {
                 "commands": ["item color", "i color"],
                 "args": ["hex | rgb | hsb | hsl", "value(s)"],
                 "optionals": [],
-                "description": "cmd_item_color_desc"
+                "description": "cmd-item-color-desc"
             },
             {
                 "commands": ["item color remove", "i color remove"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_color_remove_desc"
+                "description": "cmd-item-color-remove-desc"
             },
             {
                 "commands": ["item tag set", "i tag set"],
                 "args": ["name", "value"],
                 "optionals": [],
-                "description": "cmd_item_tag_set_desc"
+                "description": "cmd-item-tag-set-desc"
             },
             {
                 "commands": ["item tag remove", "i tag remove"],
                 "args": ["name"],
                 "optionals": [],
-                "description": "cmd_item_tag_remove_desc"
+                "description": "cmd-item-tag-remove-desc"
             },
             {
                 "commands": ["item tag list", "i tag list"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_tag_list_desc"
+                "description": "cmd-item-tag-list-desc"
             },
             {
                 "commands": ["item tag clear", "i tag clear"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_tag_clear_desc"
+                "description": "cmd-item-tag-clear-desc"
             },
             {
                 "commands": ["item attribute add", "i attribute add"],
                 "args": ["name", "amount"],
                 "optionals": ["operation", "slot"],
-                "description": "cmd_item_attribute_add_desc"
+                "description": "cmd-item-attribute-add-desc"
             },
             {
                 "commands": ["item attribute remove", "i attribute remove"],
                 "args": ["name"],
                 "optionals": [],
-                "description": "cmd_item_attribute_remove_desc"
+                "description": "cmd-item-attribute-remove-desc"
             },
             {
                 "commands": ["item attribute clear", "i attribute clear"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_attribute_clear_desc"
+                "description": "cmd-item-attribute-clear-desc"
             },
             {
                 "commands": ["item unbreakable", "i unbreakable"],
                 "args": [],
                 "optionals": ["true | false"],
-                "description": "cmd_item_unbreakable_desc"
+                "description": "cmd-item-unbreakable-desc"
             },
             {
                 "commands": ["item hideflags", "i hideflags"],
                 "args": ["true | false"],
                 "optionals": [],
-                "description": "cmd_item_hideflags_desc"
+                "description": "cmd-item-hideflags-desc"
             },
             {
                 "commands": ["item glow", "i glow"],
                 "args": [],
                 "optionals": ["true | false"],
-                "description": "cmd_item_glow_desc"
+                "description": "cmd-item-glow-desc"
             },
             {
                 "commands": ["item nbt", "i nbt"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_nbt_desc"
+                "description": "cmd-item-nbt-desc"
             },
             {
                 "commands": ["item book unsign", "i book unsign"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_book_unsign_desc"
+                "description": "cmd-item-book-unsign-desc"
             },
             {
                 "commands": ["item book author", "i book author"],
                 "args": ["author"],
                 "optionals": [],
-                "description": "cmd_item_book_author_desc"
+                "description": "cmd-item-book-author-desc"
             },
             {
                 "commands": ["item book title", "i book title"],
                 "args": ["name"],
                 "optionals": [],
-                "description": "cmd_item_book_title_desc"
+                "description": "cmd-item-book-title-desc"
             },
             {
                 "commands": ["item book generation", "i book generation"],
                 "args": ["generation"],
                 "optionals": [],
-                "description": "cmd_item_book_generation_desc"
+                "description": "cmd-item-book-generation-desc"
             },
             {
                 "commands": ["item firework", "i firework"],
                 "args": ["set | add", "type", "colors"],
                 "optionals": ["fade colors", "-f", "-t"],
-                "description": "cmd_item_firework_desc"
+                "description": "cmd-item-firework-desc"
             },
             {
                 "commands": ["item firework clear", "i firework clear"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_item_firework_clear_desc"
+                "description": "cmd-item-firework-clear-desc"
             },
             {
                 "commands": ["item firework power", "i firework power"],
                 "args": ["power"],
                 "optionals": [],
-                "description": "cmd_item_firework_power_desc"
+                "description": "cmd-item-firework-power-desc"
             },
             {
                 "commands": ["item whitelist", "i whitelist"],
                 "args": ["breaking | placing", "block(s)"],
                 "optionals": [],
-                "description": "cmd_item_whitelist_desc"
+                "description": "cmd-item-whitelist-desc"
             },
             {
                 "commands": ["item modeldata", "i modeldata"],
                 "args": ["number"],
                 "optionals": [],
-                "description": "cmd_item_modeldata_desc"
+                "description": "cmd-item-modeldata-desc"
             },
             {
                 "commands": ["item equip", "i equip"],
                 "args": [],
                 "optionals": ["slot"],
-                "description": "cmd_item_equip_desc"
+                "description": "cmd-item-equip-desc"
             },
             {
                 "commands": ["item send", "i send"],
                 "args": ["player"],
                 "optionals": [],
-                "description": "cmd_item_send_desc"
+                "description": "cmd-item-send-desc"
             }
         ]
     },
     {
-        "title": "cmd_group_plot",
+        "title": "cmd-group-plot",
         "commands": [
             {
                 "commands": ["craft"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_craft_desc"
+                "description": "cmd-craft-desc"
             },
             {
                 "commands": ["barrier"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_barrier_desc"
+                "description": "cmd-barrier-desc"
             },
             {
                 "commands": ["flightspeed", "fs"],
                 "args": ["number"],
                 "optionals": [],
-                "description": "cmd_flightspeed_desc",
+                "description": "cmd-flightspeed-desc",
                 "rank": "Noble"
             },
             {
                 "commands": ["walkspeed", "ws"],
                 "args": ["number"],
                 "optionals": [],
-                "description": "cmd_walkspeed_desc",
+                "description": "cmd-walkspeed-desc",
                 "rank": "Noble"
             },
             {
                 "commands": ["reset", "rs"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_reset_desc"
+                "description": "cmd-reset-desc"
             },
             {
                 "commands": ["resetcompact", "rc"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_resetcompact_desc"
+                "description": "cmd-resetcompact-desc"
             },
             {
                 "commands": ["number", "num"],
                 "args": [],
                 "optionals": ["dynamic text", "stack size"],
-                "description": "cmd_bumber_desc"
+                "description": "cmd-bumber-desc"
             },
             {
                 "commands": ["text", "txt"],
                 "args": [],
                 "optionals": ["dynamic text", "stack size"],
-                "description": "cmd_text_desc"
+                "description": "cmd-text-desc"
             },
             {
                 "commands": ["variable", "var"],
                 "args": [],
                 "optionals": ["dynamic text", "stack size", "-s | -l"],
-                "description": "cmd_variable_desc"
+                "description": "cmd-variable-desc"
             },
             {
                 "commands": ["location", "loc"],
                 "args": ["get | align | center | move | set"],
                 "optionals": [],
-                "description": "cmd_location_desc"
+                "description": "cmd-location-desc"
             },
             {
                 "commands": ["vector", "vec"],
                 "args": ["get | set | multiply | normalize"],
                 "optionals": [],
-                "description": "cmd_vector_desc"
+                "description": "cmd-vector-desc"
             },
             {
                 "commands": ["particle", "par"],
                 "args": ["get | count | speed | delta | color | size | material"],
                 "optionals": [],
-                "description": "cmd_particle_desc"
+                "description": "cmd-particle-desc"
             },
             {
                 "commands": ["lagslayer"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_lagslayer_desc"
+                "description": "cmd-lagslayer-desc"
             },
             {
                 "commands": ["importmap"],
                 "args": ["image url"],
                 "optionals": [],
-                "description": "cmd_importmap_desc",
+                "description": "cmd-importmap-desc",
                 "rank": "Noble"
             },
             {
                 "commands": ["chars"],
                 "args": [],
                 "optionals": ["page / search keyword"],
-                "description": "cmd_chars_desc"
+                "description": "cmd-chars-desc"
             },
             {
                 "commands": ["templatehistory"],
                 "args": [],
                 "optionals": [],
-                "description": "cmd_templatehistory_desc"
+                "description": "cmd-templatehistory-desc"
             }
         ]
     }

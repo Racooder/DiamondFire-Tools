@@ -2,16 +2,16 @@
 
 // * Nav Bar Elements
 const lhElements = [
-    { href: "index.html", text: "Home", title: "Home" },
-    { href: "text-helper.html", text: "Text Helper", title: "Text Helper" },
-    { href: "commands.html", text: "Commands", title: "Commands" },
+    { href: "index.html", text: "nav-home" },
+    { href: "text-helper.html", text: "nav-text-helper" },
+    { href: "commands.html", text: "nav-commands" },
 ];
 
 const rhElements = [
-    { onclick: "", href: "https://github.com/Studio-Racoonia/DiamondFire-Tools", text: "<i class='fi fi-tr-display-code'></i>", title: "Code" },
-    { onclick: "", href: "https://github.com/Studio-Racoonia/DiamondFire-Tools/issues?q=is%3Aopen+is%3Aissue+label%3Abug", text: "<i class='fi fi-rr-bug'></i>", title: "Report a bug" },
-    { onclick: "changeTheme()", href: "", text: "<i class='dark-mode fi fi-rr-moon-stars'></i><i class='light-mode fi fi-rr-brightness'></i>", title: "Change Theme" },
-    { onclick: "", href: "https://www.flaticon.com/uicons", text: "Uicons by Flaticon", title: "Icons Credit" },
+    { href: "https://github.com/Studio-Racoonia/DiamondFire-Tools", title: "nav-code", icon:"<i class='fi fi-tr-display-code'></i>" },
+    { href: "https://github.com/Studio-Racoonia/DiamondFire-Tools/issues?q=is%3Aopen+is%3Aissue+label%3Abug", title: "nav-report-bug", icon: "<i class='fi fi-rr-bug'></i>" },
+    { href: "javascript:changeTheme()", title: "nav-theme", icon: "<i class='dark-mode fi fi-rr-moon-stars'></i><i class='light-mode fi fi-rr-brightness'></i>" },
+    { href: "https://www.flaticon.com/uicons", text: "nav-icons-credit" },
 ];
 
 var langDict;
@@ -27,21 +27,21 @@ $(document).ready(function () {
 
     loadLangDicts(lang).then(function () {
         translateAll();
+
+        // * Nav Bar Setup
+        var path = window.location.pathname;
+        var currentPage = path.split("/").pop();
+    
+        for (const lhElement of lhElements) {
+            $(".nav-bar").append(`<li class="nav-bar-item${currentPage == lhElement.href ? " active" : ""}"><a href="${lhElement.href}" ${lhElement.title ? 'data-title="' + translate(lhElement.title) : ""}">${lhElement.text ? translate(lhElement.text) : ""}${lhElement.icon ? lhElement.icon : ""}</a></li>`);
+        }
+    
+        $(".nav-bar").append('<li id="header-center"></li>');
+    
+        for (const rhElement of rhElements) {
+            $(".nav-bar").append(`<li class="nav-bar-item${currentPage == rhElement.href ? " active" : ""}"><a href="${rhElement.href}" ${rhElement.title ? 'data-title="' + translate(rhElement.title) : ""}">${rhElement.text ? translate(rhElement.text) : ""}${rhElement.icon ? rhElement.icon : ""}</a></li>`);
+        }
     });
-
-    // * Nav Bar Setup
-    var path = window.location.pathname;
-    var currentPage = path.split("/").pop();
-
-    for (const lhElement of lhElements) {
-        $(".nav-bar").append(`<li class="nav-bar-item${currentPage == lhElement.href ? " active" : ""}"><a href="${lhElement.href}" data-title="${lhElement.title}">${lhElement.text}</a></li>`);
-    }
-
-    $(".nav-bar").append('<li id="header-center"></li>');
-
-    for (const rhElement of rhElements) {
-        $(".nav-bar").append(`<li class="nav-bar-item${currentPage == rhElement.href ? " active" : ""}"><a href="${rhElement.href}" onclick="${rhElement.onclick}" data-title="${rhElement.title}">${rhElement.text}</a></li>`);
-    }
 });
 
 async function loadLangDicts(lang) {
@@ -72,19 +72,31 @@ async function loadLangDicts(lang) {
  * @param {string} lang - The language key
  */
 async function translateAll() {
-    $('*[data-translate="true"]').each(function () {
-        $(this).html(translate($(this).attr("data-content")));
-        $(this).val(translate($(this).attr("data-value")));
-        $(this).attr("placeholder", translate($(this).attr("data-placeholder")));
+    $(".translate").each(function () {
+        let contentKey = $(this).attr("data-content");
+        if (contentKey) {
+            $(this).append(translate(contentKey));
+        }
+        let valueKey = $(this).attr("data-value");
+        if (valueKey) {
+            $(this).val((this.value == undefined ? "" : this.value) + translate(valueKey));
+        }
+        let placeholderKey = $(this).attr("data-placeholder");
+        if (placeholderKey) {
+            $(this).attr("placeholder", ($(this).attr("placeholder") == undefined ? "" : $(this).attr("placeholder")) + translate(placeholderKey));
+        }
     });
 }
 
 function translate(key) {
+    if (!key) {
+        return "";
+    }
     let translation = langDict[key];
     if (!translation) {
         translation = fallbackLangDict[key];
         if (!translation) {
-            translation = key;
+            translation = `Missing translation for (${key}). Please report this to the developers.`;
         }
     }
     return translation;

@@ -1,18 +1,3 @@
 {
-    "type-here": "Hier schreiben...",
-    "upload-font": "Eigene Schriftart hochladen...",
-    "select-font": "Wähle eine Schriftart aus:",
-    "how-to-use": "Anleitung",
-    "text-helper-explanation": "Text Helper ist ein Tool, mit dem Sie stilisierten Text für DiamondFire Texte erstellen können! Sie können damit Text für Schilder, Bücher, Chat-Nachrichten und mehr erstellen!",
-    "text-helper-input-fields": "Eingabe Felder",
-    "color-codes": "Farb Codes",
-    "color-codes-explanation": "Auf DiamondFire haben Sie die Möglichkeit, die Textfarbe mit <a href='https://htmlcolorcodes.com/minecraft-color-codes/'>Minecraft-Farbcodes</a>, aber mit einem <code>&</code> anstelle eines <code>§</code>, oder html-Farbcodes in einem speziellen Format anzupassen. Text Helper ermöglicht es Ihnen, html-Farbcodes in ihrem typischen Format <a href='https://www.w3schools.com/colors/colors_picker.asp'>#rrggbb</a> zu schreiben, und es wird sie automatisch in das DiamondFire-Format konvertieren.",
-    "color-codes-example": "Beispiel: <code>#ff0000Roter Text&3Blauer Text</code> wird konvertiert zu <code>&x&f&f&0&0&0&0Roter Text&3Blauer Text</code>",
-    "emphasis": "Hervorhebung",
-    "emphasis-explanation": "In DiamondFire können Sie auch <a href='https://htmlcolorcodes.com/minecraft-color-codes/'>Minecraft-Formatcodes</a> (mit <code>&</code> anstelle von <code>§</code>) verwenden, um Text hervorzuheben. Zum Beispiel macht <code>&l</code> den Text fett.",
-    "emphasis-explanation-2": "Das Problem bei dieser Funktion ist, dass es schwierig sein kann, einzelne Hervorhebungen zu entfernen und andere beizubehalten.<br>Wenn Sie nach <code>&lfett &ofett+kursiv</code> ein Wort hinzufügen wollen, das kursiv, aber nicht fett ist, müssen Sie beide Tags entfernen und den kursiv Tag erneut anwenden. Mit Text Helper können Sie eine <a href='https://www.codecademy.com/resources/docs/markdown/emphasis'>Markdown-ähnlichen Syntax</a> verwenden, um dies zu vereinfachen.",
-    "emphasis-example": "Beispiel: <code>**Dieser Text ist fett, _kursiv_, ~~und durchgestrichen~~**</code> wird konvertiert zu <code>&lDieser Text ist fett, &l&okursiv&r&l, &l&mund durchgestrichen</code>",
-    "emphasis-additional": "Text Helper unterstützt zusätzlich <code>``unterstrichen``</code> und <code>§§entstellt§§</code>.",
-    "fonts": "Schriftarten",
-    "fonts-explanation": "Mit Text Helper können Sie auch Schriftarten verwenden. Schriftarten ersetzen bestimmte Zeichen durch andere Zeichen. Die Schriftart <code>Small Capital</code> ersetzt zum Beispiel <code>A</code> durch <code>ᴀ</code> und <code>DIAMONDFIRE</code> durch <code>ᴅɪᴀᴍᴏɴᴅꜰɪʀᴇ</code>. Sie können auch mehrere Schriftarten gleichzeitig verwenden."
+
 }

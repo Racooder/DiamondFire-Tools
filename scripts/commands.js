@@ -18,7 +18,7 @@ function loadCommands(filter) {
                 foundFilter = true;
                 groupIsFilter = true;
             }
-            let groupObject = `<div class="command-group foldable unfolded"><span class="unselectable" data-translate="true" data-content="${cmdGroup.title}"></span>`;
+            let groupObject = `<div class="command-group foldable unfolded"><div><span class="unselectable translate" data-content="${cmdGroup.title}"></span><img class='dropdown-arrow'></div>`;
             for (const cmd of cmdGroup.commands) {
                 if (!groupIsFilter) {
                     let found = false;
@@ -49,7 +49,7 @@ function loadCommands(filter) {
                     groupObject += "</li>";
                 }
                 groupObject += `</ul>`;
-                groupObject += `<span data-translate="true" data-content="${cmd.description}"></span>`;
+                groupObject += `<span class="translate" data-content="${cmd.description}"></span>`;
                 groupObject += `</li>`;
                 groupObject += "</ul>";
             }
