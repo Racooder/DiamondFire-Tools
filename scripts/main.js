@@ -115,3 +115,11 @@ async function changeTheme() {
     document.body.dataset.theme = document.body.dataset.theme == "dark" ? "light" : "dark";
     localStorage.theme = document.body.dataset.theme;
 }
+
+function show(element) {
+    $(element).show();
+}
+
+function hide(element) {
+    $(element).hide();
+}

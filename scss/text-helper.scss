@@ -1,3 +1,5 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
 textarea {
     margin-top: 15px;
     box-sizing: content-box;
@@ -102,4 +104,26 @@ table {
 
 section {
     margin-bottom: 50px;
+}
+
+#custom-font-docs {
+    border-radius: 5px;
+    position: fixed;
+    top: 8%;
+    left: 8%;
+    width: 84%;
+    height: 84%;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow:	0px 0px 10px 7px rgba(0, 0, 0, .3);
+    // overflow-y: scroll;
+}
+
+#custom-font-docs-close {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    top: 10px;
+    right: 10px;
 }

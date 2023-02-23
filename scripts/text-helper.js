@@ -384,3 +384,7 @@ class TextFormater {
         return dString;
     }
 }
+
+function showCustomFontDocs() {
+    show(document.getElementById("custom-font-docs"));
+} 

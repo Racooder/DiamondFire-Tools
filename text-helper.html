@@ -137,6 +137,10 @@
                     <h2 class="translate" data-content="th-custom-fonts"></h2>
                     <p class="translate" data-content="th-custom-fonts-explanation"></p>
                     <a href="/data/font-template.json" download class="translate" data-content="th-download-font-template"></a>
+                    <p>
+                        <span class="translate" data-content="th-custom-fonts-documentation-1"></span>
+                        <a href="javascript:showCustomFontDocs()" class="translate" data-content="th-custom-fonts-documentation-2"></a>
+                    </p>
                 </section>
             </article>
             <article id="details">
@@ -232,6 +236,12 @@
             </article>
         </div>
     </article>
+
+    <div id="custom-font-docs" style="display: none;">
+        <i onclick="hide(this.parentElement)" id="custom-font-docs-close" class="fi fi-rr-cross-small"></i>
+        <h2>Custom Fonts</h2>
+        <p>Coming soon...</p>
+    </div>
 
     <footer>
         <hr>

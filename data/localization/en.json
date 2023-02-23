@@ -72,6 +72,8 @@
     "th-custom-fonts": "Custom Fonts",
     "th-custom-fonts-explanation": "Text Helper offers the posibility to create and upload custom fonts. A font is a json file with a simple format.",
     "th-download-font-template": "Download a font template here!",
+    "th-custom-fonts-documentation-1": "Documentation for creating your own font can be found",
+    "th-custom-fonts-documentation-2": "here.",
 
     "__all-tags__": "",
     "th-all-tags": "All tags",
