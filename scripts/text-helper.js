@@ -102,12 +102,14 @@ function handleInput(inputField) {
         const textFormater = new TextFormater(inputText, { htmlColors: true, markdownStyle: true, charFonts: selectedCharFonts });
         textFormater.generateTokens();
         $("#text-helper-output").val(textFormater.diamondString());
+        $("#th-output-tooltip").hide(500);
     }
     else {
         // Handle empty input
         $("#text-helper-output").attr("data-output", "false");
         $("#text-helper-output").val("&r");
         $("#text-helper-output").css("height", "auto");
+        $("#th-output-tooltip").show(500);
     }
 }
 
