@@ -58,7 +58,6 @@ footer hr {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -189,43 +188,7 @@ footer hr {
 [data-theme=rainbow] .chosen-container .chosen-results li.highlighted {
   color: #000;
   background-image: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
-  -webkit-animation: shake 0.5s infinite;
-          animation: shake 0.5s infinite;
-}
-@-webkit-keyframes shake {
-  0% {
-    transform: translate(0.5px, 0.5px) rotate(0deg);
-  }
-  10% {
-    transform: translate(-0.5px, -1px) rotate(-1deg);
-  }
-  20% {
-    transform: translate(-1.5px, 0px) rotate(1deg);
-  }
-  30% {
-    transform: translate(1.5px, 1px) rotate(0deg);
-  }
-  40% {
-    transform: translate(0.5px, -0.5px) rotate(1deg);
-  }
-  50% {
-    transform: translate(-0.5px, 1px) rotate(-1deg);
-  }
-  60% {
-    transform: translate(-1.5px, 0.5px) rotate(0deg);
-  }
-  70% {
-    transform: translate(1.5px, 0.5px) rotate(-1deg);
-  }
-  80% {
-    transform: translate(-0.5px, -0.5px) rotate(1deg);
-  }
-  90% {
-    transform: translate(0.5px, 1px) rotate(0deg);
-  }
-  100% {
-    transform: translate(0.5px, -1px) rotate(-1deg);
-  }
+  animation: shake 0.5s infinite;
 }
 @keyframes shake {
   0% {
