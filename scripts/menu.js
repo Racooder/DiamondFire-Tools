@@ -1,4 +1,5 @@
 "use strict";
+
 const tools = [
     {
         name: "Text Helper",

@@ -1,4 +1,5 @@
 "use strict";
+
 // * Nav Bar Elements
 const lhElements = [
     { href: "index.html", text: "Home", title: "Home" },

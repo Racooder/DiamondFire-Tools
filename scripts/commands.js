@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function () {
     loadCommands();
     $("#command-search-input").on("keypress", function (event) {
