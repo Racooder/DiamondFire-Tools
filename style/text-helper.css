@@ -1,4 +1,3 @@
-@import url("https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css");
 textarea {
   margin-top: 15px;
   box-sizing: content-box;
@@ -119,12 +118,6 @@ section {
 #th-output-tooltip {
   position: relative;
   max-width: 30em;
-  padding: 0.2em;
-  font-size: 0.9em;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 #th-output-tooltip::before {
@@ -136,5 +129,17 @@ section {
   left: 1.5em;
   border: 0.75rem solid transparent;
   border-top: none;
-  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
+}
+
+#delete-font-button {
+  position: absolute;
+  margin-top: 7px;
+  margin-left: 250px;
+  width: 30px;
+  height: 16px;
+  padding: 0;
+}
+
+#delete-font-tooltip {
+  position: absolute;
 }

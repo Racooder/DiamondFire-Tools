@@ -52,8 +52,11 @@
         <div class="char-font">
             <!--translation: text-helper-->
             <input id="custom-font-upload" type="file" size="50" accept="application/json" style="display: none;">
-            <input id="custom-font-button" class="translate" type="button" data-value="th-upload-font"
-                onclick="document.getElementById('custom-font-upload').click();" />
+            <input id="custom-font-button" class="translate" type="button" data-value="th-upload-font" onclick="document.getElementById('custom-font-upload').click();"/>
+            <button id="delete-font-button" onclick="deleteFonts()">
+                <i class="fi fi-rr-trash"></i>
+                <span id="delete-font-tooltip" class="tooltip tooltip-right translate" data-content="th-delete-custom-fonts"></span>
+            </button>
             <div class="font-selector">
                 <p class="translate" data-content="th-select-font"></p>
                 <select id="char-font-selector" class="chosen-select" data-placeholder=" " multiple>

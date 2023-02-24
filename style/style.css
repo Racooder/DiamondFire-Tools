@@ -58,6 +58,49 @@ footer hr {
   user-select: none;
 }
 
+/** Buttons and Tooltips */
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+button .tooltip {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+button:hover .tooltip {
+  opacity: 1;
+}
+
+.tooltip {
+  padding: 0.2em;
+  font-size: 0.9em;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+span.tooltip {
+  padding: 5px;
+}
+
+.tooltip-right::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 99%; /* To the left of the tooltip */
+  margin-top: -7px;
+  border: 7px solid transparent;
+}
+
+.tooltip-right {
+  top: -5px;
+  left: 105%;
+}
+
 /** Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -119,6 +162,7 @@ footer hr {
   background-color: #b3333f;
   color: #000;
   /** Nav Bar */
+  /** Tooltips */
   /** Chosen */
   /** Menu */
   /** Text Helper */
@@ -149,6 +193,9 @@ footer hr {
   background-color: #fff;
   color: #000;
 }
+[data-theme=rainbow] button {
+  color: #000;
+}
 [data-theme=rainbow] .nav-bar-item.active {
   background-color: #d99f6c;
 }
@@ -160,6 +207,16 @@ footer hr {
 }
 [data-theme=rainbow] .nav-bar a {
   color: #fff;
+}
+[data-theme=rainbow] .tooltip {
+  color: #000;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+[data-theme=rainbow] .tooltip::after {
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.03));
+}
+[data-theme=rainbow] #th-output-tooltip::before {
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.03));
 }
 [data-theme=rainbow] .chosen-container-multi .chosen-choices {
   background-image: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
@@ -286,6 +343,7 @@ footer hr {
   /** Theme Icons */
   /** Nav Bar */
   /** Chosen */
+  /** Tooltips */
   /** Menu */
   /** Text Helper */
   /** Commands */
@@ -311,6 +369,9 @@ footer hr {
 [data-theme=dark] input {
   background-color: #fff;
   color: #000;
+}
+[data-theme=dark] button {
+  color: #fff;
 }
 [data-theme=dark] .light-mode {
   display: none;
@@ -361,6 +422,20 @@ footer hr {
   color: #bbb;
   background-color: #252133;
 }
+[data-theme=dark] .tooltip {
+  background-color: #2e2940;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+[data-theme=dark] .tooltip::after {
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
+}
+[data-theme=dark] .tooltip-right::after {
+  border-right-color: #2e2940;
+}
+[data-theme=dark] #th-output-tooltip::before {
+  border-bottom-color: #2e2940;
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
+}
 [data-theme=dark] .tool-holder {
   border: 1px solid transparent;
   border-radius: 5px;
@@ -399,14 +474,6 @@ footer hr {
   border-color: #f21d56;
   box-shadow: 0px 0px 10px 7px rgba(0, 0, 0, 0.3);
 }
-[data-theme=dark] #th-output-tooltip {
-  background-color: #2e2940;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-}
-[data-theme=dark] #th-output-tooltip::before {
-  border-bottom-color: #2e2940;
-  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
-}
 [data-theme=dark] .command-group {
   background-color: #1C1726;
 }
@@ -417,6 +484,7 @@ footer hr {
 [data-theme=light] {
   background-color: #fff;
   color: #000;
+  /** Tooltips */
   /** Theme Icons */
   /** Nav Bar */
   /** Menu */
@@ -445,6 +513,24 @@ footer hr {
 [data-theme=light] input {
   background-color: #21252b;
   color: #fff;
+}
+[data-theme=light] button {
+  color: #000;
+}
+[data-theme=light] .tooltip {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+[data-theme=light] .tooltip::after {
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.03));
+}
+[data-theme=light] .tooltip-right::after {
+  border-right-color: #fff;
+}
+[data-theme=light] #th-output-tooltip::before {
+  border-bottom-color: #fff;
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.03));
 }
 [data-theme=light] .dark-mode {
   display: none;
@@ -499,15 +585,6 @@ footer hr {
   background-color: #fff;
   border-color: #f21d56;
   box-shadow: 0px 0px 10px 7px rgba(0, 0, 0, 0.1);
-}
-[data-theme=light] #th-output-tooltip {
-  background-color: #fff;
-  color: #000;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-}
-[data-theme=light] #th-output-tooltip::before {
-  border-bottom-color: #fff;
-  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.03));
 }
 [data-theme=light] .command-group {
   border-color: #f21d56;

@@ -2,6 +2,7 @@
 
 const fontFiles = ["circled.json", "dingbat-circled-numbers.json", "double-circled-numbers.json", "fullwidth.json", "negative-circled-numbers.json", "small-capital.json", "subscript-numbers.json", "superscript-numbers.json"];
 var charFonts = [];
+var customFonts = [];
 
 $(document).ready(function () {
     // Handle font selection
@@ -32,6 +33,7 @@ $(document).ready(function () {
             $('#char-font-selector').append($("<option></option>").attr("value", font.header.name).text(font.header.name));
         });
     }
+    loadCustomFonts();
 });
 
 /**
@@ -53,6 +55,8 @@ function getCustomFont(evt) {
                     }
                     else {
                         charFonts.push(font);
+                        customFonts.push(font);
+                        saveCustomFonts();
                         $("#char-font-selector").append(`<option value="${font.header.name}">${font.header.name}</option>`);
                         $("#char-font-selector").trigger("chosen:updated");
                     }
@@ -67,6 +71,25 @@ function getCustomFont(evt) {
         };
         reader.readAsText(file);
     }
+}
+
+async function saveCustomFonts() {
+    if (!customFonts || customFonts.length === 0) return;
+    window.localStorage.setItem("customFonts", JSON.stringify(customFonts));
+}
+
+function loadCustomFonts() {
+    const customFonts = JSON.parse(window.localStorage.getItem("customFonts"));
+    if (!customFonts || customFonts.length === 0) return;
+    for (var font of customFonts) {
+        charFonts.push(font);
+        $("#char-font-selector").append(`<option value="${font.header.name}">${font.header.name}</option>`);
+    }
+}
+
+function deleteFonts() {
+    window.localStorage.removeItem("customFonts");
+    location.reload();
 }
 
 /**
