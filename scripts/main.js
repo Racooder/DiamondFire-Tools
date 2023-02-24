@@ -17,6 +17,7 @@ const rhElements = [
 var langDict;
 var fallbackLangDict;
 var host;
+var translationDone = false;
 
 $(document).ready(function () {
     document.body.dataset.theme = localStorage.theme || "dark";
@@ -41,6 +42,7 @@ $(document).ready(function () {
         for (const rhElement of rhElements) {
             $(".nav-bar").append(`<li class="nav-bar-item${currentPage == rhElement.href ? " active" : ""}"><a href="${rhElement.href}" ${rhElement.title ? 'data-title="' + translate(rhElement.title) : ""}">${rhElement.text ? translate(rhElement.text) : ""}${rhElement.icon ? rhElement.icon : ""}</a></li>`);
         }
+        translationDone = true;
     });
 });
 
