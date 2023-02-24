@@ -93,7 +93,7 @@
     "th-tag-reset": "Resets the styling.",
 
     "__all-fonts__": "",
-    "th-all-fonts": "All fonts",
+    "th-all-fonts": "Buildin fonts",
     "th-support-capitals-numbers": "Supports capital letters and numbers",
     "th-support-lowercase-capitals": "Supports lowercase and capital letters",
     "th-support-numbers": "Supports numbers",
