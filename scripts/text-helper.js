@@ -354,6 +354,9 @@ class TextFormater {
         let endingString = "";
         let lastToken = this.tokens[this.tokens.length - 1];
         let formatCode = this.formatCode(lastToken);
+        if (formatCode === "") {
+            formatCode = "&r";
+        }
         for (let i = 0; i < this.#endWhiteSpaces; i += 1) {
             endingString += `${formatCode} `;
         }
