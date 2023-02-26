@@ -50,17 +50,17 @@
                 </p>
             </div>
         </div>
-        <div class="char-font">
+        <div class="style-dicts">
             <!--translation: text-helper-->
-            <input id="custom-font-upload" type="file" size="50" accept="application/json" style="display: none;">
-            <input id="custom-font-button" class="translate" type="button" data-value="th-upload-font" onclick="document.getElementById('custom-font-upload').click();"/>
-            <button id="delete-font-button" onclick="deleteFonts()">
+            <input id="custom-style-dict-upload" type="file" size="50" accept="application/json" style="display: none;">
+            <input id="custom-style-dict-button" class="translate" type="button" data-value="th-upload-style-dict" onclick="document.getElementById('custom-style-dict-upload').click();"/>
+            <button id="delete-style-dicts-button" onclick="deleteStyleDicts()">
                 <i class="fi fi-rr-trash"></i>
-                <span id="delete-font-tooltip" class="tooltip tooltip-right translate" data-content="th-delete-custom-fonts"></span>
+                <span id="delete-style-dicts-tooltip" class="tooltip tooltip-right translate" data-content="th-delete-custom-style-dicts"></span>
             </button>
-            <div class="font-selector">
-                <p class="translate" data-content="th-select-font"></p>
-                <select id="char-font-selector" class="chosen-select" data-placeholder=" " multiple>
+            <div class="style-dict-selector">
+                <p class="translate" data-content="th-select-style-dict"></p>
+                <select id="style-dict-selector" class="chosen-select" data-placeholder=" " multiple>
                     <option value=""></option>
                 </select>
             </div>
@@ -148,14 +148,14 @@
                         <a href='text-helper.html#font-details' class="translate" data-content="th-fonts-details-2"></a>
                     </p>
                 </section>
-                <section id="custom-font">
-                    <!--translation: text-helper > custom-fonts-->
-                    <h2 class="translate" data-content="th-custom-fonts"></h2>
-                    <p class="translate" data-content="th-custom-fonts-explanation"></p>
-                    <a href="/data/font-template.json" download class="translate" data-content="th-download-font-template"></a>
+                <section id="custom-style-dict">
+                    <!--translation: text-helper > custom-style-dicts-->
+                    <h2 class="translate" data-content="th-custom-style-dicts"></h2>
+                    <p class="translate" data-content="th-custom-style-dicts-explanation"></p>
+                    <a href="/data/style-dict-template.json" download class="translate" data-content="th-download-style-dict-template"></a>
                     <p>
-                        <span class="translate" data-content="th-custom-fonts-documentation-1"></span>
-                        <a href="javascript:showCustomFontDocs()" class="translate" data-content="th-custom-fonts-documentation-2"></a>
+                        <span class="translate" data-content="th-custom-style-dicts-documentation-1"></span>
+                        <a href="javascript:showCustomStyleDictDocs()" class="translate" data-content="th-custom-style-dicts-documentation-2"></a>
                     </p>
                 </section>
                 <section id="whitespace-formatting">
@@ -289,9 +289,9 @@
         </div>
     </article>
 
-    <div id="custom-font-docs" style="display: none;">
-        <i onclick="hide(this.parentElement)" id="custom-font-docs-close" class="fi fi-rr-cross-small"></i>
-        <h2>Custom Fonts</h2>
+    <div id="custom-style-dict-docs" style="display: none;">
+        <i onclick="hide(this.parentElement)" id="custom-style-dict-docs-close" class="fi fi-rr-cross-small"></i>
+        <h2>Custom Style Dicts</h2>
         <p>Coming soon...</p>
     </div>
 

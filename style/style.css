@@ -299,13 +299,13 @@ span.tooltip {
   background-color: #21252b;
   color: #ddd;
 }
-[data-theme=rainbow] #custom-font-button {
+[data-theme=rainbow] #custom-style-dict-button {
   background-color: #2e2940;
   background-image: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
   border-color: #333;
   color: #000;
 }
-[data-theme=rainbow] #custom-font-button:hover {
+[data-theme=rainbow] #custom-style-dict-button:hover {
   background-color: #3e3950;
 }
 [data-theme=rainbow] #text-helper-input {
@@ -445,12 +445,12 @@ span.tooltip {
   background-color: #21252b;
   color: #ddd;
 }
-[data-theme=dark] #custom-font-button {
+[data-theme=dark] #custom-style-dict-button {
   background-color: #2e2940;
   border-color: #333;
   color: #bbb;
 }
-[data-theme=dark] #custom-font-button:hover {
+[data-theme=dark] #custom-style-dict-button:hover {
   background-color: #3e3950;
 }
 [data-theme=dark] #text-helper-input {
@@ -469,7 +469,7 @@ span.tooltip {
 [data-theme=dark] #text-helper-output[data-output=true] {
   border-color: #0f8c5e;
 }
-[data-theme=dark] #custom-font-docs {
+[data-theme=dark] #custom-style-dict-docs {
   background-color: #121019;
   border-color: #f21d56;
   box-shadow: 0px 0px 10px 7px rgba(0, 0, 0, 0.3);
@@ -552,11 +552,11 @@ span.tooltip {
   border-radius: 5px;
   border-color: #f21d56;
 }
-[data-theme=light] #custom-font-button {
+[data-theme=light] #custom-style-dict-button {
   background-color: #fff;
   border-color: #aaa;
 }
-[data-theme=light] #custom-font-button:hover {
+[data-theme=light] #custom-style-dict-button:hover {
   background-color: #3875d7;
   background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
   color: #fff;
@@ -581,7 +581,7 @@ span.tooltip {
 [data-theme=light] #text-helper-output[data-output=true] {
   border-color: #00bb76;
 }
-[data-theme=light] #custom-font-docs {
+[data-theme=light] #custom-style-dict-docs {
   background-color: #fff;
   border-color: #f21d56;
   box-shadow: 0px 0px 10px 7px rgba(0, 0, 0, 0.1);

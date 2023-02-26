@@ -21,7 +21,7 @@ textarea:focus {
     padding-right: 15px;
 }
 
-.char-font {
+.style-dicts {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@ textarea:focus {
     gap: 10px;
 }
 
-#custom-font-button {
+#custom-style-dict-button {
     min-width: 200px;
     height: 29px;
     color: #999;
@@ -37,7 +37,7 @@ textarea:focus {
     transition: 0.1s;
 }
 
-.font-selector {
+.style-dict-selector {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,7 +104,7 @@ section {
     margin-bottom: 50px;
 }
 
-#custom-font-docs {
+#custom-style-dict-docs {
     border-radius: 5px;
     position: fixed;
     top: 8%;
@@ -117,7 +117,7 @@ section {
     // overflow-y: scroll;
 }
 
-#custom-font-docs-close {
+#custom-style-dict-docs-close {
     position: absolute;
     width: 25px;
     height: 25px;
@@ -142,7 +142,7 @@ section {
 	border-top: none;
 }
 
-#delete-font-button {
+#delete-style-dicts-button {
     position: absolute;
     margin-top: 7px;
     margin-left: 250px;
@@ -152,6 +152,6 @@ section {
 }
 
 
-#delete-font-tooltip {
+#delete-style-dicts-tooltip {
     position: absolute;
 }
