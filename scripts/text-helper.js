@@ -42,7 +42,8 @@ $(document).ready(function () {
     setTimeout(function () {
         $('#style-dict-selector').trigger('chosen:updated');
         loadSelectedStyleDicts();
-    }, 1000);
+        loadTextHelperInput();
+    }, 500);
 });
 
 function showCustomStyleDictDocs() {
@@ -112,11 +113,11 @@ function deleteStyleDicts() {
 
 async function saveSelectedStyleDicts() {
     const selectedStyleDicts = getSelectedIds();
-    window.localStorage.setItem("selectedStyleDicts", JSON.stringify(selectedStyleDicts));
+    window.sessionStorage.setItem("selectedStyleDicts", JSON.stringify(selectedStyleDicts));
 }
 
 function loadSelectedStyleDicts() {
-    const selectedStyleDicts = JSON.parse(window.localStorage.getItem("selectedStyleDicts"));
+    const selectedStyleDicts = JSON.parse(window.sessionStorage.getItem("selectedStyleDicts"));
     if (!selectedStyleDicts || selectedStyleDicts.length === 0) return;
     for (var dict of selectedStyleDicts) 
     {
@@ -152,6 +153,14 @@ function getSelectedEmojis() {
     return selectedEmojis;
 }
 
+function loadTextHelperInput() {
+    const inputText = window.sessionStorage.getItem("th-inputText");
+    if (inputText) {
+        $("#text-helper-input").val(inputText);
+        handleInput(document.getElementById("text-helper-input"));
+    }
+}
+
 /**
  * Handles the input of the text helper
  * @param {HTMLElement} inputField 
@@ -166,6 +175,7 @@ function handleInput(inputField) {
     // Get the text
     const inputText = inputField.value.replace(/(\r\n|\n|\r)/gm, "");
     inputField.value = inputText;
+    window.sessionStorage.setItem("th-inputText", inputText);
 
     if (inputText.length > 0) {
         $("#text-helper-output").attr("data-output", "true");
