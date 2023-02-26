@@ -26,9 +26,6 @@ $(document).ready(function () {
     $("#custom-style-dict-upload").change(function (e) { getCustomStyleDict(e); });
 
     $('#style-dict-selector').on('chosen:updated', function (event) { });
-    setTimeout(function () {
-        $('#style-dict-selector').trigger('chosen:updated');
-    }, 1000);
 
     // Handle input
     $("#text-helper-input").on("input", function () {
@@ -37,17 +34,25 @@ $(document).ready(function () {
 
     for (var file of styleDictFiles) {
         $.get(`/data/style-dicts/${file}`, function (content) {
-            styleDicts.push(content);
-            $('#style-dict-selector').append($("<option></option>").attr("value", content.header.name).text(content.header.name));
+            addStyleDict(content);
         });
     }
+    
     loadCustomStyleDicts();
-    setTimeout(loadSelectedStyleDicts, 1000);
+    setTimeout(function () {
+        $('#style-dict-selector').trigger('chosen:updated');
+        loadSelectedStyleDicts();
+    }, 1000);
 });
 
 function showCustomStyleDictDocs() {
     show(document.getElementById("custom-style-dict-docs"));
 } 
+
+function addStyleDict(dict) {
+    styleDicts.push(dict);
+    $('#style-dict-selector').append($(`<option class='styledict-${dict.header.type}'></option>`).attr("value", dict.header.name).text(dict.header.name));
+}
 
 /**
  * Loads a custom style dict from a file
@@ -67,10 +72,9 @@ function getCustomStyleDict(evt) {
                         alert("Style dict with that name already exists!");
                     }
                     else {
-                        styleDicts.push(styleDict);
+                        addStyleDict(styleDict);
                         customStyleDicts.push(styleDict);
                         saveCustomStyleDicts();
-                        $("#style-dict-selector").append(`<option value="${styleDict.header.name}">${styleDict.header.name}</option>`);
                         $("#style-dict-selector").trigger("chosen:updated");
                     }
                 }
@@ -92,13 +96,13 @@ async function saveCustomStyleDicts() {
 }
 
 function loadCustomStyleDicts() {
-    const customStyleDicts = JSON.parse(window.localStorage.getItem("customStyleDicts"));
-    if (!customStyleDicts || customStyleDicts.length === 0) return;
-    for (var dict of customStyleDicts) {
-        styleDicts.push(dict);
-        $("#style-dict-selector").append(`<option value="${dict.header.name}">${dict.header.name}</option>`);
+    const dicts = JSON.parse(window.localStorage.getItem("customStyleDicts"));
+    if (!dicts || dicts.length === 0) return;
+    for (var dict of dicts) {
+        addStyleDict(dict);
+        customStyleDicts.push(dict);
     }
-    return customStyleDicts;
+    return dicts;
 }
 
 function deleteStyleDicts() {
@@ -107,7 +111,7 @@ function deleteStyleDicts() {
 }
 
 async function saveSelectedStyleDicts() {
-    const selectedStyleDicts = getSelectedNames();
+    const selectedStyleDicts = getSelectedIds();
     window.localStorage.setItem("selectedStyleDicts", JSON.stringify(selectedStyleDicts));
 }
 
@@ -122,21 +126,13 @@ function loadSelectedStyleDicts() {
     return selectedStyleDicts;
 }
 
-function getSelectedNames() {
-    let selectedNames = [];
-
-    // Get the selected char style dicts
-    $('#style_dict_selector_chosen').find('.search-choice').each(function () {
-        var selectedValue = $(this).find('span').text();
-        selectedNames.push(selectedValue);
-    });
-
-    return selectedNames;
+function getSelectedIds() {
+    return $('#style-dict-selector').chosen().val();
 }
 
 function getSelectedFonts() {
     let selectedFonts = [];
-    let selectedFontNames = getSelectedNames();
+    let selectedFontNames = getSelectedIds();
     for (const name of selectedFontNames) {
         const font = styleDicts.find(dict => dict.header.name === name && dict.header.type === "font");
         if (font) selectedFonts.push(font);
@@ -147,7 +143,7 @@ function getSelectedFonts() {
 
 function getSelectedEmojis() {
     let selectedEmojis = [];
-    let selectedEmojiNames = getSelectedNames();
+    let selectedEmojiNames = getSelectedIds();
     for (const name of selectedEmojiNames) {
         const emojiDict = styleDicts.find(dict => dict.header.name === name && dict.header.type === "emojis");
         if (emojiDict) selectedEmojis.push(emojiDict);
