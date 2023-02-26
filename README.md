@@ -65,17 +65,19 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- CONTRIBUTORS -->
+## Contributors
+
+* [Racooder](https://github.com/Racooder) - Creator and Maintainer
+* [gotura](https://github.com/gotura) - Testing, Ideas and some fonts/emojis
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
 * This Project is using the [Best-README-Template](https://github.com/othneildrew/Best-README-Template) by [Othneil Drew](https://github.com/othneildrew)
 * The menu is based on the [Minecraft Style Menu](https://codepen.io/joexmdq/pen/EOMLzg) by [Joel](https://codepen.io/joexmdq)
 * Uicons by [Flaticon](https://www.flaticon.com/uicons)
-* Thanks to gotura testing and ideas
-
-### Contributors
-
-* [Racooder](https://github.com/Racooder) - Creator and Maintainer
-* [gotura](https://github.com/gotura) - Testing, Ideas and some fonts/emojis
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
