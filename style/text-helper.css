@@ -95,6 +95,7 @@ section {
 }
 
 #custom-style-dict-docs {
+  display: none;
   border-radius: 5px;
   position: fixed;
   top: 8%;
@@ -104,6 +105,8 @@ section {
   border-width: 1px;
   border-style: solid;
   box-shadow: 0px 0px 10px 7px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  overflow-y: hidden;
 }
 
 #custom-style-dict-docs-close {
@@ -113,6 +116,16 @@ section {
   font-size: 25px;
   top: 10px;
   right: 10px;
+}
+
+#custom-style-dict-documentation {
+  padding: 40px;
+  padding-top: 20px;
+  overflow-y: scroll;
+  height: 100%;
+}
+#custom-style-dict-documentation h2 {
+  text-decoration: underline;
 }
 
 #th-output-tooltip {

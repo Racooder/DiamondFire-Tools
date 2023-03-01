@@ -25,6 +25,12 @@ h2 {
   font-weight: 300;
 }
 
+h3 {
+  font-size: 1.1em;
+  font-weight: 300;
+  margin: 5px;
+}
+
 #main-content {
   flex-grow: 1;
 }
@@ -37,6 +43,12 @@ code {
   font-family: "Roboto Mono", monospace;
   border-radius: 3px;
   padding: 2px 5px;
+  white-space: pre;
+}
+
+.docs-code {
+  display: block;
+  padding: 10px;
 }
 
 .monospace {
