@@ -232,20 +232,6 @@ const colorDict = {
     "ffff55": "&e",
     "ffffff": "&f",
     "000": "&0",
-    "00a": "&1",
-    "0a0": "&2",
-    "0aa": "&3",
-    "a00": "&4",
-    "a0a": "&5",
-    "fa0": "&6",
-    "aaa": "&7",
-    "555": "&8",
-    "55f": "&9",
-    "5f5": "&a",
-    "5ff": "&b",
-    "f55": "&c",
-    "f5f": "&d",
-    "ff5": "&e",
     "fff": "&f"
 };
 const minecraftToHumanFormat = {
@@ -279,7 +265,9 @@ String.prototype.replaceBetween = function (start, end, replacement) {
 };
 
 function htmlToMinecraftColor(colorCode) {
-    colorCode = colorCode.substring(1).toLowerCase();
+    if (colorCode.startsWith("#")) {
+        colorCode = colorCode.substring(1).toLowerCase();
+    }
 
     if (colorCode in colorDict) {
         return [colorDict[colorCode], colorCode.length];
@@ -404,13 +392,15 @@ class Formatter {
                 }
             }
             if (this.currentChar === "#") {
-                let colorCode = this.text.substring(this.currentCharIndex, this.currentCharIndex + 6);
-                let [minecraftColorCode, codeLength] = htmlToMinecraftColor(colorCode);
-                if (minecraftColorCode !== null) {
-                    this.pushToken();
-                    this.tokenSettings.color = minecraftColorCode;
-                    this.advanceChar(codeLength);
-                    continue;
+                let colorCode = this.text.substring(this.currentCharIndex, this.currentCharIndex + 7);
+                if (colorCode.length >= 4) {
+                    let [minecraftColorCode, codeLength] = htmlToMinecraftColor(colorCode);
+                    if (minecraftColorCode !== null) {
+                        this.pushToken();
+                        this.tokenSettings.color = minecraftColorCode;
+                        this.advanceChar(codeLength);
+                        continue;
+                    }
                 }
             }
             this.tokenText += this.currentChar;
