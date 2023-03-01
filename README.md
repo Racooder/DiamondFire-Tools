@@ -48,7 +48,7 @@ This project is a collection of tools for the DiamondFire Minecraft server. It i
 ## Roadmap
 
 - [x] 2.1 Command List
-- [ ] 2.2 Improved Text Helper
+- [x] 2.3 Improved Text Helper
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 What's planned or in progress can be found in the [project planner](https://github.com/users/Racooder/projects/7/views/1).
@@ -65,12 +65,19 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- CONTRIBUTORS -->
+## Contributors
+
+* [Racooder](https://github.com/Racooder) - Creator and Maintainer
+* [gotura](https://github.com/gotura) - Testing, Ideas and some fonts/emojis
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
 * This Project is using the [Best-README-Template](https://github.com/othneildrew/Best-README-Template) by [Othneil Drew](https://github.com/othneildrew)
 * The menu is based on the [Minecraft Style Menu](https://codepen.io/joexmdq/pen/EOMLzg) by [Joel](https://codepen.io/joexmdq)
 * Uicons by [Flaticon](https://www.flaticon.com/uicons)
-* Thanks to gotura for testing and ideas
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

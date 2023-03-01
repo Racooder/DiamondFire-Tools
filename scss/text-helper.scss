@@ -21,7 +21,7 @@ textarea:focus {
     padding-right: 15px;
 }
 
-.char-font {
+.style-dicts {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@ textarea:focus {
     gap: 10px;
 }
 
-#custom-font-button {
+#custom-style-dict-button {
     min-width: 200px;
     height: 29px;
     color: #999;
@@ -37,7 +37,7 @@ textarea:focus {
     transition: 0.1s;
 }
 
-.font-selector {
+.style-dict-selector {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,4 +102,69 @@ table {
 
 section {
     margin-bottom: 50px;
+}
+
+#custom-style-dict-docs {
+    display: none;
+    border-radius: 5px;
+    position: fixed;
+    top: 8%;
+    left: 8%;
+    width: 84%;
+    height: 84%;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow:	0px 0px 10px 7px rgba(0, 0, 0, .3);
+    text-align: left;
+    overflow-y: hidden;
+}
+
+#custom-style-dict-docs-close {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    top: 10px;
+    right: 10px;
+}
+
+#custom-style-dict-documentation {
+    padding: 40px;
+    padding-top: 20px;
+    overflow-y: scroll;
+    height: 100%;
+
+    h2 {
+        text-decoration: underline;
+    }
+}
+
+#th-output-tooltip {
+	position: relative;
+	max-width: 30em;
+}
+
+#th-output-tooltip::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	bottom: 100%;
+	left: 1.5em;
+	border: .75rem solid transparent;
+	border-top: none;
+}
+
+#delete-style-dicts-button {
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 250px;
+    width: 30px;
+    height: 16px;
+    padding: 0;
+}
+
+
+#delete-style-dicts-tooltip {
+    position: absolute;
 }

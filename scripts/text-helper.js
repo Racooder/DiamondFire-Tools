@@ -1,69 +1,163 @@
-const fontFiles = ["circled.json", "dingbat-circled-numbers.json", "double-circled-numbers.json", "fullwidth.json", "negative-circled-numbers.json", "small-capital.json", "subscript-numbers.json", "superscript-numbers.json"];
-var charFonts = [];
+"use strict";
+
+const styleDictFiles = [
+    "circled.json", 
+    "dingbat-circled-numbers.json", 
+    "double-circled-numbers.json", 
+    "fullwidth.json", 
+    "minecraft-emojis.json", 
+    "negative-circled-numbers.json",
+    "small-capital.json",
+    "subscript-numbers.json",
+    "superscript-numbers.json"
+];
+var styleDicts = [];
+var customStyleDicts = [];
 
 $(document).ready(function () {
-    // Handle font selection
-    $('#char-font-selector').chosen({ width: "200px" });
-    $("#char-font-selector").chosen().change(function () {
+    $('#style-dict-selector').chosen({ width: "200px" });
+    $("#style-dict-selector").chosen().change(function () {
         setTimeout(function () {
+            saveSelectedStyleDicts();
             handleInput(document.getElementById("text-helper-input"))
         }, 100);
     });
 
-    // Handle upload of custom fonts
-    $("#custom-font-upload").change(function (e) { getCustomFont(e); });
+    $("#custom-style-dict-upload").change(function (e) { getCustomStyleDict(e); });
 
-    $('#char-font-selector').on('chosen:updated', function (event) {});
-    setTimeout(function () {
-        $('#char-font-selector').trigger('chosen:updated');
-    }, 1000);
+    $('#style-dict-selector').on('chosen:updated', function (event) { });
 
     // Handle input
     $("#text-helper-input").on("input", function () {
         handleInput(this);
     });
 
-    // Load fonts
-    for (var fontFile of fontFiles) {
-        $.get(`/data/char-fonts/${fontFile}`, function (font) {
-            charFonts.push(font);
-            $('#char-font-selector').append($("<option></option>").attr("value", font._name).text(font._name));
+    for (var file of styleDictFiles) {
+        $.get(`/data/style-dicts/${file}`, function (content) {
+            addStyleDict(content);
         });
     }
+    
+    loadCustomStyleDicts();
+    setTimeout(function () {
+        $('#style-dict-selector').trigger('chosen:updated');
+        loadSelectedStyleDicts();
+        loadTextHelperInput();
+    }, 500);
 });
 
+function showCustomStyleDictDocs() {
+    show(document.getElementById("custom-style-dict-docs"));
+} 
+
+function addStyleDict(dict) {
+    styleDicts.push(dict);
+    $('#style-dict-selector').append($(`<option class='styledict-${dict.header.type}'></option>`).attr("value", dict.header.name).text(dict.header.name));
+}
+
 /**
- * Loads a custom font from a file
+ * Loads a custom style dict from a file
  * @param {Event} evt - The event that triggered the function
  */
-function getCustomFont(evt) {
+function getCustomStyleDict(evt) {
     const files = evt.target.files;
     if (files.length > 0) {
         const file = files[0];
-        $('#custom-font-button').val(file.name);
+        $('#custom-style-dict-button').val(file.name);
         const reader = new FileReader();
         reader.onload = function (e) {
             try {
-                const font = JSON.parse(e.target.result);
-                if (font._name) {
-                    if (charFonts.find(c => c._name === font._name)) {
-                        alert("Font with that name already exists!");
+                const styleDict = JSON.parse(e.target.result);
+                if (styleDict.header.name && (styleDict.header.type === "font" || styleDict.header.type === "emojis")) {
+                    if (styleDicts.find(c => c.header.name === styleDict.header.name)) {
+                        alert("Style dict with that name already exists!");
                     }
                     else {
-                        charFonts.push(font);
-                        $("#char-font-selector").append(`<option value="${font._name}">${font._name}</option>`);
-                        $("#char-font-selector").trigger("chosen:updated");
+                        addStyleDict(styleDict);
+                        customStyleDicts.push(styleDict);
+                        saveCustomStyleDicts();
+                        $("#style-dict-selector").trigger("chosen:updated");
                     }
                 }
                 else {
-                    alert("Invalid font file.");
+                    alert("Invalid style dict format.");
                 }
             }
             catch (e) {
-                alert("Invalid font file!");
+                alert("Invalid style dict file!");
             }
         };
         reader.readAsText(file);
+    }
+}
+
+async function saveCustomStyleDicts() {
+    if (!customStyleDicts || customStyleDicts.length === 0) return;
+    window.localStorage.setItem("customStyleDicts", JSON.stringify(customStyleDicts));
+}
+
+function loadCustomStyleDicts() {
+    const dicts = JSON.parse(window.localStorage.getItem("customStyleDicts"));
+    if (!dicts || dicts.length === 0) return;
+    for (var dict of dicts) {
+        addStyleDict(dict);
+        customStyleDicts.push(dict);
+    }
+    return dicts;
+}
+
+function deleteStyleDicts() {
+    window.localStorage.removeItem("customStyleDicts");
+    location.reload();
+}
+
+async function saveSelectedStyleDicts() {
+    const selectedStyleDicts = getSelectedIds();
+    window.sessionStorage.setItem("selectedStyleDicts", JSON.stringify(selectedStyleDicts));
+}
+
+function loadSelectedStyleDicts() {
+    const selectedStyleDicts = JSON.parse(window.sessionStorage.getItem("selectedStyleDicts"));
+    if (!selectedStyleDicts || selectedStyleDicts.length === 0) return;
+    for (var dict of selectedStyleDicts) 
+    {
+        $(`#style-dict-selector option[value="${dict}"]`).attr("selected", true);
+    }
+    $("#style-dict-selector").trigger("chosen:updated");
+    return selectedStyleDicts;
+}
+
+function getSelectedIds() {
+    return $('#style-dict-selector').chosen().val();
+}
+
+function getSelectedFonts() {
+    let selectedFonts = [];
+    let selectedFontNames = getSelectedIds();
+    for (const name of selectedFontNames) {
+        const font = styleDicts.find(dict => dict.header.name === name && dict.header.type === "font");
+        if (font) selectedFonts.push(font);
+    }
+
+    return selectedFonts;
+}
+
+function getSelectedEmojis() {
+    let selectedEmojis = [];
+    let selectedEmojiNames = getSelectedIds();
+    for (const name of selectedEmojiNames) {
+        const emojiDict = styleDicts.find(dict => dict.header.name === name && dict.header.type === "emojis");
+        if (emojiDict) selectedEmojis.push(emojiDict);
+    }
+
+    return selectedEmojis;
+}
+
+function loadTextHelperInput() {
+    const inputText = window.sessionStorage.getItem("th-inputText");
+    if (inputText) {
+        $("#text-helper-input").val(inputText);
+        handleInput(document.getElementById("text-helper-input"));
     }
 }
 
@@ -81,281 +175,341 @@ function handleInput(inputField) {
     // Get the text
     const inputText = inputField.value.replace(/(\r\n|\n|\r)/gm, "");
     inputField.value = inputText;
+    window.sessionStorage.setItem("th-inputText", inputText);
 
     if (inputText.length > 0) {
         $("#text-helper-output").attr("data-output", "true");
-        var selectedCharFontNames = [];
-
-        // Get the selected char fonts
-        $('#char_font_selector_chosen').find('.search-choice').each(function () {
-            var selectedValue = $(this).find('span').text();
-            selectedCharFontNames.push(selectedValue);
-        });
-        var selectedCharFonts = [];
-        for (var name of selectedCharFontNames) {
-            selectedCharFonts.push(charFonts.find(font => font._name === name));
-        }
+        const selectedFonts = getSelectedFonts();
+        const selectedEmojis = getSelectedEmojis();
 
         // Format the text
-        const textFormater = new TextFormater(inputText, { htmlColors: true, markdownStyle: true, charFonts: selectedCharFonts });
-        textFormater.generateTokens();
-        $("#text-helper-output").val(textFormater.diamondString());
+        const formatter = new Formatter(inputText, selectedFonts, selectedEmojis);
+        const formattedText = formatter.format();
+        $("#text-helper-output").val(formattedText);
+        $("#th-output-tooltip").hide(500);
     }
     else {
         // Handle empty input
         $("#text-helper-output").attr("data-output", "false");
         $("#text-helper-output").val("&r");
         $("#text-helper-output").css("height", "auto");
+        $("#th-output-tooltip").show(500);
     }
 }
 
-/**
- * Removes whitespaces from the start of a string
- * @param {string} str - The string to trim
- * @returns {string} The trimed string
- */
-function ltrim(str) {
-    if (!str) return str;
-    return str.replace(/^\s+/g, '');
+
+/** Text Formatter */
+
+const formatCodes = {
+    bold: "&l",
+    italic: "&o",
+    strikethrough: "&m",
+    underline: "&n",
+    obfuscated: "&k",
+    reset: "&r"
+};
+const settingsDict = {
+    "*": ["italic", "bold"],
+    "_": ["italic", "underlined"],
+    "~": [null, "strikethrough"],
+    "§": [null, "obfuscated"]
+};
+const colorDict = {
+    "000000": "&0",
+    "0000aa": "&1",
+    "00aa00": "&2",
+    "00aaaa": "&3",
+    "aa0000": "&4",
+    "aa00aa": "&5",
+    "ffaa00": "&6",
+    "aaaaaa": "&7",
+    "555555": "&8",
+    "5555ff": "&9",
+    "55ff55": "&a",
+    "55ffff": "&b",
+    "ff5555": "&c",
+    "ff55ff": "&d",
+    "ffff55": "&e",
+    "ffffff": "&f",
+    "000": "&0",
+    "fff": "&f"
+};
+const minecraftToHumanFormat = {
+    "&l": "bold",
+    "&o": "italic",
+    "&m": "strikethrough",
+    "&n": "underline",
+    "&k": "obfuscated"
+};
+
+function leftTrim(str) {
+    const re = /^\s+/g;
+    const match = re.exec(str);
+    if (match) {
+        return [str.substring(match[0].length), match[0].length];
+    }
+    return [str, 0];
 }
 
-/**
- * Removes whitespaces from the end of a string
- * @param {string} str - The string to trim
- * @returns {string} The trimed string
- */
-function rtrim(str) {
-    if (!str) return str;
-    return str.replace(/\s+$/g, '');
+function rightTrim(str) {
+    const re = /\s+$/g;
+    const match = re.exec(str);
+    if (match) {
+        return [str.substring(0, str.length - match[0].length), match[0].length];
+    }
+    return [str, 0];
 }
 
-class TextToken {
-    /**
-     * @param {string} text - The token text
-     * @param {any} settings - The settings for the token
-     */
-    constructor(text, settings) {
+String.prototype.replaceBetween = function (start, end, replacement) {
+    return this.substring(0, start) + replacement + this.substring(end);
+};
+
+function htmlToMinecraftColor(colorCode) {
+    if (colorCode.startsWith("#")) {
+        colorCode = colorCode.substring(1).toLowerCase();
+    }
+
+    if (colorCode in colorDict) {
+        return [colorDict[colorCode], colorCode.length];
+    }
+
+    let codeLength = 0;
+    if (/^[0-9a-f]{6}/g.test(colorCode)) {
+        codeLength = 6;
+    } else if (/^[0-9a-f]{3}/g.test(colorCode)) {
+        codeLength = 3;
+    }
+    if (codeLength === 0) return null;
+
+    let minecraftCode = "&x";
+    for (let i = 0; i < codeLength; i++) {
+        minecraftCode += "&" + colorCode[i];
+    }
+    return [minecraftCode, codeLength];
+}
+
+class Formatter {
+    constructor(text, fontDicts, emojiDicts) {
         this.text = text;
-        this.settings = {
-            color: settings.color,
-            bold: settings.bold,
-            italic: settings.italic,
-            underlined: settings.underlined,
-            strikethrough: settings.strikethrough,
-            obfuscated: settings.obfuscated,
+        this.fontDicts = fontDicts;
+        this.emojiDicts = emojiDicts;
+    }
+
+    formatEmojis() {
+        const re = /:[a-zA-Z0-9_]+:/g
+        let match;
+        while ((match = re.exec(this.text)) != null) {
+            const matchEnd = match.index + match[0].length;
+            const key = match[0].substring(1, match[0].length - 1);
+            console.log(this.emojiDicts);
+            for (const dict of this.emojiDicts) {
+                const emoji = dict.data[key];
+                if (emoji === undefined || emoji === null) continue;
+                this.text = this.text.replaceBetween(match.index, matchEnd, emoji);
+            }
+        }
+    }
+
+    advanceChar(steps) {
+        steps = (typeof steps === 'undefined') ? 1 : steps;
+        this.currentCharIndex += steps;
+        if (this.currentCharIndex >= this.text.length) {
+            this.currentChar = "";
+            return;
+        }
+        this.currentChar = this.text[this.currentCharIndex];
+    }
+
+    pushToken() {
+        this.tokens.push({
+            text: this.tokenText,
+            settings: $.extend({}, this.tokenSettings)
+        });
+        this.tokenText = "";
+    }
+
+    defaultTokenSettings() {
+        return {
+            "color": "",
+            "bold": false,
+            "italic": false,
+            "underlined": false,
+            "strikethrough": false,
+            "obfuscated": false
         };
     }
-}
 
-class TextFormater {
-    #tokenText;
-    #tokenSettings;
-
-    /**
-     * @param {string} text - The text to format
-     * @param {any} settings - The settings for the formater
-     */
-    constructor(text, settings) {
-        this.text = text;
-        this.settings = settings;
-        this.tokens = [];
+    resetTokenSettings() {
+        this.tokenSettings = this.defaultTokenSettings();
     }
 
-    /**
-     * Generates the tokens for the text
-     * @returns {TextToken[]} The formatted text
-     */
     generateTokens() {
-        var endingString = "";
-        this.#tokenText = "";
-        this.#resetTokenSettings();
+        this.resetTokenSettings();
+        this.tokens = [];
+        this.tokenText = "";
+        this.currentCharIndex = -1;
 
-        for (let i = 0; i < this.text.length; i += 1) {
-            const currentChar = this.text[i];
-            if (!/\s/.test(currentChar))
-                break;
-            this.#tokenText += `&r${currentChar}`;
-        }
-        if (this.#tokenText.length > 0) {
-            this.#tokenText += "&r";
-            this.text = ltrim(this.text);
-        }
+        do {
+            this.advanceChar();
+            const nextChar = this.currentCharIndex + 1 < this.text.length ? this.text[this.currentCharIndex + 1] : null;
 
-        for (let i = this.text.length - 1; i >= 0; i -= 1) {
-            const currentChar = this.text[i];
-            if (!/\s/.test(currentChar))
-                break;
-            endingString += `&r${currentChar}`;
-        }
-        if (endingString.length > 0) {
-            endingString += "&r";
-            this.text = rtrim(this.text);
-        }
-
-        for (let i = 0; i < this.text.length; i += 2) {
-            const currentChar = this.text[i];
-            var nextChar = "";
-            if (i + 1 < this.text.length) {
-                nextChar = this.text[i + 1];
-            }
-
-            if (currentChar === "\\") {
-                this.#addTokenText(nextChar);
+            if (this.currentChar === "\\") {
+                this.advanceChar();
+                this.tokenText += this.currentChar;
                 continue;
             }
-            if (this.settings.htmlColors && currentChar === "#") {
-                var colorCode = "&x";
+            if (this.currentChar in settingsDict) {
+                if (nextChar === this.currentChar) {
+                    this.pushToken();
+                    const settingsKey = settingsDict[this.currentChar][1];
+                    this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
+                    this.advanceChar();
+                    continue;
+                } else if (settingsDict[this.currentChar][0] !== null) {
+                    this.pushToken();
+                    const settingsKey = settingsDict[this.currentChar][0];
+                    this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
+                    continue;
+                }
+            }
+            if (this.currentChar === "&") {
+                if (nextChar === null) continue;
 
-                for (let j = i + 1; j < this.text.length && j - i - 1 < 7; j++) {
-                    const c = this.text[j].toLowerCase();
-
-                    if (c.match(/[0-9]|[a-f]/g) == null) {
-                        break;
+                const formatCode = "&" + nextChar;
+                if (formatCode in minecraftToHumanFormat) {
+                    this.pushToken();
+                    const settingsKey = minecraftToHumanFormat[formatCode];
+                    this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
+                    continue;
+                } else if (formatCode === "&r") {
+                    this.pushToken();
+                    this.resetTokenSettings();
+                    continue;
+                } else if (/^&[0-9a-f]$/g.test(formatCode)) {
+                    this.pushToken();
+                    this.tokenSettings.color = colorDict[formatCode];
+                    continue;
+                }
+            }
+            if (this.currentChar === "#") {
+                let colorCode = this.text.substring(this.currentCharIndex, this.currentCharIndex + 7);
+                if (colorCode.length >= 4) {
+                    let [minecraftColorCode, codeLength] = htmlToMinecraftColor(colorCode);
+                    if (minecraftColorCode !== null) {
+                        this.pushToken();
+                        this.tokenSettings.color = minecraftColorCode;
+                        this.advanceChar(codeLength);
+                        continue;
                     }
-                    colorCode += `&${c}`;
-                }
-
-                if (colorCode.length >= 14) {
-                    this.#setTokenSetting("color", colorCode.substring(0, 14))
-                    i += 5;
-                    continue;
-                }
-                if (colorCode.length >= 8) {
-                    this.#setTokenSetting("color", colorCode.substring(0, 8))
-                    i += 2;
-                    continue;
                 }
             }
-            if (this.settings.markdownStyle && currentChar === "*" && nextChar === "*") {
-                this.#setTokenSetting("bold", !this.#tokenSettings.bold);
-                continue;
-            }
-            if (this.settings.markdownStyle && currentChar === "_" || (currentChar === "*" && nextChar !== "*")) {
-                this.#setTokenSetting("italic", !this.#tokenSettings.italic);
-                i--;
-                continue;
-            }
-            if (this.settings.markdownStyle && currentChar === "~" && nextChar === "~") {
-                this.#setTokenSetting("strikethrough", !this.#tokenSettings.strikethrough);
-                continue;
-            }
-            if (this.settings.markdownStyle && currentChar === "ˋ" && nextChar === "ˋ") {
-                this.#setTokenSetting("underline", !this.#tokenSettings.underline);
-                continue;
-            }
-            if (this.settings.markdownStyle && currentChar === "§" && nextChar === "§") {
-                this.#setTokenSetting("obfuscated", !this.#tokenSettings.obfuscated);
-                continue;
-            }
-            if (currentChar === "&") {
-                if (nextChar === "r") {
-                    this.#resetTokenSettings;
-                    continue;
-                }
-                if (nextChar.match(/[0-9]|[a-f]/g) != null) {
-                    this.#setTokenSetting("color", "&" + nextChar);
-                    continue;
-                }
-            }
-
-            this.#addTokenText(currentChar);
-            i--;
-        }
-
-        this.#tokenText += endingString;
-        if (this.#tokenText.length > 0)
-            this.tokens.push(new TextToken(this.#tokenText, this.#tokenSettings));
-        return this.tokens;
-    }
-
-    #resetTokenSettings() {
-        this.#tokenSettings = {
-            color: "",
-            bold: false,
-            italic: false,
-            underlined: false,
-            strikethrough: false,
-            obfuscated: false
+            this.tokenText += this.currentChar;
+            continue;
+        } while (this.currentCharIndex < this.text.length - 1);
+        this.pushToken();
+        if (this.tokens.length > 1 && this.tokens[0].text === "") {
+            this.tokens.shift();
         }
     }
 
-    /**
-     * @param {string} key - The key of the setting
-     * @param {any} value - The value of the setting
-     */
-    #setTokenSetting(key, value) {
-        if (this.#tokenText.length > 0) {
-            this.tokens.push(new TextToken(this.#tokenText, this.#tokenSettings));
-            this.#tokenText = "";
+    tokenSettingsChanged(token, lastToken) {
+        let changed = {};
+        let falseFound = false;
+
+        for (const key in token) {
+            if (token[key] !== lastToken[key]) {
+                if (token[key] === false) {
+                    falseFound = true;
+                }
+                changed[key] = token[key];
+            }
         }
-        this.#tokenSettings[key] = value;
+
+        return [changed, falseFound];
     }
 
-    /**
-     * Adds text to the current token
-     * @param {string} text - The text to add to the token
-     */
-    #addTokenText(text) {
+    applyFonts(text) {
+        var charArray = text.split('');
+
         charLoop:
-        for (let i = 0; i < text.length; i++) {
-            const c = text[i];
-            for (let j = 0; j < this.settings.charFonts.length; j++) {
-                const font = this.settings.charFonts[j];
-                if (c in font) {
-                    this.#tokenText += font[c];
-                    continue charLoop;
-                }
+        for (let i = 0; i < charArray.length; i++) {
+            for (const font of this.fontDicts) {
+                const fontChar = font.data[charArray[i]];
+                if (fontChar === undefined || fontChar === null) continue;
+                charArray[i] = fontChar;
+                continue charLoop;
             }
-            this.#tokenText += c;
         }
+
+        return charArray.join('')
     }
 
-    /**
-     * @returns {string} The formatted text
-     */
-    diamondString() {
-        var dString = "";
-        var lastSettings = undefined;
+    formatTokens() {
+        this.formattedText = "";
+        if (this.tokens.length === 0) return;
 
+        let lastToken = {
+            text: "",
+            settings: this.defaultTokenSettings()
+        };
+        let formatCode;
         for (const token of this.tokens) {
-            if (lastSettings !== undefined) {
-                for (const key of Object.keys(token.settings)) {
-                    if ((token.settings[key] === false && lastSettings[key] === true) || (token.settings.color === "" && lastSettings.color !== "")) {
-                        dString += "&r";
-                        break;
+            formatCode = "";
+            const [changed, falseFound] = this.tokenSettingsChanged(token.settings, lastToken.settings);
+            lastToken = token;
+            if (falseFound) {
+                this.formattedText += formatCodes.reset;
+                for (const key in token.settings) {
+                    if (token.settings[key] === true) {
+                        formatCode += formatCodes[key];
+                    }
+                    if (key === "color") {
+                        formatCode += token.settings[key];
+                    }
+                }
+            } else {
+                for (const key in changed) {
+                    if (changed[key] === true) {
+                        formatCode += formatCodes[key];
+                    }
+                    if (key === "color") {
+                        formatCode += changed[key];
                     }
                 }
             }
+            this.formattedText += formatCode;
+            this.formattedText += this.applyFonts(token.text);
+        }
+        this.lastFormatCode = formatCode;
+    }
 
-            if (lastSettings === undefined || lastSettings.color !== token.settings.color) {
-                dString += token.settings.color;
-            }
+    formatWhitespaces() {
+        this.lastFormatCode = this.lastFormatCode || formatCodes.reset;
 
-            if (token.settings.bold) {
-                dString += "&l";
-            }
-            if (token.settings.italic) {
-                dString += "&o";
-            }
-            if (token.settings.underline) {
-                dString += "&n";
-            }
-            if (token.settings.strikethrough) {
-                dString += "&m";
-            }
-            if (token.settings.obfuscated) {
-                dString += "&k";
-            }
-
-            dString += token.text;
-
-            lastSettings = token.settings;
+        for (let i = 0; i < this.leadingSpaces; i++) {
+            this.formattedText = " " + formatCodes.reset + this.formattedText;
+        }
+        if (this.leadingSpaces > 0) {
+            this.formattedText = formatCodes.reset + this.formattedText;
         }
 
-        if (dString === "") {
-            dString = "&r";
+        for (let j = 0; j < this.endingSpaces; j++) {
+            this.formattedText += this.lastFormatCode + " ";
         }
+        if (this.endingSpaces > 0) {
+            this.formattedText += this.lastFormatCode;
+        }
+    }
 
-        return dString;
+    format() {
+        [this.text, this.leadingSpaces] = leftTrim(this.text);
+        [this.text, this.endingSpaces] = rightTrim(this.text);
+
+        this.formatEmojis();
+        this.generateTokens();
+        this.formatTokens();
+        this.formatWhitespaces();
+
+        return this.formattedText;
     }
 }

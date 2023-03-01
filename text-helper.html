@@ -4,10 +4,10 @@
 
 <head>
     <title>Text Helper · DiamondFire Tools</title>
-    <link rel=“icon” href=”https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/favicon.ico” type=“image/x-icon”>
-    <link rel=“shortcut icon” href=“https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/favicon.ico” type=“image/x-icon”>
-    <link rel=“icon” sizes="96x96" href=”https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/favicon.png” type=“image/png”>
-    <link rel=“shortcut icon” sizes="96x96" href=“https://raw.githubusercontent.com/Studio-Racoonia/DiamondFire-Tools/main/favicon.png” type=“image/png”>
+    <link rel=“icon” href=”favicon.ico” type=“image/x-icon”>
+    <link rel=“shortcut icon” href=“favicon.ico” type=“image/x-icon”>
+    <link rel=“icon” sizes="96x96" href=”favicon.png” type=“image/png”>
+    <link rel=“shortcut icon” sizes="96x96" href=“favicon.png” type=“image/png”>
 
     <meta charset="utf-8" />
 
@@ -29,6 +29,7 @@
 
 <body data-theme="" data-lang="">
     <header>
+        <!--translation: nav-bar-->
         <ul class="nav-bar"></ul>
     </header>
 
@@ -37,20 +38,29 @@
 
         <div class="text-helper">
             <div class="text-helper-input">
-                <textarea id="text-helper-input" data-translate="true" spellcheck="false"
-                    data-placeholder="type-here"></textarea>
+                <!--translation: text-helper-->
+                <textarea id="text-helper-input" class="translate" spellcheck="false" data-placeholder="th-type-here"></textarea>
             </div>
             <div class="text-helper-output">
                 <textarea id="text-helper-output" data-output="false" spellcheck="false" readonly>&r</textarea>
+                <p id="th-output-tooltip" class="tooltip">
+                    <span class="translate" data-content="th-empty-text-tooltip-1"></span><br/>
+                    <span class="translate" data-content="th-empty-text-tooltip-2"></span>
+                    <span class="monospace">/text []</span>
+                </p>
             </div>
         </div>
-        <div class="char-font">
-            <input id="custom-font-upload" type="file" size="50" accept="application/json" style="display: none;">
-            <input id="custom-font-button" data-translate="true" type="button" data-value="upload-font"
-                onclick="document.getElementById('custom-font-upload').click();" />
-            <div class="font-selector">
-                <p data-translate="true" data-content="select-font"></p>
-                <select id="char-font-selector" class="chosen-select" data-placeholder=" " multiple>
+        <div class="style-dicts">
+            <!--translation: text-helper-->
+            <input id="custom-style-dict-upload" type="file" size="50" accept="application/json" style="display: none;">
+            <input id="custom-style-dict-button" class="translate" type="button" data-value="th-upload-style-dict" onclick="document.getElementById('custom-style-dict-upload').click();"/>
+            <button id="delete-style-dicts-button" onclick="deleteStyleDicts()">
+                <i class="fi fi-rr-trash"></i>
+                <span id="delete-style-dicts-tooltip" class="tooltip tooltip-right translate" data-content="th-delete-custom-style-dicts"></span>
+            </button>
+            <div class="style-dict-selector">
+                <p class="translate" data-content="th-select-style-dict"></p>
+                <select id="style-dict-selector" class="chosen-select" data-placeholder=" " multiple>
                     <option value=""></option>
                 </select>
             </div>
@@ -58,95 +68,220 @@
         <div class="manual">
             <article id="manual">
                 <section id="explanation">
-                    <h1 data-translate="true" data-content="how-to-use"></h1>
-                    <p data-translate="true" data-content="text-helper-explanation"></p>
+                    <!--translation: text-helper > how-to-use-->
+                    <h1 class="translate" data-content="th-how-to-use"></h1>
+                    <p class="translate" data-content="th-explanation"></p>
                 </section>
                 <section id="color-codes">
-                    <h2 data-translate="true" data-content="color-codes"></h2>
-                    <p data-translate="true" data-content="color-codes-explanation"></p>
-                    <p data-translate="true" data-content="color-codes-example"></p>
+                    <!--translation: text-helper > color-codes-->
+                    <h2 class="translate" data-content="th-color-codes"></h2>
+                    <p>
+                        <span class="translate" data-content="th-color-codes-explanation-1"></span>
+                        <a href='https://htmlcolorcodes.com/minecraft-color-codes/' class="translate" data-content="th-color-codes-explanation-2"></a>
+                        <span class="translate" data-content="th-color-codes-explanation-3"></span>
+                        <code>&</code>
+                        <span class="translate" data-content="th-color-codes-explanation-4"></span>
+                        <code>§</code>
+                        <span class="translate" data-content="th-color-codes-explanation-5"></span>
+                        <a href='https://www.w3schools.com/colors/colors_picker.asp'>#rrggbb</a>
+                        <span class="translate" data-content="th-color-codes-explanation-6"></span>
+                    </p>
+                    <p>
+                        <span class="translate" data-content="th-color-codes-example-1"></span>
+                        <code class="translate" data-content="th-color-codes-example-1-code"></code>
+                        <span class="translate" data-content="th-color-codes-example-2"></span>
+                        <code class="translate" data-content="th-color-codes-example-2-code"></code>
+                    </p>
                 </section>
                 <section id="emphasis">
-                    <h2 data-translate="true" data-content="emphasis"></h2>
-                    <p data-translate="true" data-content="emphasis-explanation"></p>
-                    <p data-translate="true" data-content="emphasis-explanation-2"></p>
-                    <p data-translate="true" data-content="emphasis-example"></p>
-                    <p data-translate="true" data-content="emphasis-additional"></p>
+                    <!--translation: text-helper > emphasis-->
+                    <h2 class="translate" data-content="th-emphasis"></h2>
+                    <p>
+                        <span class="translate" data-content="th-emphasis-explanation-1"></span>
+                        <a href='https://htmlcolorcodes.com/minecraft-color-codes/' class="translate" data-content="th-emphasis-explanation-2"></a>
+                        <span class="translate" data-content="th-emphasis-explanation-3"></span>
+                        <code>&</code>
+                        <span class="translate" data-content="th-emphasis-explanation-4"></span>
+                        <code>§</code>
+                        <span class="translate" data-content="th-emphasis-explanation-5"></span>
+                        <code>&l</code>
+                        <span class="translate" data-content="th-emphasis-explanation-6"></span>
+                    </p>
+                    <p>
+                        <span class="translate" data-content="th-emphasis-explanation-7"></span>
+                        <code class="translate" data-content="th-emphasis-explanation-7-code"></code>
+                        <span class="translate" data-content="th-emphasis-explanation-8"></span>
+                        <a href='https://www.codecademy.com/resources/docs/markdown/emphasis' class="translate" data-content="th-emphasis-explanation-9"></a>
+                        <span class="translate" data-content="th-emphasis-explanation-10"></span>
+                    </p>
+                    <p>
+                        <span class="translate" data-content="th-emphasis-example-1"></span>
+                        <code class="translate" data-content="th-emphasis-example-1-code"></code>
+                        <span class="translate" data-content="th-emphasis-example-2"></span>
+                        <code class="translate" data-content="th-emphasis-example-2-code"></code>
+                    </p>
+                    <p>
+                        <span class="translate" data-content="th-emphasis-additional-1"></span>
+                        <code class="translate" data-content="th-emphasis-additional-1-code"></code>
+                        <span class="translate" data-content="th-emphasis-additional-2"></span>
+                        <code class="translate" data-content="th-emphasis-additional-2-code"></code>
+                    </p>
                 </section>
                 <section id="fonts">
-                    <h2 data-translate="true" data-content="fonts"></h2>
-                    <p data-translate="true" data-content="fonts-explanation"></p>
-                    <p data-translate="true" data-content="fonts-details"></p>
+                    <!--translation: text-helper > fonts-->
+                    <h2 class="translate" data-content="th-fonts"></h2>
+                    <p>
+                        <span class="translate" data-content="th-fonts-explanation-1"></span>
+                        <code>Small Capital</code>
+                        <span class="translate" data-content="th-fonts-explanation-2"></span>
+                        <code>A</code>
+                        <span class="translate" data-content="th-fonts-explanation-3"></span>
+                        <code>ᴀ</code>
+                        <span class="translate" data-content="th-fonts-explanation-4"></span>
+                        <code>DIAMONDFIRE</code>
+                        <span class="translate" data-content="th-fonts-explanation-5"></span>
+                        <code>ᴅɪᴀᴍᴏɴᴅꜰɪʀᴇ</code>
+                        <span class="translate" data-content="th-fonts-explanation-6"></span>
+                    </p>
+                    <p>
+                        <span class="translate" data-content="th-fonts-details-1"></span>
+                        <a href='text-helper.html#font-details' class="translate" data-content="th-fonts-details-2"></a>
+                    </p>
+                </section>
+                <section id="custom-style-dict">
+                    <!--translation: text-helper > custom-style-dicts-->
+                    <h2 class="translate" data-content="th-custom-style-dicts"></h2>
+                    <p class="translate" data-content="th-custom-style-dicts-explanation"></p>
+                    <a href="/data/style-dict-template.json" download class="translate" data-content="th-download-style-dict-template"></a>
+                    <p>
+                        <span class="translate" data-content="th-custom-style-dicts-documentation-1"></span>
+                        <a href="javascript:showCustomStyleDictDocs()" class="translate" data-content="th-custom-style-dicts-documentation-2"></a>
+                    </p>
+                </section>
+                <section id="whitespace-formatting">
+                    <h2 class="translate" data-content="th-whitespace-formatting"></h2>
+                    <p class="translate" data-content="th-whitespace-formatting-explanation-1"></p>
+                    <p class="translate" data-content="th-whitespace-formatting-explanation-2"></p>
+                    <p>
+                        <span class="translate" data-content="th-whitespace-formatting-explanation-3"></span>
+                        <code>&r</code>
+                        <span class="translate" data-content="th-whitespace-formatting-explanation-4"></span>
+                    </p>
+                    <p class="translate" data-content="th-whitespace-formatting-explanation-5"></p>
+                    <p class="translate" data-content="th-whitespace-formatting-explanation-6"></p>
+                    <p>
+                        <span class="translate" data-content="th-whitespace-formatting-example-1"></span>
+                        <code class="translate" data-content="th-whitespace-formatting-example-1-code"></code>
+                        <span class="translate" data-content="th-whitespace-formatting-example-2"></span>
+                        <code class="translate" data-content="th-whitespace-formatting-example-2-code"></code>
+                        <span class="translate" data-content="th-whitespace-formatting-example-3"></span>
+                        <code class="translate" data-content="th-whitespace-formatting-example-3-code"></code>
+                        <span class="translate" data-content="th-whitespace-formatting-example-4"></span>
+                        <code class="translate" data-content="th-whitespace-formatting-example-4-code"></code>
+                    </p>
+                    <p class="translate" data-content="th-whitespace-formatting-explanation-7"></p>
+                    <p>
+                        <span class="translate" data-content="th-whitespace-formatting-explanation-8"></span>
+                        <code>&r</code>
+                    </p>
+                    <p>
+                        <span class="translate" data-content="th-whitespace-formatting-example-5"></span>
+                        <code class="translate" data-content="th-whitespace-formatting-example-5-code"></code>
+                        <span class="translate" data-content="th-whitespace-formatting-example-6"></span>
+                        <code class="translate" data-content="th-whitespace-formatting-example-6-code"></code>
+                    </p>
+                    <p class="translate" data-content="th-whitespace-formatting-explanation-9"></p>
                 </section>
             </article>
             <article id="details">
                 <section id="tags">
-                    <h2 data-translate="true" data-content="all-tags"></h2>
+                    <!--translation: text-helper > all-tags-->
+                    <h2 class="translate" data-content="th-all-tags"></h2>
                     <table id="tag-list">
                         <tr>
-                            <td><code>\\</code></td>
-                            <td data-translate="true" data-content="tag-backslash"></td>
+                            <td><code>\</code></td>
+                            <td>
+                                <span class="translate" data-content="th-tag-backslash-1"></span>
+                                <code>\**</code>
+                                <span class="translate" data-content="th-tag-backslash-2"></span>
+                                <code>**</code>
+                            </td>
                         </tr>
                         <tr>
                             <td><code>#rrggbb</code></td>
-                            <td data-translate="true" data-content="tag-html-color"></td>
+                            <td>
+                                <span class="translate" data-content="th-tag-html-color-1"></span>
+                                <code class="translate" data-content="th-tag-html-color-1-code"></code>
+                                <span class="translate" data-content="th-tag-html-color-2"></span>
+                                <code class="translate" data-content="th-tag-html-color-2-code"></code>
+                            </td>
                         </tr>
                         <tr>
                             <td><code>&a - &f, &0 - &9</code></td>
-                            <td data-translate="true" data-content="tag-df-color"></td>
+                            <td>
+                                <span class="translate" data-content="th-tag-df-color-1"></span>
+                                <code class="translate" data-content="th-tag-df-color-1-code"></code>
+                                <span class="translate" data-content="th-tag-df-color-2"></span>
+                            </td>
                         </tr>
                         <tr>
-                            <td><code>**bold**, _italic_, ~~strikethrough~~</code></td>
-                            <td data-translate="true" data-content="tag-emphasis"></td>
+                            <td><code class="translate" data-content="th-tag-emphasis-0-code"></code></td>
+                            <td>
+                                <span class="translate" data-content="th-tag-emphasis-1"></span>
+                                <code class="translate" data-content="th-tag-emphasis-1-code"></code>
+                                <span class="translate" data-content="th-tag-emphasis-2"></span>
+                                <code class="translate" data-content="th-tag-emphasis-2-code"></code>
+                            </td>
                         </tr>
                         <tr>
                             <td><code>&r</code></td>
-                            <td data-translate="true" data-content="tag-reset"></td>
+                            <td class="translate" data-content="th-tag-reset"></td>
                         </tr>
                     </table>
                 </section>
                 <section id="font-details">
-                    <h2>All fonts</h2>
+                    <!--translation: text-helper > all-fonts-->
+                    <h2 class="translate" data-content="th-all-fonts"></h2>
                     <table id="font-list">
                         <tr>
                             <td>Circled</td>
-                            <td>ⒶⒷⒸ①②③</td>
-                            <td data-translate="true" data-content="support-capitals-numbers"></td>
+                            <td>ABC123 - ⒶⒷⒸ①②③</td>
+                            <td class="translate" data-content="th-support-capitals-numbers"></td>
                         </tr>
                         <tr>
                             <td>Dingbat Circled Numbers</td>
-                            <td style="font-size: 1.3em;">➀➁➂</td>
-                            <td data-translate="true" data-content="support-numbers"></td>
+                            <td style="font-size: 1.3em;">123 - ➀➁➂</td>
+                            <td class="translate" data-content="th-support-numbers"></td>
                         </tr>
                         <tr>
                             <td>Double Circled Numbers</td>
-                            <td>⓵⓶⓷</td>
-                            <td data-translate="true" data-content="support-numbers"></td>
+                            <td>123 - ⓵⓶⓷</td>
+                            <td class="translate" data-content="th-support-numbers"></td>
                         </tr>
                         <tr>
                             <td>Fullwidth</td>
-                            <td>ａｂｃＡＢＣ</td>
-                            <td data-translate="true" data-content="support-lowercase-capitals"></td>
+                            <td>abcABC - ａｂｃＡＢＣ</td>
+                            <td class="translate" data-content="th-support-lowercase-capitals"></td>
                         </tr>
                         <tr>
                             <td>Negative Circled Numbers</td>
-                            <td style="font-size: 1.1em;">➊➋➌</td>
-                            <td data-translate="true" data-content="support-capitals-numbers"></td>
+                            <td style="font-size: 1.1em;">123 - ➊➋➌</td>
+                            <td class="translate" data-content="th-support-numbers"></td>
                         </tr>
                         <tr>
                             <td>Small Capital</td>
-                            <td style="font-size: 1.1em;">ᴀʙᴄ</td>
-                            <td data-translate="true" data-content="support-capitals"></td>
+                            <td style="font-size: 1.1em;">ABC - ᴀʙᴄ</td>
+                            <td class="translate" data-content="th-support-capitals"></td>
                         </tr>
                         <tr>
                             <td>Subscript Numbers</td>
-                            <td>123₁₂₃</td>
-                            <td data-translate="true" data-content="support-numbers"></td>
+                            <td>123 - ₁₂₃</td>
+                            <td class="translate" data-content="th-support-numbers"></td>
                         </tr>
                         <tr>
                             <td>Superscript Numbers</td>
-                            <td>123¹²³</td>
-                            <td data-translate="true" data-content="support-numbers"></td>
+                            <td>123 - ¹²³</td>
+                            <td class="translate" data-content="th-support-numbers"></td>
                         </tr>
                     </table>
                 </section>
@@ -154,9 +289,40 @@
         </div>
     </article>
 
+    <div id="custom-style-dict-docs">
+        <i onclick="hide(this.parentElement)" id="custom-style-dict-docs-close" class="fi fi-rr-cross-small"></i>
+        <article id="custom-style-dict-documentation">
+            <h2 class="translate" data-content="csd-docs-title"></h2>
+            <p class="translate" data-content="csd-docs-1"></p>
+            <p class="translate" data-content="csd-docs-2"></p>
+            <p class="translate" data-content="csd-docs-3"></p>
+            <br>
+            <p class="translate" data-content="csd-docs-4"></p>
+            <br>
+            <div>
+                <h3 class="translate" data-content="csd-docs-example-font"></h3>
+                <code class="docs-code translate" data-content="csd-docs-code-1"></code>
+            </div>
+            <br>
+            <p class="translate" data-content="csd-docs-5"></p>
+            <br>
+            <div>
+                <h3 class="translate" data-content="csd-docs-example-font"></h3>
+                <code class="docs-code translate" data-content="csd-docs-code-2"></code>
+            </div>
+            <br>
+            <div>
+                <h3 class="translate" data-content="csd-docs-example-emojipack"></h3>
+                <code class="docs-code translate" data-content="csd-docs-code-3"></code>
+            </div>
+            <div style="height: 100px;"></div>
+        </article>
+    </div>
+
     <footer>
         <hr>
-        <p data-translate="true" data-content="independence-declaration"></p>
+        <!--translation: footer-->
+        <p class="translate" data-content="independence-declaration"></p>
     </footer>
 </body>
 

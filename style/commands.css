@@ -14,7 +14,6 @@
   display: flex;
   justify-content: center;
   margin: auto;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin-top: 20px;

@@ -26,6 +26,12 @@ h2 {
     font-weight: 300;
 }
 
+h3 {
+    font-size: 1.1em;
+    font-weight: 300;
+    margin: 5px;
+}
+
 #main-content {
     flex-grow: 1;
 }
@@ -38,6 +44,16 @@ code {
     font-family: "Roboto Mono", monospace;
     border-radius: 3px;
     padding: 2px 5px;
+    white-space: pre;
+}
+
+.docs-code {
+    display: block;
+    padding: 10px;
+}
+
+.monospace {
+    font-family: "Roboto Mono", monospace;
 }
 
 footer {
@@ -49,13 +65,6 @@ footer {
     }
 }
 
-.tooltip {
-    border: 1px solid #f21d56;
-    position: absolute;
-    color: #fff;
-    background-color: #121019;
-}
-
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -63,6 +72,53 @@ footer {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+/** Buttons and Tooltips */
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+
+    .tooltip {
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+}
+
+button:hover {
+    .tooltip {
+        opacity: 1;
+    }
+}
+
+.tooltip {
+    padding: 0.2em;
+	font-size: 0.9em;
+	border-radius: 0.5rem;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+span.tooltip {
+    padding: 5px;
+}
+
+.tooltip-right::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 99%; /* To the left of the tooltip */
+    margin-top: -7px;
+    border: 7px solid transparent;
+}
+
+.tooltip-right {
+    top: -5px;
+    left: 105%;
 }
 
 /** Scrollbar */
@@ -166,6 +222,10 @@ footer {
         color: #000;
     }
 
+    button {
+        color: #000;
+    }
+
     /** Nav Bar */
 
     .nav-bar-item.active {
@@ -181,6 +241,21 @@ footer {
         a {
             color: #fff;
         }
+    }
+
+    /** Tooltips */
+    
+    .tooltip {
+        color: #000;
+        box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .1), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    }
+
+    .tooltip::after {
+	    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .03));
+    }
+
+    #th-output-tooltip::before {
+	    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .03));
     }
 
     /** Chosen */
@@ -290,14 +365,14 @@ footer {
         color: #ddd;
     }
 
-    #custom-font-button {
+    #custom-style-dict-button {
         background-color: #2e2940;
         background-image: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
         border-color: #333;
         color: #000;
     }
 
-    #custom-font-button:hover {
+    #custom-style-dict-button:hover {
         background-color: #3e3950;
     }
 
@@ -369,6 +444,10 @@ footer {
     input {
         background-color: #fff;
         color: #000;
+    }
+
+    button {
+        color: #fff;
     }
 
     /** Theme Icons */
@@ -448,6 +527,26 @@ footer {
         background-color: #252133;
     }
 
+    /** Tooltips */
+
+    .tooltip {
+        background-color: #2e2940;
+        box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    }
+
+    .tooltip::after {
+        filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+    }
+
+    .tooltip-right::after {
+        border-right-color: #2e2940;
+    }
+
+    #th-output-tooltip::before {
+        border-bottom-color: #2e2940;
+	    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+    }
+
     /** Menu */
 
     .tool-holder {
@@ -463,13 +562,13 @@ footer {
         color: #ddd;
     }
 
-    #custom-font-button {
+    #custom-style-dict-button {
         background-color: #2e2940;
         border-color: #333;
         color: #bbb;
     }
 
-    #custom-font-button:hover {
+    #custom-style-dict-button:hover {
         background-color: #3e3950;
     }
 
@@ -492,6 +591,12 @@ footer {
 
     #text-helper-output[data-output="true"] {
         border-color: #0f8c5e;
+    }
+
+    #custom-style-dict-docs {   
+        background-color: #121019;
+        border-color: #f21d56;
+        box-shadow:	0px 0px 10px 7px rgba(0, 0, 0, .3);
     }
 
     /** Commands */
@@ -537,6 +642,31 @@ footer {
         color: #fff
     }
 
+    button {
+        color: #000;
+    }
+
+    /** Tooltips */
+    
+    .tooltip {
+        background-color: #fff;
+        color: #000;
+        box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .1), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    }
+
+    .tooltip::after {
+	    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .03));
+    }
+
+    .tooltip-right::after {
+        border-right-color: #fff;
+    }
+
+    #th-output-tooltip::before {
+        border-bottom-color: #fff;
+	    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .03));
+    }
+
     /** Theme Icons */
 
     .dark-mode {
@@ -570,12 +700,12 @@ footer {
 
     /** Text Helper */
 
-    #custom-font-button {
+    #custom-style-dict-button {
         background-color: #fff;
         border-color: #aaa;
     }
 
-    #custom-font-button:hover {
+    #custom-style-dict-button:hover {
         background-color: #3875d7;
         background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
         color: #fff;
@@ -607,6 +737,12 @@ footer {
 
     #text-helper-output[data-output="true"] {
         border-color: #00bb76;
+    }
+
+    #custom-style-dict-docs {   
+        background-color: #fff;
+        border-color: #f21d56;
+        box-shadow:	0px 0px 10px 7px rgba(0, 0, 0, .1);
     }
 
     /** Commands */
