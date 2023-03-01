@@ -49,7 +49,7 @@ This project is a collection of tools for the DiamondFire Minecraft server. It i
 ## Roadmap
 
 - [x] 2.1 Command List
-- [x] 2.3 Improved Text Helper [see patchnotes](https://github.com/Racooder/DiamondFire-Tools/pull/43)
+- [x] 2.3 Improved Text Helper [\[patchnotes\]](https://github.com/Racooder/DiamondFire-Tools/pull/43)
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 What's planned or in progress can be found in the [project planner](https://github.com/users/Racooder/projects/7/views/1).
