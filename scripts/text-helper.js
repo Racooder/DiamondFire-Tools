@@ -269,10 +269,6 @@ function htmlToMinecraftColor(colorCode) {
         colorCode = colorCode.substring(1).toLowerCase();
     }
 
-    if (colorCode in colorDict) {
-        return [colorDict[colorCode], colorCode.length];
-    }
-
     let codeLength = 0;
     if (/^[0-9a-f]{6}/g.test(colorCode)) {
         codeLength = 6;
@@ -280,6 +276,11 @@ function htmlToMinecraftColor(colorCode) {
         codeLength = 3;
     }
     if (codeLength === 0) return null;
+    colorCode = colorCode.substring(0, codeLength);
+
+    if (colorCode in colorDict) {
+        return [colorDict[colorCode], codeLength];
+    }
 
     let minecraftCode = "&x";
     for (let i = 0; i < codeLength; i++) {
