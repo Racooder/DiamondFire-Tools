@@ -55,7 +55,7 @@
     "th-emphasis-example-2": "will be converted to",
     "th-emphasis-example-2-code": "&lThis is in bold, &l&oitalics&r&l, &l&mand strikethrough",
     "th-emphasis-additional-1": "Text Helper also supports",
-    "th-emphasis-additional-1-code": "``underline``",
+    "th-emphasis-additional-1-code": "__underline__",
     "th-emphasis-additional-2": "and",
     "th-emphasis-additional-2-code": "§§obfuscated§§",
 
@@ -72,7 +72,7 @@
 
     "__custom-style-dicts__": "",
     "th-custom-style-dicts": "Custom Style Dicts",
-    "th-custom-style-dicts-explanation": "Text Helper offers the posibility to create and upload custom style dicts. A style dict is a json file with a simple format.",
+    "th-custom-style-dicts-explanation": "Text Helper offers the possibility to create and upload custom style dicts. A style dict is a json file with a simple format.",
     "th-download-style-dict-template": "Download a style dict template here!",
     "th-custom-style-dicts-documentation-1": "Documentation for creating your own style dict can be found",
     "th-custom-style-dicts-documentation-2": "here.",
@@ -131,7 +131,7 @@
     "th-tag-reset": "Resets the styling.",
 
     "__all-fonts__": "",
-    "th-all-fonts": "Buildin fonts",
+    "th-all-fonts": "Built-in fonts",
     "th-support-capitals-numbers": "Supports capital letters and numbers",
     "th-support-lowercase-capitals": "Supports lowercase and capital letters",
     "th-support-numbers": "Supports numbers",
