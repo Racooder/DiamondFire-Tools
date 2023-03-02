@@ -296,18 +296,31 @@ class Formatter {
     }
 
     formatEmojis() {
-        const re = /:[a-zA-Z0-9_]+:/g
-        let match;
-        while ((match = re.exec(this.text)) != null) {
-            const matchEnd = match.index + match[0].length;
-            const key = match[0].substring(1, match[0].length - 1);
-            console.log(this.emojiDicts);
-            for (const dict of this.emojiDicts) {
-                const emoji = dict.data[key];
-                if (emoji === undefined || emoji === null) continue;
-                this.text = this.text.replaceBetween(match.index, matchEnd, emoji);
+        let newText = "";
+        outLoop:
+        for (let i = 0; i < this.text.length; i++) {
+            if (this.text[i] === ":") {
+                for (let j = i + 1; j < this.text.length; j++) {
+                    if (this.text[j] === ":") {
+                        const emojiKey = this.text.substring(i + 1, j);
+                        let emoji = null;
+                        for (const dict of this.emojiDicts) {
+                            if (emojiKey in dict.data) {
+                                emoji = dict.data[emojiKey];
+                                break;
+                            }
+                        }
+                        if (emoji !== null) {
+                            newText += emoji;
+                            i = j + 1;
+                            continue outLoop;
+                        }
+                    }
+                }
             }
+            newText += this.text[i];
         }
+        this.text = newText;
     }
 
     advanceChar(steps) {
