@@ -502,15 +502,21 @@ class Formatter {
 
     formatWhitespaces() {
         this.lastFormatCode = this.lastFormatCode || formatCodes.reset;
-
+        
         for (let i = 0; i < this.leadingSpaces; i++) {
             this.formattedText = " " + formatCodes.reset + this.formattedText;
         }
         if (this.leadingSpaces > 0) {
             this.formattedText = formatCodes.reset + this.formattedText;
         }
-
-        for (let j = 0; j < this.endingSpaces; j++) {
+        
+        if (this.endingSpaces >= 1) {
+            if (this.tokens[this.tokens.length - 1].text !== "") {
+                this.formattedText += this.lastFormatCode;
+            } 
+            this.formattedText += " ";
+        }
+        for (let j = 1; j < this.endingSpaces; j++) {
             this.formattedText += this.lastFormatCode + " ";
         }
         if (this.endingSpaces > 0) {
