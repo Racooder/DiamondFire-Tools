@@ -386,22 +386,25 @@ class Formatter {
                 }
             }
             if (this.currentChar === "&") {
-                if (nextChar === null) continue;
-
-                const formatCode = "&" + nextChar;
-                if (formatCode in minecraftToHumanFormat) {
-                    this.pushToken();
-                    const settingsKey = minecraftToHumanFormat[formatCode];
-                    this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
-                    continue;
-                } else if (formatCode === "&r") {
-                    this.pushToken();
-                    this.resetTokenSettings();
-                    continue;
-                } else if (/^&[0-9a-f]$/g.test(formatCode)) {
-                    this.pushToken();
-                    this.tokenSettings.color = colorDict[formatCode];
-                    continue;
+                if (nextChar !== null) {
+                    const formatCode = "&" + nextChar;
+                    if (formatCode in minecraftToHumanFormat) {
+                        this.pushToken();
+                        const settingsKey = minecraftToHumanFormat[formatCode];
+                        this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
+                        this.advanceChar();
+                        continue;
+                    } else if (formatCode === "&r") {
+                        this.pushToken();
+                        this.resetTokenSettings();
+                        this.advanceChar();
+                        continue;
+                    } else if (/^&[0-9a-f]$/g.test(formatCode)) {
+                        this.pushToken();
+                        this.tokenSettings.color = formatCode;
+                        this.advanceChar();
+                        continue;
+                    }
                 }
             }
             if (this.currentChar === "#") {
