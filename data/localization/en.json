@@ -55,7 +55,7 @@
     "th-emphasis-example-2": "will be converted to",
     "th-emphasis-example-2-code": "&lThis is in bold, &l&oitalics&r&l, &l&mand strikethrough",
     "th-emphasis-additional-1": "Text Helper also supports",
-    "th-emphasis-additional-1-code": "``underline``",
+    "th-emphasis-additional-1-code": "__underline__",
     "th-emphasis-additional-2": "and",
     "th-emphasis-additional-2-code": "§§obfuscated§§",
 
