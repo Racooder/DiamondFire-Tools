@@ -275,7 +275,7 @@ function htmlToMinecraftColor(colorCode) {
     } else if (/^[0-9a-f]{3}/g.test(colorCode)) {
         codeLength = 3;
     }
-    if (codeLength === 0) return null;
+    if (codeLength === 0) return [null, 0];
     colorCode = colorCode.substring(0, codeLength);
 
     if (colorCode in colorDict) {
