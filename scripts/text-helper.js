@@ -204,7 +204,7 @@ const formatCodes = {
     bold: "&l",
     italic: "&o",
     strikethrough: "&m",
-    underline: "&n",
+    underlined: "&n",
     obfuscated: "&k",
     reset: "&r"
 };
@@ -238,7 +238,7 @@ const minecraftToHumanFormat = {
     "&l": "bold",
     "&o": "italic",
     "&m": "strikethrough",
-    "&n": "underline",
+    "&n": "underlined",
     "&k": "obfuscated"
 };
 
