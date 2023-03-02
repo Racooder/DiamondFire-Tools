@@ -204,7 +204,7 @@ const formatCodes = {
     bold: "&l",
     italic: "&o",
     strikethrough: "&m",
-    underline: "&n",
+    underlined: "&n",
     obfuscated: "&k",
     reset: "&r"
 };
@@ -238,7 +238,7 @@ const minecraftToHumanFormat = {
     "&l": "bold",
     "&o": "italic",
     "&m": "strikethrough",
-    "&n": "underline",
+    "&n": "underlined",
     "&k": "obfuscated"
 };
 
@@ -269,17 +269,18 @@ function htmlToMinecraftColor(colorCode) {
         colorCode = colorCode.substring(1).toLowerCase();
     }
 
-    if (colorCode in colorDict) {
-        return [colorDict[colorCode], colorCode.length];
-    }
-
     let codeLength = 0;
     if (/^[0-9a-f]{6}/g.test(colorCode)) {
         codeLength = 6;
     } else if (/^[0-9a-f]{3}/g.test(colorCode)) {
         codeLength = 3;
     }
-    if (codeLength === 0) return null;
+    if (codeLength === 0) return [null, 0];
+    colorCode = colorCode.substring(0, codeLength);
+
+    if (colorCode in colorDict) {
+        return [colorDict[colorCode], codeLength];
+    }
 
     let minecraftCode = "&x";
     for (let i = 0; i < codeLength; i++) {
@@ -296,18 +297,31 @@ class Formatter {
     }
 
     formatEmojis() {
-        const re = /:[a-zA-Z0-9_]+:/g
-        let match;
-        while ((match = re.exec(this.text)) != null) {
-            const matchEnd = match.index + match[0].length;
-            const key = match[0].substring(1, match[0].length - 1);
-            console.log(this.emojiDicts);
-            for (const dict of this.emojiDicts) {
-                const emoji = dict.data[key];
-                if (emoji === undefined || emoji === null) continue;
-                this.text = this.text.replaceBetween(match.index, matchEnd, emoji);
+        let newText = "";
+        outLoop:
+        for (let i = 0; i < this.text.length; i++) {
+            if (this.text[i] === ":") {
+                for (let j = i + 1; j < this.text.length; j++) {
+                    if (this.text[j] === ":") {
+                        const emojiKey = this.text.substring(i + 1, j);
+                        let emoji = null;
+                        for (const dict of this.emojiDicts) {
+                            if (emojiKey in dict.data) {
+                                emoji = dict.data[emojiKey];
+                                break;
+                            }
+                        }
+                        if (emoji !== null) {
+                            newText += emoji;
+                            i = j + 1;
+                            continue outLoop;
+                        }
+                    }
+                }
             }
+            newText += this.text[i];
         }
+        this.text = newText;
     }
 
     advanceChar(steps) {
@@ -373,22 +387,25 @@ class Formatter {
                 }
             }
             if (this.currentChar === "&") {
-                if (nextChar === null) continue;
-
-                const formatCode = "&" + nextChar;
-                if (formatCode in minecraftToHumanFormat) {
-                    this.pushToken();
-                    const settingsKey = minecraftToHumanFormat[formatCode];
-                    this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
-                    continue;
-                } else if (formatCode === "&r") {
-                    this.pushToken();
-                    this.resetTokenSettings();
-                    continue;
-                } else if (/^&[0-9a-f]$/g.test(formatCode)) {
-                    this.pushToken();
-                    this.tokenSettings.color = colorDict[formatCode];
-                    continue;
+                if (nextChar !== null) {
+                    const formatCode = "&" + nextChar;
+                    if (formatCode in minecraftToHumanFormat) {
+                        this.pushToken();
+                        const settingsKey = minecraftToHumanFormat[formatCode];
+                        this.tokenSettings[settingsKey] = !this.tokenSettings[settingsKey];
+                        this.advanceChar();
+                        continue;
+                    } else if (formatCode === "&r") {
+                        this.pushToken();
+                        this.resetTokenSettings();
+                        this.advanceChar();
+                        continue;
+                    } else if (/^&[0-9a-f]$/g.test(formatCode)) {
+                        this.pushToken();
+                        this.tokenSettings.color = formatCode;
+                        this.advanceChar();
+                        continue;
+                    }
                 }
             }
             if (this.currentChar === "#") {
@@ -485,15 +502,21 @@ class Formatter {
 
     formatWhitespaces() {
         this.lastFormatCode = this.lastFormatCode || formatCodes.reset;
-
+        
         for (let i = 0; i < this.leadingSpaces; i++) {
             this.formattedText = " " + formatCodes.reset + this.formattedText;
         }
         if (this.leadingSpaces > 0) {
             this.formattedText = formatCodes.reset + this.formattedText;
         }
-
-        for (let j = 0; j < this.endingSpaces; j++) {
+        
+        if (this.endingSpaces >= 1) {
+            if (this.tokens[this.tokens.length - 1].text !== "") {
+                this.formattedText += this.lastFormatCode;
+            } 
+            this.formattedText += " ";
+        }
+        for (let j = 1; j < this.endingSpaces; j++) {
             this.formattedText += this.lastFormatCode + " ";
         }
         if (this.endingSpaces > 0) {
