@@ -369,6 +369,7 @@ class Formatter {
 
             if (this.currentChar === "\\") {
                 this.advanceChar();
+                this.tokenText += "\\";
                 this.tokenText += this.currentChar;
                 continue;
             }
@@ -446,19 +447,30 @@ class Formatter {
     }
 
     applyFonts(text) {
-        var charArray = text.split('');
+        let newText = "";
+        let escapeNext = false;
 
         charLoop:
-        for (let i = 0; i < charArray.length; i++) {
+        for (const char of text) {
+            if (escapeNext) {
+                newText += char;
+                escapeNext = false;
+                continue;
+            }
+            if (char === "\\") {
+                escapeNext = true;
+                continue;
+            }
             for (const font of this.fontDicts) {
-                const fontChar = font.data[charArray[i]];
+                const fontChar = font.data[char];
                 if (fontChar === undefined || fontChar === null) continue;
-                charArray[i] = fontChar;
+                newText += fontChar;
                 continue charLoop;
             }
+            newText += char;
         }
 
-        return charArray.join('')
+        return newText;
     }
 
     formatTokens() {
