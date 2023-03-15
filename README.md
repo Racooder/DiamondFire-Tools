@@ -31,8 +31,8 @@
         <li><a href="#about-the-project">About The Project</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
         <li><a href="#contributing">Contributing</a></li>
-        <li><a href="#contributors">Contributors</a></li>
         <li><a href="#acknowledgments">Acknowledgments</a></li>
+        <li><a href="#contributors">Contributors</a></li>
     </ol>
 </details>
 
@@ -67,19 +67,23 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTRIBUTORS -->
-## Contributors
-
-* [Racooder](https://github.com/Racooder) - Creator and Maintainer
-* [gotura](https://github.com/gotura) - Testing, Ideas and some fonts/emojis
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* This Project is using the [Best-README-Template](https://github.com/othneildrew/Best-README-Template) by [Othneil Drew](https://github.com/othneildrew)
+* This project is using the DiamondFire library [sparkscript](https://github.com/UserUNP/sparkscript) by [UserUNP](https://github.com/UserUNP)
+* For syntax highlighting, this project is using [highlight.js](https://highlightjs.org/)
+* The readme is based on the [Best-README-Template](https://github.com/othneildrew/Best-README-Template) by [Othneil Drew](https://github.com/othneildrew)
 * The menu is based on the [Minecraft Style Menu](https://codepen.io/joexmdq/pen/EOMLzg) by [Joel](https://codepen.io/joexmdq)
 * Uicons by [Flaticon](https://www.flaticon.com/uicons)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTORS -->
+## Contributors
+
+[![Contributors][contributors-image]][contributors-link]
+
+[contributors-image]: https://contrib.rocks/image?repo=racooder/diamondfire-tools
+[contributors-link]: https://github.com/racooder/diamondfire-tools/graphs/contributors
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
