@@ -21,6 +21,11 @@
     <a href="https://github.com/Racooder/DiamondFire-Tools/issues/new?assignees=&labels=bug&template=bug_report.yaml&title=%5BBug%5D%3A+">Report Bug</a>
     ·
     <a href="https://github.com/Racooder/DiamondFire-Tools/issues/new?assignees=&labels=enhancement&template=feature_request.yaml&title=%5BFeature%5D%3A+">Request Feature</a>
+    <br/>
+    <br/>
+    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/racooder/diamondfire-tools?color=%2358A6FF&logo=GitHub&style=for-the-badge">
+    <img alt="Version 1.4.0" src="https://img.shields.io/badge/VERSION-1.4.0-%20%20%20%20%2358A6FF?style=for-the-badge">
+    <img alt="Discord" src="https://img.shields.io/discord/651800564966883328?color=%2358A6FF&label=discord&logo=Discord&style=for-the-badge">
 </p>
 </div>
 
