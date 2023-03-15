@@ -24,7 +24,7 @@
     <br/>
     <br/>
     <a href="https://github.com/Racooder/DiamondFire-Tools/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/racooder/diamondfire-tools?color=%2358A6FF&logo=GitHub&style=for-the-badge"></a>
-    <a><img alt="Version 1.4.0" src="https://img.shields.io/badge/VERSION-1.4.0-%20%20%20%20%2358A6FF?style=for-the-badge"></a>
+    <a href="https://dftools.rf.gd/"><img alt="Version 1.4.0" src="https://img.shields.io/badge/VERSION-1.4.0-%20%20%20%20%2358A6FF?style=for-the-badge"></a>
     <a href="https://discord.com/invite/gqWpQnkN5h"><img alt="Discord" src="https://img.shields.io/discord/651800564966883328?color=%2358A6FF&label=discord&logo=Discord&style=for-the-badge"></a>
 </p>
 </div>
