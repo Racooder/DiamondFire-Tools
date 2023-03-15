@@ -184,7 +184,10 @@ function handleInput(inputField) {
 
         // Format the text
         const formatter = new Formatter(inputText, selectedFonts, selectedEmojis);
-        const formattedText = formatter.format();
+        let formattedText = formatter.format();
+        if (formattedText === "") {
+            formattedText = "&r";
+        }
         $("#text-helper-output").val(formattedText);
         $("#th-output-tooltip").hide(500);
     }
