@@ -1,0 +1,290 @@
+@font-face {
+    font-family: Minecraft-Regular;
+    src: local(Minecraft-Regular),
+        url(/fonts/minecraft-regular.otf) format("opentype");
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body {
+    overflow: hidden;
+    font-family: Minecraft-Regular;
+}
+
+main {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+.mc-gui {
+    display: none;
+}
+
+#inv-holder {
+    background-color: #c6c6c6;
+}
+
+#inv-menu {
+    width: auto;
+    height: auto;
+    color: #464646;
+}
+
+#inv-menu span {
+    display: block;
+    cursor: default;
+    user-select: none;
+}
+
+.inv-item-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: block;
+}
+
+.inv-item {
+    background-color: #8b8b8b;
+    float: left;
+    color: transparent;
+    text-indent: -9999px;
+    white-space: nowrap;
+    image-rendering: pixelated;
+}
+
+#tooltip-holder {
+    position: absolute;
+    background-color: #0b0514f2;
+    flex: 1 1 auto;
+}
+
+#tooltip {
+    min-width: 40%;
+}
+
+#tooltip p {
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .mc-gui {
+        border-radius: calc(2px * 5);
+        line-height: calc(9px * 5);
+        font-size: calc(9px * 5);
+    }
+
+    #inv-holder {
+        width: calc(174px * 5);
+        height: calc(165px * 5);
+        border: calc(1px * 5) solid black;
+        box-shadow: inset calc(-2px * 5) calc(-2px * 5) #505050,
+        inset calc(2px * 5) calc(2px * 5) #fdfdfd;
+    }
+
+    #inv-menu {
+        padding: calc(4px * 5) calc(6px * 5);
+    }
+
+    .inv-item-container {
+        width: calc(162px * 5);
+    }
+
+    .inv-item {
+        width: calc(17px * 5);
+        height: calc(17px * 5);
+        margin: 0 calc(1px * 5) calc(1px * 5) 0;
+        box-shadow: inset calc(1px * 5) calc(1px * 5) #434343,
+        inset calc(-1px * 5) calc(-1px * 5) #929292;
+        background-size: calc(16px * 5);
+        background-position: calc(1px * 5);
+    }
+
+    .inv-item:hover {
+        box-shadow: inset calc(1px * 5) calc(1px * 5) #434343,
+        inset 0 0 0 1000px #ffffff80;
+    }
+
+    #chest-title {
+        margin-bottom: calc(3px * 5);
+    }
+
+    #chest-items {
+        margin-bottom: calc(3px * 5);
+        height: calc(53px * 5);
+    }
+
+    #inv-title {
+        margin-bottom: calc(2px * 5);
+    }
+
+    #inv-items {
+        margin-bottom: calc(5px * 5);
+        height: calc(53px * 5);
+    }
+
+    #hotbar-items {
+        height: calc(17px * 5);
+    }
+
+    #tooltip-holder {
+        max-width: calc(120px * 5);
+    }
+
+    #tooltip {
+        margin: calc(0.75px * 5);
+        border: calc(0.75px * 5) solid #360c75bf;
+        padding: calc(2px * 5);
+    }
+}
+
+@media screen and (max-width: 1920px), (max-height: 1080px) and (min-width: 750px) and (min-height: 600px) {
+    .mc-gui {
+        border-radius: calc(2px * 3);
+        line-height: calc(9px * 3);
+        font-size: calc(9px * 3);
+    }
+
+    #inv-holder {
+        width: calc(174px * 3);
+        height: calc(165px * 3);
+        border: calc(1px * 3) solid black;
+        box-shadow: inset calc(-2px * 3) calc(-2px * 3) #505050,
+        inset calc(2px * 3) calc(2px * 3) #fdfdfd;
+    }
+
+    #inv-menu {
+        padding: calc(4px * 3) calc(6px * 3);
+    }
+
+    .inv-item-container {
+        width: calc(162px * 3);
+    }
+
+    .inv-item {
+        width: calc(17px * 3);
+        height: calc(17px * 3);
+        margin: 0 calc(1px * 3) calc(1px * 3) 0;
+        box-shadow: inset calc(1px * 3) calc(1px * 3) #434343,
+        inset calc(-1px * 3) calc(-1px * 3) #929292;
+        background-size: calc(16px * 3);
+        background-position: calc(1px * 3);
+    }
+
+    .inv-item:hover {
+        box-shadow: inset calc(1px * 3) calc(1px * 3) #434343,
+        inset 0 0 0 1000px #ffffff80;
+    }
+
+    #chest-title {
+        margin-bottom: calc(3px * 3);
+    }
+
+    #chest-items {
+        margin-bottom: calc(3px * 3);
+        height: calc(53px * 3);
+    }
+
+    #inv-title {
+        margin-bottom: calc(2px * 3);
+    }
+
+    #inv-items {
+        margin-bottom: calc(5px * 3);
+        height: calc(53px * 3);
+    }
+
+    #hotbar-items {
+        height: calc(17px * 3);
+    }
+
+    #tooltip-holder {
+        max-width: calc(120px * 3);
+    }
+
+    #tooltip {
+        margin: calc(0.75px * 3);
+        border: calc(0.75px * 3) solid #360c75bf;
+        padding: calc(2px * 3);
+    }
+}
+
+@media screen and (max-width: 750px), (max-height: 600px) {
+    .mc-gui {
+        border-radius: 2px;
+        line-height: 9px;
+        font-size: 9px;
+    }
+
+    #inv-holder {
+        width: 174px;
+        height: 165px;
+        border: 1px solid black;
+        box-shadow: inset -2px -2px #505050,
+        inset 2px 2px #fdfdfd;
+    }
+
+    #inv-menu {
+        padding: 4px 6px;
+    }
+
+    .inv-item-container {
+        width: 162px;
+    }
+
+    .inv-item {
+        width: 17px;
+        height: 17px;
+        margin: 0 1px 1px 0;
+        box-shadow: inset 1px 1px #434343,
+        inset -1px -1px #929292;
+        background-size: 16px;
+        background-position: 1px;
+    }
+
+    .inv-item:hover {
+        box-shadow: inset 1px 1px #434343,
+        inset 0 0 0 1000px #ffffff80;
+    }
+
+    #chest-title {
+        margin-bottom: 3px;
+    }
+
+    #chest-items {
+        margin-bottom: 3px;
+        height: 53px;
+    }
+
+    #inv-title {
+        margin-bottom: 2px;
+    }
+
+    #inv-items {
+        margin-bottom: 5px;
+        height: 53px;
+    }
+
+    #hotbar-items {
+        height: 17px;
+    }
+
+    #tooltip-holder {
+        max-width: 120px;
+    }
+
+    #tooltip {
+        margin: 0.75px;
+        border: 0.75px solid #360c75bf;
+        padding: 2px;
+    }
+}
