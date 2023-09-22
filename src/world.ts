@@ -3,6 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js";
+import { handleSmoothLookAt, smoothLookAt } from "./three-misc.ts";
 
 // * Types
 
@@ -46,7 +47,6 @@ var renderer: THREE.WebGLRenderer;
 var camera: THREE.PerspectiveCamera;
 var cameraShots: CameraShots;
 var activeCameraShot: keyof CameraShots;
-var targetQuaternion: THREE.Quaternion;
 
 // 3D Models
 var chest: THREE.Group<THREE.Object3DEventMap> | undefined;
@@ -231,25 +231,6 @@ function setupSelectionOutline() {
     composer.addPass(outline);
 }
 
-// * Camera
-
-function handleSmoothLookAt() {
-    if (!targetQuaternion) {
-        return;
-    }
-
-    camera.quaternion.slerp(targetQuaternion, 0.2);
-}
-
-function smoothLookAt(target: THREE.Vector3) {
-    const startRotation = camera.quaternion.clone();
-
-    camera.lookAt(target);
-    targetQuaternion = camera.quaternion.clone();
-
-    camera.quaternion.copy(startRotation);
-}
-
 // * Selection Outline
 
 function addSelectedObjects(object: THREE.Object3D) {
@@ -296,10 +277,10 @@ function animate() {
     );
 
     if (shot.lookAt !== undefined) {
-        smoothLookAt(shot.lookAt);
+        smoothLookAt(camera, shot.lookAt);
     }
 
-    handleSmoothLookAt();
+    handleSmoothLookAt(camera);
 
     renderer.render(scene, camera);
 }
