@@ -1,53 +1,108 @@
 <!DOCTYPE html>
-
-<html>
-<head>
-    <title>DiamondFire Tools</title>
-    <link rel=“icon” sizes="48x48" href=”favicon.ico” type=“image/x-icon”>
-    <link rel=“shortcut icon” sizes="48x48" href=“favicon.ico” type=“image/x-icon”>
-    <link rel=“icon” sizes="96x96" href=”favicon.png” type=“image/png”>
-    <link rel=“shortcut icon” sizes="96x96" href=“favicon.png” type=“image/png”>
-
-    <meta charset="utf-8" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style/index.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <script src="scripts/menu.js"></script>
-    <script src="scripts/main.js"></script>
-</head>
-
-<body data-theme="" data-lang="">
-    <div class="mc-menu" data-depth="0.5">
-        <div class="mc-button full">
-            <a href="javascript:mcHref('text-helper.html')">
-                <div class="title">Text Helper</div>
-            </a>
-        </div>
-        <div class="mc-button full">
-            <a href="javascript:mcHref('commands.html')">
-                <div class="title">Command List</div>
-            </a>
-        </div>
-        <!-- <div class="mc-button full">
-                <div class="title">Minecraft Realms</div>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="">
+        <title>DF Toolbox</title>
+        <link rel="stylesheet" href="style/style.css"/>
+        <link rel="stylesheet" href="style/index.css"/>
+    </head>
+    <body>
+        <main>
+            <div id="title-screen">
+                <h1>DF Toolbox</h1>
+                <p id="chest-hint">Click anywhere to open the tools menu</p>
+                <img id="chest-animation" src="/static/animations/chest_freeze.gif" alt="Chest"/>
             </div>
-            <div class="double">
-                <div class="mc-button full">
-                    <div class="title">Options</div>
-                </div>
-                <div class="mc-button full">
-                    <div class="title">Quit Game</div>
+            <div id="inv-holder" class="mc-gui">
+                <div id="inv-menu">
+                    <span id="chest-title">Tools</span>
+                    <ul id="chest-slots" class="inv-slot-container">
+                        <!-- First Row -->
+                        <li class="inv-slot" data-item="cookie" data-href="https://ko-fi.com/racooder" data-title="Donate" data-description="Support me on ko-fi"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot" data-item="barrier" data-href="js:closeMenu" data-title="Close Menu" data-description="Close the tools menu"/>
+                        <!-- Second Row -->
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot" data-item="writable_book" data-href="text-helper.html" data-title="Text Helper" data-description="A tool for generating styled text for df text values"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot" data-item="compass" data-href="commands.html" data-title="Command List" data-description="A sortable list of df commands"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot" data-item="command_minecart" data-href="math.html" data-title="Math Helper" data-description="Generates math expressions"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <!-- Third Row -->
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                    </ul>
+                    <span id="inv-title">Inventory</span>
+                    <ul id="inv-slots" class="inv-slot-container">
+                        <!-- First Row -->
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <!-- Second Row -->
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <!-- Third Row -->
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                    </ul><ul id="hotbar-slots" class="inv-slot-container">
+                        <!-- First (and only) Row -->
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                        <li class="inv-slot"/>
+                    </ul>
                 </div>
             </div>
-            <div class="mc-button full lang">
-                <div class="title"><img src="https://i.ibb.co/99187Lk/lang.png" alt=" Lang"/></div>
-            </div> -->
-    </div>
-</body>
+        </main>
+
+        <div id="tooltip-holder" class="mc-gui">
+            <div id="tooltip">
+                <p id="tool-title"/>
+                <p id="tool-desc"/>
+            </div>
+        </div>
+    </body>
+    <script src="/scripts/index.js"></script>
 </html>
