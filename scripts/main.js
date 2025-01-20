@@ -1,5 +1,15 @@
 "use strict";
 
+// Utility function to escape HTML special characters
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 // * Nav Bar Elements
 const lhElements = [
     { href: "index.html", text: "nav-home" },
@@ -77,7 +87,7 @@ async function translateAll() {
     $(".translate").each(function () {
         let contentKey = $(this).attr("data-content");
         if (contentKey) {
-            $(this).append(translate(contentKey));
+            $(this).append(escapeHtml(translate(contentKey)));
         }
         let valueKey = $(this).attr("data-value");
         if (valueKey) {
